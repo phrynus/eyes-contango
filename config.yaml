@@ -1,0 +1,33 @@
+# 单次拉取的交易对数量
+batchSize: 50
+# ticker 请求失败可重试次数
+maxRetries: 5
+# 首次重试延迟（秒）
+initialRetryDelay: 1
+# ticker 保持有效的毫秒数
+tickerValidity: 10000
+# 最低 24h 交易额
+minVolume: 500000
+# 价差计算线程数
+spreadCalcWorkers: 8
+# 价差计算队列容量
+spreadCalcQueueSize: 1000
+# 单个交易对两次价差计算的最小间隔（毫秒）
+spreadCalcThrottleMs: 500
+# HTTP API 端口
+apiPort: 8080
+# 全局黑名单交易对
+commonBlacklist:
+  - BTC
+  - ETH/USDT:USDT
+  - ETH/USDC:USDC
+  - SOL
+# 各交易所黑名单（可选）
+exchangeBlacklists:
+  binance: 
+    - 1000000BOB
+  gate: []
+  bybit: []
+  bitget: []
+  backpack: []
+
