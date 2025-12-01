@@ -54,9 +54,10 @@ type fileConfig struct {
 }
 
 var (
-	configFromFile *fileConfig
-	appConfig      runtimeConfig
-	globalTickers  *CoinTickers
+	configFromFile  *fileConfig
+	appConfig       runtimeConfig
+	globalTickers   *CoinTickers
+	globalExchanges *ExchangeStatusManager
 )
 
 // 加载配置 - 仅使用 YAML
@@ -100,6 +101,9 @@ func loadConfig() {
 		spreadCalcChan: make(chan string, appConfig.SpreadCalcQueueSize),
 		lastCalcTime:   make(map[string]int64),
 	}
+
+	// 初始化交易所状态管理器
+	globalExchanges = NewExchangeStatusManager()
 
 	log.Printf("配置加载完成 (config=%s): batchSize=%d, maxRetries=%d, tickerValidity=%dms, minVolume=%.0f, spreadCalcWorkers=%d, spreadCalcQueueSize=%d, spreadCalcThrottleMs=%d, refreshIntervalMs=%d, tableLimit=%d, minSpreadPercent=%.2f",
 		configPath,

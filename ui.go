@@ -46,8 +46,7 @@ func newSpreadUI(refresh time.Duration, minPercent float64) *spreadUI {
 		SetTitleColor(tcell.ColorLightYellow)
 
 	footer := tview.NewTextView().
-		SetDynamicColors(true).
-		SetText("[gray]鼠标滚轮可滚动")
+		SetDynamicColors(true)
 
 	return &spreadUI{
 		minPercent: minPercent,
@@ -66,11 +65,9 @@ func (ui *spreadUI) run(parent context.Context) {
 	layout := tview.NewFlex().
 		SetDirection(tview.FlexRow).
 		AddItem(ui.header, 3, 0, false).
-		AddItem(ui.table, 0, 1, true).
-		AddItem(ui.footer, 1, 0, false)
+		AddItem(ui.table, 0, 1, true)
 
 	ui.app.SetRoot(layout, true).EnableMouse(true)
-	ui.table.SetSelectionChangedFunc(ui.onSelectionChanged)
 
 	ui.app.SetInputCapture(func(event *tcell.EventKey) *tcell.EventKey {
 		if event.Key() == tcell.KeyEscape || event.Key() == tcell.KeyCtrlC {
@@ -143,7 +140,7 @@ func (ui *spreadUI) renderSnapshot() {
 func (ui *spreadUI) calculateDisplayLimit(height int) int {
 	// 高度 = header(3) + table_border(2) + footer(1) + header_row(1)
 	// 可用高度 = height - 7
-	availableHeight := height - 7
+	availableHeight := height - 8
 	if availableHeight < 1 {
 		availableHeight = 10 // 最小显示10行
 	}
@@ -158,17 +155,31 @@ func (ui *spreadUI) applySnapshot(rows []SpreadRow, total int) {
 	ui.rows = rows
 	ui.renderHeader(total, len(rows))
 	ui.renderTable(rows)
-	ui.footer.SetText("[gray]鼠标滚轮可滚动")
 }
 
 func (ui *spreadUI) renderHeader(tracked, displayed int) {
+	connected := globalExchanges.GetConnectedCount()
+	total := globalExchanges.GetTotalCount()
 	header := fmt.Sprintf(
-		"[::b]Contango 实时价差监控[-:-:-]  [gray]|[-]  过滤: [white]≥ %.2f%%[-]  [gray]|[-]  已追踪: [white]%d[-]  [gray]|[-]  当前显示: [white]%d[-]",
+		"[::b]Contango 实时价差监控[-:-:-]  [gray]|[-]  交易所: [%s]%d/%d[-]  [gray]|[-]  过滤: [white]≥ %.2f%%[-]  [gray]|[-]  已追踪: [white]%d[-]  [gray]|[-]  当前显示: [white]%d[-]",
+		getConnectionColor(connected, total),
+		connected,
+		total,
 		ui.minPercent,
 		tracked,
 		displayed,
 	)
 	ui.header.SetText(header)
+}
+
+// getConnectionColor 根据连接状态返回颜色
+func getConnectionColor(connected, total int) string {
+	if connected == total && total > 0 {
+		return "green" // 全部连接
+	} else if connected > 0 {
+		return "yellow" // 部分连接
+	}
+	return "red" // 无连接
 }
 
 func (ui *spreadUI) renderTable(rows []SpreadRow) {

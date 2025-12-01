@@ -14,6 +14,9 @@ import (
 func watchExchange(exchangeName string, exchange ccxtpro.IExchange, blacklist map[string]bool, wg *sync.WaitGroup) {
 	defer wg.Done()
 
+	// 初始化交易所状态为未连接
+	globalExchanges.UpdateStatus(exchangeName, false)
+
 	// 用于存储当前订阅的批次 goroutine，以便在重新筛选时停止旧的订阅
 	var currentBatches []func() // 存储停止函数
 	var batchesMutex sync.Mutex
@@ -126,6 +129,8 @@ func watchBatchWithStop(exchangeName string, exchange ccxtpro.IExchange, batchNu
 			ccxtpro.WithWatchBidsAsksSymbols(symbols),
 		)
 		if err != nil {
+			// 更新为未连接状态
+			globalExchanges.UpdateStatus(exchangeName, false)
 			// 再次检查停止信号
 			if stopCh != nil {
 				select {
@@ -169,6 +174,8 @@ func watchBatchWithStop(exchangeName string, exchange ccxtpro.IExchange, batchNu
 		// 成功连接后重置重试计数和延迟
 		retryCount = 0
 		delay = appConfig.InitialRetryDelay
+		// 更新为已连接状态
+		globalExchanges.UpdateStatus(exchangeName, true)
 
 		// 处理接收到的数据并实时更新到存储
 		if len(bidsAsks.Tickers) > 0 {
