@@ -18,7 +18,9 @@ const (
 	defaultSpreadCalcWorkers   = 8
 	defaultSpreadCalcQueueSize = 1000
 	defaultSpreadCalcThrottle  = int64(500)
-	defaultAPIPort             = 8080
+	defaultRefreshInterval     = int64(2000)
+	defaultTableLimit          = 25
+	defaultMinSpreadPercent    = 0.1
 )
 
 type runtimeConfig struct {
@@ -30,7 +32,9 @@ type runtimeConfig struct {
 	SpreadCalcWorkers    int
 	SpreadCalcQueueSize  int
 	SpreadCalcThrottleMs int64
-	APIPort              int
+	RefreshIntervalMs    int64
+	TableLimit           int
+	MinSpreadPercent     float64
 }
 
 type fileConfig struct {
@@ -42,7 +46,9 @@ type fileConfig struct {
 	SpreadCalcWorkers    *int                `yaml:"spreadCalcWorkers"`
 	SpreadCalcQueueSize  *int                `yaml:"spreadCalcQueueSize"`
 	SpreadCalcThrottleMs *int64              `yaml:"spreadCalcThrottleMs"`
-	APIPort              *int                `yaml:"apiPort"`
+	RefreshIntervalMs    *int64              `yaml:"refreshIntervalMs"`
+	TableLimit           *int                `yaml:"tableLimit"`
+	MinSpreadPercent     *float64            `yaml:"minSpreadPercent"`
 	CommonBlacklist      []string            `yaml:"commonBlacklist"`
 	ExchangeBlacklists   map[string][]string `yaml:"exchangeBlacklists"`
 }
@@ -83,7 +89,9 @@ func loadConfig() {
 		SpreadCalcWorkers:    valueOrDefault(cfg.SpreadCalcWorkers, defaultSpreadCalcWorkers),
 		SpreadCalcQueueSize:  valueOrDefault(cfg.SpreadCalcQueueSize, defaultSpreadCalcQueueSize),
 		SpreadCalcThrottleMs: valueOrDefault(cfg.SpreadCalcThrottleMs, defaultSpreadCalcThrottle),
-		APIPort:              valueOrDefault(cfg.APIPort, defaultAPIPort),
+		RefreshIntervalMs:    valueOrDefault(cfg.RefreshIntervalMs, defaultRefreshInterval),
+		TableLimit:           valueOrDefault(cfg.TableLimit, defaultTableLimit),
+		MinSpreadPercent:     valueOrDefault(cfg.MinSpreadPercent, defaultMinSpreadPercent),
 	}
 
 	// 初始化全局数据存储（需要配置值）
@@ -93,7 +101,7 @@ func loadConfig() {
 		lastCalcTime:   make(map[string]int64),
 	}
 
-	log.Printf("配置加载完成 (config=%s): batchSize=%d, maxRetries=%d, tickerValidity=%dms, minVolume=%.0f, spreadCalcWorkers=%d, spreadCalcQueueSize=%d, spreadCalcThrottleMs=%d, apiPort=%d",
+	log.Printf("配置加载完成 (config=%s): batchSize=%d, maxRetries=%d, tickerValidity=%dms, minVolume=%.0f, spreadCalcWorkers=%d, spreadCalcQueueSize=%d, spreadCalcThrottleMs=%d, refreshIntervalMs=%d, tableLimit=%d, minSpreadPercent=%.2f",
 		configPath,
 		appConfig.BatchSize,
 		appConfig.MaxRetries,
@@ -102,7 +110,9 @@ func loadConfig() {
 		appConfig.SpreadCalcWorkers,
 		appConfig.SpreadCalcQueueSize,
 		appConfig.SpreadCalcThrottleMs,
-		appConfig.APIPort,
+		appConfig.RefreshIntervalMs,
+		appConfig.TableLimit,
+		appConfig.MinSpreadPercent,
 	)
 }
 

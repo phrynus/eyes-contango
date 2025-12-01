@@ -1,8 +1,8 @@
 package main
 
 import (
-	"log"
 	"math"
+	"sort"
 	"strings"
 	"sync"
 	"time"
@@ -15,6 +15,13 @@ type CoinTicker struct {
 	Symbol   string                  `json:"s"`
 	Exchange map[string]*ccxt.Ticker `json:"e"`
 	Spread   Spread                  `json:"sp"`
+}
+
+// SpreadRow 是用于展示的价差快照
+type SpreadRow struct {
+	Symbol    string
+	Spread    SpreadInfo
+	UpdatedAt int64
 }
 
 // SpreadInfo 存储两个交易所之间的价差信息
@@ -342,97 +349,43 @@ func calculateSpread(coinTicker *CoinTicker) {
 	}
 }
 
-// formatUnixMillis 将毫秒时间戳格式化为可读字符串，0 表示未知
-func formatUnixMillis(ts int64) string {
-	if ts <= 0 {
-		return "未知时间"
-	}
-	return time.Unix(0, ts*int64(time.Millisecond)).Format("2006-01-02 15:04:05.000Z")
-}
-
-// PrintSpread 打印指定币种的价差信息（用于调试）
-func (ct *CoinTickers) PrintSpread(symbol string) {
+// snapshotTopSpreads 返回按价差百分比排序的前 N 条记录
+func (ct *CoinTickers) snapshotTopSpreads(limit int, minSpreadPercent float64) []SpreadRow {
 	ct.mu.RLock()
-	defer ct.mu.RUnlock()
-
-	coinTicker, exists := ct.data[symbol]
-	if !exists {
-		log.Printf("币种 %s 不存在\n", symbol)
-		return
-	}
-
-	spread := coinTicker.Spread
-	if spread.MaxSpread == nil {
-		log.Printf("币种 %s: 价差数据不足（需要至少2个交易所的有效 Bid 价）\n", symbol)
-		return
-	}
-
-	log.Printf("\n=== %s 价差信息 [%s] ===\n", symbol, formatUnixMillis(spread.UpdatedAt))
-	log.Printf("最大价差: %s vs %s\n", spread.MaxSpread.HighExchange, spread.MaxSpread.LowExchange)
-	log.Printf("  较高 Bid: %.8f (%s)\n", spread.MaxSpread.HighBid, spread.MaxSpread.HighExchange)
-	log.Printf("  较低 Bid: %.8f (%s)\n", spread.MaxSpread.LowBid, spread.MaxSpread.LowExchange)
-	log.Printf("  价差: %.8f (%.4f%%)\n", spread.MaxSpread.Spread, spread.MaxSpread.SpreadPercent)
-
-	if spread.MinSpread != nil && spread.MinSpread.ExchangePair != spread.MaxSpread.ExchangePair {
-		log.Printf("最小价差: %s vs %s\n", spread.MinSpread.HighExchange, spread.MinSpread.LowExchange)
-		log.Printf("  价差: %.8f (%.4f%%)\n", spread.MinSpread.Spread, spread.MinSpread.SpreadPercent)
-	}
-
-	log.Printf("总交易所对数: %d\n", len(spread.AllSpreads))
-	log.Printf("==============================\n")
-	// 输出 symbol 的所有交易所的 bid 价
-	for exchangeName, ticker := range coinTicker.Exchange {
-		log.Printf("交易所 %s: %.8f\n", exchangeName, *ticker.Bid)
-	}
-}
-
-// PrintMaxSpreadAll 打印所有币种中的最大价差（全局最大价差）
-func (ct *CoinTickers) PrintMaxSpreadAll() {
-	ct.mu.RLock()
-	defer ct.mu.RUnlock()
-
-	if len(ct.data) == 0 {
-		log.Printf("暂无币种数据\n")
-		return
-	}
-
-	var maxSpreadInfo *SpreadInfo
-	var maxSpreadSymbol string
-	var maxSpreadUpdatedAt int64
-	var maxSpreadCoinTicker *CoinTicker
-
-	// 遍历所有币种，找出全局最大价差
-	for symbol, coinTicker := range ct.data {
-		if coinTicker.Spread.MaxSpread == nil {
+	rows := make([]SpreadRow, 0, len(ct.data))
+	for symbol, ticker := range ct.data {
+		if ticker == nil || ticker.Spread.MaxSpread == nil {
 			continue
 		}
-
-		// 如果当前币种的最大价差百分比更大，则更新全局最大价差
-		if maxSpreadInfo == nil || coinTicker.Spread.MaxSpread.SpreadPercent > maxSpreadInfo.SpreadPercent {
-			maxSpreadInfo = coinTicker.Spread.MaxSpread
-			maxSpreadSymbol = symbol
-			maxSpreadUpdatedAt = coinTicker.Spread.UpdatedAt
-			maxSpreadCoinTicker = coinTicker
+		if ticker.Spread.MaxSpread.SpreadPercent < minSpreadPercent {
+			continue
 		}
+		rows = append(rows, SpreadRow{
+			Symbol:    symbol,
+			Spread:    *ticker.Spread.MaxSpread,
+			UpdatedAt: ticker.Spread.UpdatedAt,
+		})
+	}
+	ct.mu.RUnlock()
+
+	if len(rows) == 0 {
+		return rows
 	}
 
-	if maxSpreadInfo == nil {
-		log.Printf("暂无有效的价差数据\n")
-		return
+	sort.Slice(rows, func(i, j int) bool {
+		return rows[i].Spread.SpreadPercent > rows[j].Spread.SpreadPercent
+	})
+
+	if limit > 0 && len(rows) > limit {
+		rows = rows[:limit]
 	}
 
-	log.Printf("\n=== 全局最大价差 [%s] ===\n", time.Now().Format("2006-01-02 15:04:05"))
-	log.Printf("币种: %s\n", maxSpreadSymbol)
-	log.Printf("最大价差: %s vs %s\n", maxSpreadInfo.HighExchange, maxSpreadInfo.LowExchange)
-	log.Printf("  较高 Bid: %.8f (%s)\n", maxSpreadInfo.HighBid, maxSpreadInfo.HighExchange)
-	log.Printf("  较低 Bid: %.8f (%s)\n", maxSpreadInfo.LowBid, maxSpreadInfo.LowExchange)
-	log.Printf("  价差: %.8f (%.4f%%)\n", maxSpreadInfo.Spread, maxSpreadInfo.SpreadPercent)
+	return rows
+}
 
-	log.Printf("总交易所对数: %d\n", len(maxSpreadCoinTicker.Spread.AllSpreads))
-
-	log.Printf("数据更新时间: %s\n", formatUnixMillis(maxSpreadUpdatedAt))
-	log.Printf("==============================\n")
-	for exchangeName, ticker := range maxSpreadCoinTicker.Exchange {
-		log.Printf("交易所 %s: %.8f\n", exchangeName, *ticker.Bid)
-	}
+// totalSymbols 返回当前缓存的币种数量
+func (ct *CoinTickers) totalSymbols() int {
+	ct.mu.RLock()
+	defer ct.mu.RUnlock()
+	return len(ct.data)
 }
