@@ -223,10 +223,11 @@ func (ui *spreadUI) renderTable(rows []SpreadRow) {
 	for idx, row := range rows {
 		color := colorForSpread(row.Spread.SpreadPercent)
 		age := humanizeDuration(time.Since(time.UnixMilli(row.UpdatedAt)))
+		pairDisplay := formatPairDisplay(row.Spread.ExchangePair)
 
 		ui.table.SetCell(idx+1, 0, fixedWidthCell(0, fmt.Sprintf("%d", idx+1)).SetAlign(tview.AlignRight))
 		ui.table.SetCell(idx+1, 1, fixedWidthCell(1, row.Symbol).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 2, fixedWidthCell(2, row.Spread.ExchangePair).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 2, fixedWidthCell(2, pairDisplay).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 3, fixedWidthCell(3, fmt.Sprintf("%s%.2f%%[-]", color, row.Spread.SpreadPercent)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 4, fixedWidthCell(4, fmt.Sprintf("%s%.4f[-]", color, row.Spread.Spread)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 5, fixedWidthCell(5, fmt.Sprintf("%.4f", row.Spread.HighBid)).SetAlign(tview.AlignCenter))
@@ -330,6 +331,20 @@ func colorForSpread(percent float64) string {
 	default:
 		return "[#FF6B6B]"
 	}
+}
+
+// formatPairDisplay 将交易对格式化为简洁形式
+// 例如：BTC/USDT:USDT -> BTC/USDT
+func formatPairDisplay(pair string) string {
+	// 如果包含 ":", 则只显示 ":" 之前的部分
+	if idx := len(pair) - 1; idx >= 0 {
+		for i := len(pair) - 1; i >= 0; i-- {
+			if pair[i] == ':' {
+				return pair[:i]
+			}
+		}
+	}
+	return pair
 }
 
 func humanizeDuration(d time.Duration) string {
