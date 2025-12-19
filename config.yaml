@@ -19,7 +19,7 @@ refreshIntervalMs: 1000
 # 表格显示的最大币种数量（0 表示不限）
 tableLimit: 50
 # 过滤的最小价差百分比
-minSpreadPercent: 0.3
+minSpreadPercent: 0.1
 
 # 启用的交易所列表
 enabledExchanges:

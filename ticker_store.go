@@ -317,7 +317,7 @@ func calculateSpread(coinTicker *CoinTicker) {
 			// ExchangePair 显示方向：BUY@买入交易所 -> SELL@卖出交易所
 			exchangePairBuilder.Reset()
 			exchangePairBuilder.WriteString(buySide.Exchange)
-			exchangePairBuilder.WriteString(" ->")
+			exchangePairBuilder.WriteString("->")
 			exchangePairBuilder.WriteString(sellSide.Exchange)
 			exchangePair := exchangePairBuilder.String()
 
