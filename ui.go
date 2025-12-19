@@ -10,7 +10,7 @@ import (
 	"github.com/rivo/tview"
 )
 
-var tableColumnWidths = []int{1, 3, 3, 2, 2, 2, 2, 2}
+var tableColumnWidths = []int{1, 3, 3, 2, 2, 2}
 
 type spreadUI struct {
 	minPercent float64
@@ -206,7 +206,7 @@ func (ui *spreadUI) renderTable(rows []SpreadRow) {
 	// - Spread % / Spread: 基于买入 Ask 与卖出 Bid 的价差
 	// - Sell (Bid): 卖出价格（Bid）
 	// - Buy (Ask): 买入价格（Ask）
-	headers := []string{"#", "Symbol", "BUY — SELL", "Spread %", "Spread", "Sell (Bid)", "Buy (Ask)", "Age"}
+	headers := []string{"#", "Symbol", "BUY — SELL", "Spread %", "Sell (Bid)", "Buy (Ask)", "Age"}
 	for col, title := range headers {
 		ui.table.SetCell(0, col, fixedWidthCell(col, fmt.Sprintf("[white::b]%s", title)).
 			SetAlign(tview.AlignCenter).
@@ -227,12 +227,11 @@ func (ui *spreadUI) renderTable(rows []SpreadRow) {
 
 		ui.table.SetCell(idx+1, 0, fixedWidthCell(0, fmt.Sprintf("%d", idx+1)).SetAlign(tview.AlignRight))
 		ui.table.SetCell(idx+1, 1, fixedWidthCell(1, symbol).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 2, fixedWidthCell(2, row.Spread.ExchangePair).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 2, fixedWidthCell(2, formatPairDisplay(row.Spread.ExchangePair)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 3, fixedWidthCell(3, fmt.Sprintf("%s%.2f%%[-]", color, row.Spread.SpreadPercent)).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 4, fixedWidthCell(4, fmt.Sprintf("%s%.4f[-]", color, row.Spread.Spread)).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 5, fixedWidthCell(5, fmt.Sprintf("%.4f", row.Spread.HighBid)).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 6, fixedWidthCell(6, fmt.Sprintf("%.4f", row.Spread.LowBid)).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 7, fixedWidthCell(7, age).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 4, fixedWidthCell(4, fmt.Sprintf("%.4f", row.Spread.HighBid)).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 5, fixedWidthCell(5, fmt.Sprintf("%.4f", row.Spread.LowBid)).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 6, fixedWidthCell(6, age).SetAlign(tview.AlignCenter))
 	}
 }
 

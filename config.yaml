@@ -15,7 +15,7 @@ spreadCalcQueueSize: 1000
 # 单个交易对两次价差计算的最小间隔（毫秒）
 spreadCalcThrottleMs: 50
 # UI 刷新间隔（毫秒）
-refreshIntervalMs: 1000
+refreshIntervalMs: 200
 # 表格显示的最大币种数量（0 表示不限）
 tableLimit: 50
 # 过滤的最小价差百分比
