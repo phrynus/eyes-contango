@@ -223,11 +223,11 @@ func (ui *spreadUI) renderTable(rows []SpreadRow) {
 	for idx, row := range rows {
 		color := colorForSpread(row.Spread.SpreadPercent)
 		age := humanizeDuration(time.Since(time.UnixMilli(row.UpdatedAt)))
-		pairDisplay := formatPairDisplay(row.Spread.ExchangePair)
+		symbol := formatPairDisplay(row.Symbol)
 
 		ui.table.SetCell(idx+1, 0, fixedWidthCell(0, fmt.Sprintf("%d", idx+1)).SetAlign(tview.AlignRight))
-		ui.table.SetCell(idx+1, 1, fixedWidthCell(1, row.Symbol).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 2, fixedWidthCell(2, pairDisplay).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 1, fixedWidthCell(1, symbol).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 2, fixedWidthCell(2, row.Spread.ExchangePair).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 3, fixedWidthCell(3, fmt.Sprintf("%s%.2f%%[-]", color, row.Spread.SpreadPercent)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 4, fixedWidthCell(4, fmt.Sprintf("%s%.4f[-]", color, row.Spread.Spread)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 5, fixedWidthCell(5, fmt.Sprintf("%.4f", row.Spread.HighBid)).SetAlign(tview.AlignCenter))
