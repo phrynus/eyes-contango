@@ -23,6 +23,11 @@ const (
 	defaultMinSpreadPercent    = 0.1
 )
 
+var (
+	// 默认启用的交易所列表（与 main.go 中保持一致）
+	defaultEnabledExchanges = []string{"binance", "gate", "bybit", "bitget"}
+)
+
 type runtimeConfig struct {
 	BatchSize            int
 	MaxRetries           int
@@ -35,6 +40,7 @@ type runtimeConfig struct {
 	RefreshIntervalMs    int64
 	TableLimit           int
 	MinSpreadPercent     float64
+	EnabledExchanges     []string
 }
 
 type fileConfig struct {
@@ -51,6 +57,7 @@ type fileConfig struct {
 	MinSpreadPercent     *float64            `yaml:"minSpreadPercent"`
 	CommonBlacklist      []string            `yaml:"commonBlacklist"`
 	ExchangeBlacklists   map[string][]string `yaml:"exchangeBlacklists"`
+	EnabledExchanges     []string            `yaml:"enabledExchanges"`
 }
 
 var (
@@ -93,6 +100,7 @@ func loadConfig() {
 		RefreshIntervalMs:    valueOrDefault(cfg.RefreshIntervalMs, defaultRefreshInterval),
 		TableLimit:           valueOrDefault(cfg.TableLimit, defaultTableLimit),
 		MinSpreadPercent:     valueOrDefault(cfg.MinSpreadPercent, defaultMinSpreadPercent),
+		EnabledExchanges:     fallbackSlice(cfg.EnabledExchanges, defaultEnabledExchanges),
 	}
 
 	// 初始化全局数据存储（需要配置值）
@@ -105,7 +113,7 @@ func loadConfig() {
 	// 初始化交易所状态管理器
 	globalExchanges = NewExchangeStatusManager()
 
-	log.Printf("配置加载完成 (config=%s): batchSize=%d, maxRetries=%d, tickerValidity=%dms, minVolume=%.0f, spreadCalcWorkers=%d, spreadCalcQueueSize=%d, spreadCalcThrottleMs=%d, refreshIntervalMs=%d, tableLimit=%d, minSpreadPercent=%.2f",
+	log.Printf("配置加载完成 (config=%s): batchSize=%d, maxRetries=%d, tickerValidity=%dms, minVolume=%.0f, spreadCalcWorkers=%d, spreadCalcQueueSize=%d, spreadCalcThrottleMs=%d, refreshIntervalMs=%d, tableLimit=%d, minSpreadPercent=%.2f, enabledExchanges=%v",
 		configPath,
 		appConfig.BatchSize,
 		appConfig.MaxRetries,
@@ -117,6 +125,7 @@ func loadConfig() {
 		appConfig.RefreshIntervalMs,
 		appConfig.TableLimit,
 		appConfig.MinSpreadPercent,
+		appConfig.EnabledExchanges,
 	)
 }
 

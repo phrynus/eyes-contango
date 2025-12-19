@@ -129,12 +129,12 @@ func (this *Exchange) Fetch(url interface{}, method interface{}, headers interfa
 		}
 
 		if this.Verbose {
-			fmt.Println("Headers:", req.Header)
-			fmt.Printf("\n\n\n")
-			fmt.Printf("Request: %s %s\n", methodStr, urlStr)
-			fmt.Printf("\n\n\n")
-			fmt.Printf("Body: %v\n", body)
-			fmt.Printf("\n\n\n")
+			// fmt.Println("Headers:", req.Header)
+			// fmt.Printf("\n\n\n")
+			// fmt.Printf("Request: %s %s\n", methodStr, urlStr)
+			// fmt.Printf("\n\n\n")
+			// fmt.Printf("Body: %v\n", body)
+			// fmt.Printf("\n\n\n")
 		}
 
 		// strings.NewReader()
@@ -192,7 +192,7 @@ func (this *Exchange) Fetch(url interface{}, method interface{}, headers interfa
 
 		// Log the response (for debugging purposes)
 		if this.Verbose {
-			fmt.Printf("Response: %s\n", respBody)
+			// fmt.Printf("Response: %s\n", respBody)
 		}
 
 		statusText := http.StatusText(resp.StatusCode)

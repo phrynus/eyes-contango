@@ -47,12 +47,38 @@ func main() {
 }
 
 func launchExchangeWatchers() *sync.WaitGroup {
-	exchanges := map[string]ccxtpro.IExchange{
-		"binance": ccxtpro.NewBinance(nil),
-		"gate":    ccxtpro.NewGate(nil),
-		"bybit":   ccxtpro.NewBybit(nil),
-		"bitget":  ccxtpro.NewBitget(nil),
-		// "backpack": ccxtpro.NewBackpack(nil),
+	// ... existing code ...
+	allExchanges := map[string]ccxtpro.IExchange{
+		"binance":  ccxtpro.NewBinance(nil),
+		"gate":     ccxtpro.NewGate(nil),
+		"bybit":    ccxtpro.NewBybit(nil),
+		"bitget":   ccxtpro.NewBitget(nil),
+		"backpack": ccxtpro.NewBackpack(nil),
+		"okx":      ccxtpro.NewOkx(nil),
+		"kucoin":   ccxtpro.NewKucoin(nil),
+		"kraken":   ccxtpro.NewKraken(nil),
+		"mexc":     ccxtpro.NewMexc(nil),
+		"coinbase": ccxtpro.NewCoinbase(nil),
+	}
+
+	// 根据配置选择实际启用的交易所
+	enabled := appConfig.EnabledExchanges
+	if len(enabled) == 0 {
+		log.Printf("警告: 未在配置中指定 enabledExchanges，将不会启动任何交易所")
+	}
+
+	exchanges := make(map[string]ccxtpro.IExchange, len(enabled))
+	for _, name := range enabled {
+		if ex, ok := allExchanges[name]; ok {
+			exchanges[name] = ex
+		} else {
+			log.Printf("警告: 配置的交易所 %q 未在程序中实现，已忽略", name)
+		}
+	}
+
+	if len(exchanges) == 0 {
+		log.Panic("启用的交易所列表为空")
+		return nil
 	}
 
 	commonDefaults := defaultCommonBlacklist

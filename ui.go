@@ -22,6 +22,10 @@ type spreadUI struct {
 	footer *tview.TextView
 
 	rows []SpreadRow
+
+	// 固定行：记录当前“锁定”的行（根据 Symbol + ExchangePair 唯一标识）
+	pinnedKey string
+	pinnedRow int
 }
 
 func runSpreadTable(ctx context.Context, limit int, refresh time.Duration, minPercent float64) {
@@ -48,7 +52,7 @@ func newSpreadUI(refresh time.Duration, minPercent float64) *spreadUI {
 	footer := tview.NewTextView().
 		SetDynamicColors(true)
 
-	return &spreadUI{
+	ui := &spreadUI{
 		minPercent: minPercent,
 		refresh:    refresh,
 		app:        app,
@@ -56,6 +60,11 @@ func newSpreadUI(refresh time.Duration, minPercent float64) *spreadUI {
 		table:      table,
 		footer:     footer,
 	}
+
+	// 注册选中行变化回调，用于更新底部信息和固定当前选中行
+	table.SetSelectionChangedFunc(ui.onSelectionChanged)
+
+	return ui
 }
 
 func (ui *spreadUI) run(parent context.Context) {
@@ -136,25 +145,32 @@ func (ui *spreadUI) renderSnapshot() {
 	ui.applySnapshot(rows, total)
 }
 
-// calculateDisplayLimit 根据窗口高度计算可显示的行数
+// calculateDisplayLimit 计算一次快照要拉取的最大行数
+// 规则：
+// - 如果配置了 tableLimit (>0)，优先使用配置值，列表可滚动，高度只影响可见区域，不影响总行数
+// - 如果 tableLimit <=0，则退回到根据窗口高度估算一个合理的行数
 func (ui *spreadUI) calculateDisplayLimit(height int) int {
+	// 显式配置了上限时，直接使用配置的数量，让用户完全控制“拉多少条数据”
+	if appConfig.TableLimit > 0 {
+		return appConfig.TableLimit
+	}
+
+	// 未配置上限（<=0）时，按照窗口高度估算一个显示行数
 	// 高度 = header(3) + table_border(2) + footer(1) + header_row(1)
 	// 可用高度 = height - 7
 	availableHeight := height - 8
 	if availableHeight < 1 {
 		availableHeight = 10 // 最小显示10行
 	}
-	limit := availableHeight
-	if appConfig.TableLimit > 0 && limit > appConfig.TableLimit {
-		limit = appConfig.TableLimit
-	}
-	return limit
+	return availableHeight
 }
 
 func (ui *spreadUI) applySnapshot(rows []SpreadRow, total int) {
-	ui.rows = rows
+	// 先根据当前固定配置调整行顺序
+	ordered := ui.applyPinning(rows)
+	ui.rows = ordered
 	ui.renderHeader(total, len(rows))
-	ui.renderTable(rows)
+	ui.renderTable(ordered)
 }
 
 func (ui *spreadUI) renderHeader(tracked, displayed int) {
@@ -185,7 +201,12 @@ func getConnectionColor(connected, total int) string {
 func (ui *spreadUI) renderTable(rows []SpreadRow) {
 	ui.table.Clear()
 
-	headers := []string{"#", "Symbol", "Pair", "Spread %", "Spread", "High (Bid)", "Low (Bid)", "Age"}
+	// 表头说明：
+	// - Pair: BUY@A->SELL@B 方向性套利
+	// - Spread % / Spread: 基于买入 Ask 与卖出 Bid 的价差
+	// - Sell (Bid): 卖出价格（Bid）
+	// - Buy (Ask): 买入价格（Ask）
+	headers := []string{"#", "Symbol", "BUY — SELL", "Spread %", "Spread", "Sell (Bid)", "Buy (Ask)", "Age"}
 	for col, title := range headers {
 		ui.table.SetCell(0, col, fixedWidthCell(col, fmt.Sprintf("[white::b]%s", title)).
 			SetAlign(tview.AlignCenter).
@@ -220,6 +241,58 @@ func fixedWidthCell(col int, text string) *tview.TableCell {
 		SetExpansion(expansion)
 }
 
+// rowKey 返回用于标识一条行记录的唯一 key（Symbol + 方向）
+func rowKey(r SpreadRow) string {
+	return r.Symbol + "|" + r.Spread.ExchangePair
+}
+
+// applyPinning 根据 pinnedKey / pinnedRow 将选中的币固定在指定位置
+// 注意：这里使用的是「表格行号」（1 开始），内部切片是 0 开始，所以需要减 1。
+func (ui *spreadUI) applyPinning(rows []SpreadRow) []SpreadRow {
+	if ui.pinnedKey == "" || ui.pinnedRow <= 0 || len(rows) == 0 {
+		return rows
+	}
+
+	targetIdx := ui.pinnedRow - 1 // 转成 0-based
+	if targetIdx < 0 {
+		targetIdx = 0
+	}
+	if targetIdx >= len(rows) {
+		targetIdx = len(rows) - 1
+	}
+
+	// 找出需要固定的那一条记录
+	var pinned *SpreadRow
+	others := make([]SpreadRow, 0, len(rows))
+	for _, r := range rows {
+		if pinned == nil && rowKey(r) == ui.pinnedKey {
+			tmp := r
+			pinned = &tmp
+			continue
+		}
+		others = append(others, r)
+	}
+
+	// 如果当前快照里已经没有这条记录，就不做固定
+	if pinned == nil {
+		return rows
+	}
+
+	// 重新组装有序切片：在 targetIdx 位置放 pinned，其它位置按原排序依次填充
+	ordered := make([]SpreadRow, 0, len(rows))
+	otherIdx := 0
+	for i := 0; i < len(rows); i++ {
+		if i == targetIdx {
+			ordered = append(ordered, *pinned)
+		} else {
+			ordered = append(ordered, others[otherIdx])
+			otherIdx++
+		}
+	}
+
+	return ordered
+}
+
 func (ui *spreadUI) onSelectionChanged(row, _ int) {
 	if row <= 0 || row-1 >= len(ui.rows) {
 		ui.footer.SetText("[gray]鼠标滚轮可滚动")
@@ -227,6 +300,11 @@ func (ui *spreadUI) onSelectionChanged(row, _ int) {
 	}
 
 	sel := ui.rows[row-1]
+
+	// 记录当前选中行为“固定行”：后续数据刷新 / 重新排序时，该行会保持在当前表格位置
+	ui.pinnedKey = rowKey(sel)
+	ui.pinnedRow = row
+
 	ui.footer.SetText(fmt.Sprintf(
 		"[white]%s[-]  [gray]|[-]  价差: [yellow]%.2f%%[-] (%s)  [gray]|[-]  高: %s [green]%.4f[-]  [gray]|[-]  低: %s [red]%.4f[-]",
 		sel.Symbol,

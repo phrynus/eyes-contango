@@ -24,7 +24,11 @@ type SpreadRow struct {
 	UpdatedAt int64
 }
 
-// SpreadInfo 存储两个交易所之间的价差信息
+// SpreadInfo 存储两个交易所之间的价差信息（基于 Bid / Ask 的方向性套利）
+// 语义说明：
+// - LowExchange / LowBid: 代表买入方（使用 Ask 价）
+// - HighExchange / HighBid: 代表卖出方（使用 Bid 价）
+// - ExchangePair: 通常表示 "BUY@低价交易所 -> SELL@高价交易所"
 type SpreadInfo struct {
 	ExchangePair  string  `json:"e"`
 	HighExchange  string  `json:"he"`
@@ -216,17 +220,18 @@ func calculateSpread(coinTicker *CoinTicker) {
 	now := time.Now().UnixMilli()
 	validityThreshold := now - appConfig.TickerValidity
 
-	// 收集所有有效的 Bid 价（带时效性检查）
-	type ExchangeBid struct {
+	// 收集所有有效的 Bid / Ask（带时效性检查）
+	type ExchangeQuote struct {
 		Exchange string
 		Bid      float64
+		Ask      float64
 	}
 
 	// 预分配容量，减少内存重新分配
-	validBids := make([]ExchangeBid, 0, len(coinTicker.Exchange))
+	validQuotes := make([]ExchangeQuote, 0, len(coinTicker.Exchange))
 	for exchangeName, ticker := range coinTicker.Exchange {
-		// 检查 Ticker 是否有效：非空、有 Bid 价、Bid 价大于0、在时效范围内
-		if ticker == nil || ticker.Bid == nil || *ticker.Bid <= 0 {
+		// 检查 Ticker 是否有效：非空、有 Bid/Ask 价、且都大于0、在时效范围内
+		if ticker == nil || ticker.Bid == nil || ticker.Ask == nil || *ticker.Bid <= 0 || *ticker.Ask <= 0 {
 			continue
 		}
 
@@ -243,19 +248,21 @@ func calculateSpread(coinTicker *CoinTicker) {
 			}
 		}
 
-		// 检查 Bid 是否为 NaN 或 Inf，如果是则跳过
-		if math.IsNaN(*ticker.Bid) || math.IsInf(*ticker.Bid, 0) {
+		// 检查 Bid / Ask 是否为 NaN 或 Inf，如果是则跳过
+		if math.IsNaN(*ticker.Bid) || math.IsInf(*ticker.Bid, 0) ||
+			math.IsNaN(*ticker.Ask) || math.IsInf(*ticker.Ask, 0) {
 			continue
 		}
 
-		validBids = append(validBids, ExchangeBid{
+		validQuotes = append(validQuotes, ExchangeQuote{
 			Exchange: exchangeName,
 			Bid:      *ticker.Bid,
+			Ask:      *ticker.Ask,
 		})
 	}
 
-	if len(validBids) < 2 {
-		// 至少需要两个有效的 Bid 价
+	if len(validQuotes) < 2 {
+		// 至少需要两个有效的报价
 		coinTicker.Spread = Spread{
 			UpdatedAt: time.Now().UnixMilli(),
 		}
@@ -263,7 +270,8 @@ func calculateSpread(coinTicker *CoinTicker) {
 	}
 
 	// 预计算交易所对数量：n*(n-1)/2
-	numPairs := len(validBids) * (len(validBids) - 1) / 2
+	// 这里我们需要方向性套利（正向 / 反向），因此是有序对：n*(n-1)
+	numPairs := len(validQuotes) * (len(validQuotes) - 1)
 	allSpreads := make([]SpreadInfo, 0, numPairs)
 	var maxSpread *SpreadInfo
 	var minSpread *SpreadInfo
@@ -276,41 +284,29 @@ func calculateSpread(coinTicker *CoinTicker) {
 	}()
 	exchangePairBuilder.Grow(32) // 预分配足够空间
 
-	for i := 0; i < len(validBids); i++ {
-		for j := i + 1; j < len(validBids); j++ {
-			bid1 := validBids[i]
-			bid2 := validBids[j]
-
-			var highBid, lowBid ExchangeBid
-			var exchangePair string
-
-			if bid1.Bid > bid2.Bid {
-				highBid = bid1
-				lowBid = bid2
-				// 优化字符串拼接
-				exchangePairBuilder.Reset()
-				exchangePairBuilder.WriteString(bid1.Exchange)
-				exchangePairBuilder.WriteByte('-')
-				exchangePairBuilder.WriteString(bid2.Exchange)
-				exchangePair = exchangePairBuilder.String()
-			} else {
-				highBid = bid2
-				lowBid = bid1
-				exchangePairBuilder.Reset()
-				exchangePairBuilder.WriteString(bid2.Exchange)
-				exchangePairBuilder.WriteByte('-')
-				exchangePairBuilder.WriteString(bid1.Exchange)
-				exchangePair = exchangePairBuilder.String()
+	// 对每一对不同交易所 (i, j) 计算方向性套利：
+	// 正向：在 i 用 Ask 买入，在 j 用 Bid 卖出
+	// 反向：在 j 用 Ask 买入，在 i 用 Bid 卖出
+	for i := 0; i < len(validQuotes); i++ {
+		for j := 0; j < len(validQuotes); j++ {
+			if i == j {
+				continue
 			}
+			buySide := validQuotes[i]
+			sellSide := validQuotes[j]
 
-			// 检查 NaN 值，如果任何值是 NaN 或 Inf，跳过这个价差对
-			if math.IsNaN(highBid.Bid) || math.IsInf(highBid.Bid, 0) ||
-				math.IsNaN(lowBid.Bid) || math.IsInf(lowBid.Bid, 0) {
+			// 检查 NaN / Inf
+			if math.IsNaN(buySide.Ask) || math.IsInf(buySide.Ask, 0) ||
+				math.IsNaN(sellSide.Bid) || math.IsInf(sellSide.Bid, 0) {
 				continue
 			}
 
-			spread := highBid.Bid - lowBid.Bid
-			spreadPercent := (spread / lowBid.Bid) * 100
+			// 利用买入 Ask 与卖出 Bid 计算套利空间
+			spread := sellSide.Bid - buySide.Ask
+			if buySide.Ask <= 0 {
+				continue
+			}
+			spreadPercent := (spread / buySide.Ask) * 100
 
 			// 检查计算结果是否为 NaN 或 Inf
 			if math.IsNaN(spread) || math.IsInf(spread, 0) ||
@@ -318,13 +314,19 @@ func calculateSpread(coinTicker *CoinTicker) {
 				continue
 			}
 
-			// 直接创建 SpreadInfo，不使用对象池（因为需要存储）
+			// ExchangePair 显示方向：BUY@买入交易所 -> SELL@卖出交易所
+			exchangePairBuilder.Reset()
+			exchangePairBuilder.WriteString(buySide.Exchange)
+			exchangePairBuilder.WriteString(" ->")
+			exchangePairBuilder.WriteString(sellSide.Exchange)
+			exchangePair := exchangePairBuilder.String()
+
 			spreadInfo := SpreadInfo{
 				ExchangePair:  exchangePair,
-				HighExchange:  highBid.Exchange,
-				LowExchange:   lowBid.Exchange,
-				HighBid:       highBid.Bid,
-				LowBid:        lowBid.Bid,
+				HighExchange:  sellSide.Exchange,
+				LowExchange:   buySide.Exchange,
+				HighBid:       sellSide.Bid, // 卖出价格（Bid）
+				LowBid:        buySide.Ask,  // 买入价格（Ask）
 				Spread:        spread,
 				SpreadPercent: spreadPercent,
 			}

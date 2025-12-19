@@ -9,17 +9,30 @@ tickerValidity: 10000
 # 最低 24h 交易额
 minVolume: 500000
 # 价差计算线程数
-spreadCalcWorkers: 8
+spreadCalcWorkers: 16
 # 价差计算队列容量
 spreadCalcQueueSize: 1000
 # 单个交易对两次价差计算的最小间隔（毫秒）
-spreadCalcThrottleMs: 200
+spreadCalcThrottleMs: 50
 # UI 刷新间隔（毫秒）
-refreshIntervalMs: 2000
+refreshIntervalMs: 1000
 # 表格显示的最大币种数量（0 表示不限）
 tableLimit: 50
 # 过滤的最小价差百分比
-minSpreadPercent: 0.1
+minSpreadPercent: 0.3
+
+# 启用的交易所列表
+enabledExchanges:
+  - binance
+  - gate
+  # - okx
+  # - kucoin
+  # - kraken
+  # - mexc
+  # - coinbase
+  # - bybit
+  # - bitget
+  # - backpack
 # 全局黑名单交易对
 commonBlacklist:
   - BTC
@@ -31,6 +44,11 @@ exchangeBlacklists:
   binance: 
     - 1000000BOB
   gate: []
+  okx: []
+  kucoin: []
+  kraken: []
+  mexc: []
+  coinbase: []
   bybit: []
   bitget: []
   backpack: []

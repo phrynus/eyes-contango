@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"strings"
 	"sync"
 	"time"
@@ -24,7 +23,7 @@ func watchExchange(exchangeName string, exchange ccxtpro.IExchange, blacklist ma
 	// 启动订阅的函数
 	startWatching := func(symbols []string) {
 		if len(symbols) == 0 {
-			log.Printf("%s: No contract symbols found\n", exchangeName)
+			// log.Printf("%s: No contract symbols found\n", exchangeName)
 			return
 		}
 
@@ -67,7 +66,7 @@ func watchExchange(exchangeName string, exchange ccxtpro.IExchange, blacklist ma
 		// 获取所有市场（带重试机制）
 		markets, err := fetchMarketsWithRetry(exchange, exchangeName)
 		if err != nil {
-			log.Printf("%s: Failed to fetch markets after retries: %v\n", exchangeName, err)
+			// log.Printf("%s: Failed to fetch markets after retries: %v\n", exchangeName, err)
 			return
 		}
 
@@ -102,7 +101,7 @@ func watchExchange(exchangeName string, exchange ccxtpro.IExchange, blacklist ma
 	defer ticker.Stop()
 
 	for range ticker.C {
-		log.Printf("%s: 开始每小时重新筛选币种...\n", exchangeName)
+		// log.Printf("%s: 开始每小时重新筛选币种...\n", exchangeName)
 		filterAndStart()
 	}
 }
@@ -119,7 +118,7 @@ func watchBatchWithStop(exchangeName string, exchange ccxtpro.IExchange, batchNu
 		if stopCh != nil {
 			select {
 			case <-stopCh:
-				log.Printf("%s - Batch %d: 收到停止信号，退出订阅\n", exchangeName, batchNum)
+				// log.Printf("%s - Batch %d: 收到停止信号，退出订阅\n", exchangeName, batchNum)
 				return
 			default:
 			}
@@ -135,7 +134,7 @@ func watchBatchWithStop(exchangeName string, exchange ccxtpro.IExchange, batchNu
 			if stopCh != nil {
 				select {
 				case <-stopCh:
-					log.Printf("%s - Batch %d: 收到停止信号，退出订阅\n", exchangeName, batchNum)
+					// log.Printf("%s - Batch %d: 收到停止信号，退出订阅\n", exchangeName, batchNum)
 					return
 				default:
 				}
@@ -143,14 +142,14 @@ func watchBatchWithStop(exchangeName string, exchange ccxtpro.IExchange, batchNu
 
 			retryCount++
 			if retryCount <= appConfig.MaxRetries {
-				log.Printf("%s - Batch %d: Error (retry %d/%d): %v, retrying in %ds\n",
-					exchangeName, batchNum, retryCount, appConfig.MaxRetries, err, delay)
+				// log.Printf("%s - Batch %d: Error (retry %d/%d): %v, retrying in %ds\n",
+				// 	exchangeName, batchNum, retryCount, appConfig.MaxRetries, err, delay)
 
 				// 使用带停止信号的sleep，避免忙等待
 				if stopCh != nil {
 					select {
 					case <-stopCh:
-						log.Printf("%s - Batch %d: 收到停止信号，退出订阅\n", exchangeName, batchNum)
+						// log.Printf("%s - Batch %d: 收到停止信号，退出订阅\n", exchangeName, batchNum)
 						return
 					case <-time.After(time.Duration(delay) * time.Second):
 						// 继续重试
@@ -166,7 +165,7 @@ func watchBatchWithStop(exchangeName string, exchange ccxtpro.IExchange, batchNu
 				}
 				continue
 			} else {
-				log.Printf("%s - Batch %d: Max retries reached, stopping\n", exchangeName, batchNum)
+				// log.Printf("%s - Batch %d: Max retries reached, stopping\n", exchangeName, batchNum)
 				return
 			}
 		}
@@ -197,8 +196,8 @@ func fetchMarketsWithRetry(exchange ccxtpro.IExchange, exchangeName string) ([]c
 		}
 
 		if i < appConfig.MaxRetries-1 {
-			log.Printf("%s: Error fetching markets (attempt %d/%d): %v, retrying in %ds\n",
-				exchangeName, i+1, appConfig.MaxRetries, err, delay)
+			// log.Printf("%s: Error fetching markets (attempt %d/%d): %v, retrying in %ds\n",
+			// 	exchangeName, i+1, appConfig.MaxRetries, err, delay)
 			time.Sleep(time.Duration(delay) * time.Second)
 			delay *= 2
 			if delay > 30 {
@@ -290,7 +289,7 @@ func filterSymbolsByVolume(exchangeName string, exchange ccxtpro.IExchange, symb
 	// 批量获取 Ticker 数据
 	tickers, err := exchange.FetchTickers(ccxtpro.WithFetchTickersSymbols(symbols))
 	if err != nil {
-		log.Printf("%s: 获取成交量数据失败: %v，跳过成交量筛选\n", exchangeName, err)
+		// log.Printf("%s: 获取成交量数据失败: %v，跳过成交量筛选\n", exchangeName, err)
 		return symbols // 如果获取失败，返回所有币种
 	}
 
@@ -319,8 +318,8 @@ func filterSymbolsByVolume(exchangeName string, exchange ccxtpro.IExchange, symb
 		}
 	}
 
-	log.Printf("%s: 成交量筛选完成，从 %d 个币种筛选出 %d 个（24小时成交量 >= %.0f）\n",
-		exchangeName, len(symbols), len(filteredSymbols), appConfig.MinVolume)
+	// log.Printf("%s: 成交量筛选完成，从 %d 个币种筛选出 %d 个（24小时成交量 >= %.0f）\n",
+	// 	exchangeName, len(symbols), len(filteredSymbols), appConfig.MinVolume)
 
 	return filteredSymbols
 }
