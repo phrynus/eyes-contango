@@ -205,7 +205,7 @@ func (ui *spreadUI) renderTable(rows []SpreadRow) {
 	// - Spread % / Spread: 基于买入 Ask 与卖出 Bid 的价差
 	// - Sell (Bid): 卖出价格（Bid）
 	// - Buy (Ask): 买入价格（Ask）
-	headers := []string{" # ", " 币种 ", " 多空 ", " 价差 % ", "卖", "买", " 延迟 "}
+	headers := []string{" # ", " 币种 ", " 多空 ", " 价差 % ", "买", "卖", " 延迟 "}
 	for col, title := range headers {
 		ui.table.SetCell(0, col, fixedWidthCell(col, fmt.Sprintf("[white::b]%s", title)).
 			SetAlign(tview.AlignCenter).
@@ -227,8 +227,8 @@ func (ui *spreadUI) renderTable(rows []SpreadRow) {
 		ui.table.SetCell(idx+1, 1, fixedWidthCell(1, formatPairDisplay(row.Symbol)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 2, fixedWidthCell(2, row.Spread.ExchangePair).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 3, fixedWidthCell(3, fmt.Sprintf("%s%.2f%%[-]", color, row.Spread.SpreadPercent)).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 5, fixedWidthCell(4, fmt.Sprintf("%.4f", row.Spread.LowBid)).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 4, fixedWidthCell(5, fmt.Sprintf("%.4f", row.Spread.HighBid)).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 4, fixedWidthCell(4, fmt.Sprintf("%.4f", row.Spread.HighBid)).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 5, fixedWidthCell(5, fmt.Sprintf("%.4f", row.Spread.LowBid)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 6, fixedWidthCell(6, age).SetAlign(tview.AlignCenter))
 	}
 }
