@@ -176,7 +176,7 @@ func (ui *spreadUI) renderHeader(tracked, displayed int) {
 	connected := globalExchanges.GetConnectedCount()
 	total := globalExchanges.GetTotalCount()
 	header := fmt.Sprintf(
-		"[::b]Contango 实时价差监控[-:-:-]  [gray]|[-]  交易所: [%s]%d/%d[-]  [gray]|[-]  过滤: [white]≥ %.2f%%[-]  [gray]|[-]  已追踪: [white]%d[-]  [gray]|[-]  当前显示: [white]%d[-]",
+		"[::b]PHRYNUS [-:-:-]  [gray]|[-]  交易所: [%s]%d/%d[-]  [gray]|[-]  过滤: [white]≥ %.2f%%[-]  [gray]|[-]  已追踪: [white]%d[-]  [gray]|[-]  当前显示: [white]%d[-]",
 		getConnectionColor(connected, total),
 		connected,
 		total,
@@ -227,8 +227,8 @@ func (ui *spreadUI) renderTable(rows []SpreadRow) {
 		ui.table.SetCell(idx+1, 1, fixedWidthCell(1, formatPairDisplay(row.Symbol)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 2, fixedWidthCell(2, row.Spread.ExchangePair).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 3, fixedWidthCell(3, fmt.Sprintf("%s%.2f%%[-]", color, row.Spread.SpreadPercent)).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 4, fixedWidthCell(4, fmt.Sprintf("%.4f", row.Spread.HighBid)).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 5, fixedWidthCell(5, fmt.Sprintf("%.4f", row.Spread.LowBid)).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 5, fixedWidthCell(4, fmt.Sprintf("%.4f", row.Spread.LowBid)).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 4, fixedWidthCell(5, fmt.Sprintf("%.4f", row.Spread.HighBid)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 6, fixedWidthCell(6, age).SetAlign(tview.AlignCenter))
 	}
 }

@@ -15,13 +15,13 @@ const (
 	defaultTickerValidity          = int64(10000)
 	defaultMinVolume               = 500000.0
 	defaultSpreadCalcWorkers       = 8
-	defaultSpreadCalcQueueSize     = 1000
-	defaultSpreadCalcThrottle      = int64(500)
-	defaultRefreshInterval         = int64(2000)
-	defaultTableLimit              = 25
+	defaultSpreadCalcQueueSize     = 60
+	defaultSpreadCalcThrottle      = int64(100)
+	defaultRefreshInterval         = int64(200)
+	defaultTableLimit              = 35
 	defaultMinSpreadPercent        = 0.1
-	defaultExcludeUsdcUsdcPairs    = false
-	defaultUseAllSpreadsInSnapshot = false
+	defaultExcludeUsdcUsdcPairs    = true
+	defaultUseAllSpreadsInSnapshot = true
 )
 
 var (
