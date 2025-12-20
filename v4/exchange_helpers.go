@@ -973,7 +973,7 @@ func AppendToArray(slicePtr *interface{}, element interface{}) {
 		if obs, ok := (*slicePtr).(IOrderBookSide); ok {
 			*slicePtr = append(obs.GetData(), element.([]interface{}))
 		}
-		// fmt.Println("Error: Unsupported slice type")
+		fmt.Println("Error: Unsupported slice type")
 	}
 }
 

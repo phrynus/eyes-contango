@@ -322,8 +322,8 @@ func (this *Client) Reset(err interface{}) {
 }
 
 func (this *Client) Log(args ...interface{}) {
-	// fmt.Println(args...)
-	// fmt.Printf("%+v\n", args) // equivalent to console.dir with depth
+	fmt.Println(args...)
+	fmt.Printf("%+v\n", args) // equivalent to console.dir with depth
 }
 
 func (this *Client) Connect(backoffDelay ...int) (interface{}, error) {

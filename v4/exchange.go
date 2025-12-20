@@ -1163,7 +1163,7 @@ func (this *Exchange) SetProperty(obj interface{}, property interface{}, default
 	// Convert property to string
 	propName, ok := property.(string)
 	if !ok {
-		// fmt.Println("Property should be a string")
+		fmt.Println("Property should be a string")
 		return
 	}
 
@@ -1186,7 +1186,7 @@ func (this *Exchange) GetProperty(obj interface{}, property interface{}) interfa
 	// Convert property to string
 	propName, ok := property.(string)
 	if !ok {
-		// fmt.Println("Property should be a string")
+		fmt.Println("Property should be a string")
 		return nil
 	}
 
@@ -1374,7 +1374,7 @@ func (this *Exchange) RandNumber(size interface{}) int64 {
 	// Try casting interface{} to int
 	intSize, ok := size.(int)
 	if !ok {
-		// fmt.Println("Invalid size type; expected int")
+		fmt.Println("Invalid size type; expected int")
 		return 0
 	}
 
@@ -1388,7 +1388,7 @@ func (this *Exchange) RandNumber(size interface{}) int64 {
 
 	result, err := strconv.ParseInt(number, 10, 64)
 	if err != nil {
-		// fmt.Println("Error converting string to int64:", err)
+		fmt.Println("Error converting string to int64:", err)
 		return 0
 	}
 

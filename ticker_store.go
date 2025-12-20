@@ -8,13 +8,23 @@ import (
 	"time"
 
 	ccxt "github.com/ccxt/ccxt/go/v4"
+	ccxtpro "github.com/ccxt/ccxt/go/v4/pro"
 )
+
+// Ticker 自定义的Ticker类型，只包含实际使用的字段
+type Ticker struct {
+	Bid         *float64 `json:"bid,omitempty"`
+	Ask         *float64 `json:"ask,omitempty"`
+	Timestamp   *int64   `json:"timestamp,omitempty"`
+	QuoteVolume *float64 `json:"quoteVolume,omitempty"`
+	BaseVolume  *float64 `json:"baseVolume,omitempty"`
+}
 
 // CoinTicker 存储单个币种的交易所和价差信息
 type CoinTicker struct {
-	Symbol   string                  `json:"s"`
-	Exchange map[string]*ccxt.Ticker `json:"e"`
-	Spread   Spread                  `json:"sp"`
+	Symbol   string             `json:"s"`
+	Exchange map[string]*Ticker `json:"e"`
+	Spread   Spread             `json:"sp"`
 }
 
 // SpreadRow 是用于展示的价差快照
@@ -68,15 +78,43 @@ var stringsBuilderPool = sync.Pool{
 	},
 }
 
+// convertTicker 将ccxt.Ticker转换为自定义Ticker
+func convertTicker(src ccxt.Ticker) *Ticker {
+	ticker := &Ticker{}
+	if src.Bid != nil {
+		bid := *src.Bid
+		ticker.Bid = &bid
+	}
+	if src.Ask != nil {
+		ask := *src.Ask
+		ticker.Ask = &ask
+	}
+	if src.Timestamp != nil {
+		timestamp := *src.Timestamp
+		ticker.Timestamp = &timestamp
+	}
+	if src.QuoteVolume != nil {
+		quoteVolume := *src.QuoteVolume
+		ticker.QuoteVolume = &quoteVolume
+	}
+	if src.BaseVolume != nil {
+		baseVolume := *src.BaseVolume
+		ticker.BaseVolume = &baseVolume
+	}
+	return ticker
+}
+
 // updateTickers 批量更新 ticker 数据到全局存储
 // 优化：异步价差计算，减少锁持有时间，提高并发性能，添加节流机制
-func updateTickers(exchangeName string, tickers map[string]ccxt.Ticker) {
+func updateTickers(exchangeName string, tickers map[string]ccxtpro.Ticker) {
 	if len(tickers) == 0 {
+		log.Debugf("%s: 收到空的 ticker 数据", exchangeName)
 		return
 	}
 
 	now := time.Now().UnixMilli()
 	symbolsToUpdate := make([]string, 0, len(tickers))
+	// log.Debugf("%s: 开始更新 %d 个 ticker 数据", exchangeName, len(tickers))
 
 	// 快速更新 ticker 数据，最小化锁持有时间
 	globalTickers.mu.Lock()
@@ -91,14 +129,14 @@ func updateTickers(exchangeName string, tickers map[string]ccxt.Ticker) {
 			// 预分配 Exchange map 容量（假设最多5个交易所）
 			coinTicker = &CoinTicker{
 				Symbol:   symbol,
-				Exchange: make(map[string]*ccxt.Ticker, 5),
+				Exchange: make(map[string]*Ticker, 5),
 			}
 			globalTickers.data[symbol] = coinTicker
 		}
 
-		// 创建 ticker 的副本
-		tickerCopy := ticker
-		coinTicker.Exchange[exchangeName] = &tickerCopy
+		// 转换为自定义Ticker类型
+		customTicker := convertTicker(ticker)
+		coinTicker.Exchange[exchangeName] = customTicker
 		symbolsToUpdate = append(symbolsToUpdate, symbol)
 	}
 	globalTickers.mu.Unlock()
@@ -127,14 +165,17 @@ func updateTickers(exchangeName string, tickers map[string]ccxt.Ticker) {
 		default:
 			// 队列已满，跳过（避免阻塞）
 			// 价差会在下次更新时重新计算
+			log.Warnf("价差计算队列已满，跳过 %s 的计算（队列容量: %d）", symbol, appConfig.SpreadCalcQueueSize)
 		}
 	}
+	// log.Debugf("%s: 完成更新，共更新 %d 个 ticker，触发 %d 个价差计算", exchangeName, len(tickers), len(symbolsToUpdate))
 }
 
 // spreadCalcWorker 价差计算工作协程
 // 优化：添加批量处理，减少锁竞争
 func (ct *CoinTickers) spreadCalcWorker(workerID int) {
 	defer ct.spreadCalcWg.Done()
+	log.Infof("价差计算工作协程 #%d 已启动", workerID)
 
 	// 批量处理：收集一段时间内的symbol，批量计算
 	batch := make([]string, 0, 100)
@@ -146,14 +187,17 @@ func (ct *CoinTickers) spreadCalcWorker(workerID int) {
 		case symbol, ok := <-ct.spreadCalcChan:
 			if !ok {
 				// channel已关闭，处理剩余任务后退出
+				log.Infof("价差计算工作协程 #%d: channel已关闭，处理剩余 %d 个任务", workerID, len(batch))
 				for _, s := range batch {
 					ct.calculateSpreadForSymbol(s)
 				}
+				log.Infof("价差计算工作协程 #%d 已退出", workerID)
 				return
 			}
 			batch = append(batch, symbol)
 			// 如果批次已满，立即处理
 			if len(batch) >= 100 {
+				log.Debugf("价差计算工作协程 #%d: 批次已满，立即处理 %d 个任务", workerID, len(batch))
 				for _, s := range batch {
 					ct.calculateSpreadForSymbol(s)
 				}
@@ -162,6 +206,7 @@ func (ct *CoinTickers) spreadCalcWorker(workerID int) {
 		case <-ticker.C:
 			// 定时批量处理
 			if len(batch) > 0 {
+				// log.Debugf("价差计算工作协程 #%d: 定时处理 %d 个任务", workerID, len(batch))
 				for _, s := range batch {
 					ct.calculateSpreadForSymbol(s)
 				}
@@ -179,15 +224,22 @@ func (ct *CoinTickers) calculateSpreadForSymbol(symbol string) {
 	coinTicker := ct.data[symbol]
 	if coinTicker == nil {
 		ct.mu.RUnlock()
+		log.Debugf("计算价差: %s 不存在，跳过", symbol)
 		return
 	}
 
 	// 创建 Exchange map 的快照（只复制指针）
-	exchangeSnapshot := make(map[string]*ccxt.Ticker, len(coinTicker.Exchange))
+	exchangeSnapshot := make(map[string]*Ticker, len(coinTicker.Exchange))
 	for k, v := range coinTicker.Exchange {
 		exchangeSnapshot[k] = v
 	}
+	exchangeCount := len(exchangeSnapshot)
 	ct.mu.RUnlock()
+
+	if exchangeCount < 2 {
+		// log.Debugf("计算价差: %s 只有 %d 个交易所数据，无法计算价差", symbol, exchangeCount)
+		return
+	}
 
 	// 在锁外计算价差
 	tempTicker := &CoinTicker{
@@ -195,6 +247,13 @@ func (ct *CoinTickers) calculateSpreadForSymbol(symbol string) {
 		Exchange: exchangeSnapshot,
 	}
 	calculateSpread(tempTicker)
+
+	// 记录计算结果
+	// maxSpreadPercent := 0.0
+	// if tempTicker.Spread.MaxSpread != nil {
+	// 	maxSpreadPercent = tempTicker.Spread.MaxSpread.SpreadPercent
+	// }
+	// log.Debugf("计算价差: %s 完成，有 %d 个交易所，最大价差: %.4f%%", symbol, exchangeCount, maxSpreadPercent)
 
 	// 检查价差是否有显著变化（避免频繁更新）
 	// 更新价差结果（需要写锁）
@@ -390,4 +449,112 @@ func (ct *CoinTickers) totalSymbols() int {
 	ct.mu.RLock()
 	defer ct.mu.RUnlock()
 	return len(ct.data)
+}
+
+// getStatusInfo 获取整体状态信息
+func (ct *CoinTickers) getStatusInfo() map[string]interface{} {
+	ct.mu.RLock()
+
+	// 统计信息
+	totalSymbols := len(ct.data)
+	symbolsWithSpread := 0
+	symbolsWithMultipleExchanges := 0
+	maxSpreadPercent := 0.0
+	maxSpreadSymbol := ""
+	maxSpreadPair := ""
+
+	// 统计每个交易所的币种数量
+	exchangeSymbolCounts := make(map[string]int)
+
+	for symbol, coinTicker := range ct.data {
+		if coinTicker == nil {
+			continue
+		}
+
+		// 统计交易所数量
+		exchangeCount := len(coinTicker.Exchange)
+		if exchangeCount > 1 {
+			symbolsWithMultipleExchanges++
+		}
+
+		// 统计每个交易所的币种数量
+		for exchangeName := range coinTicker.Exchange {
+			exchangeSymbolCounts[exchangeName]++
+		}
+
+		// 检查是否有价差
+		if coinTicker.Spread.MaxSpread != nil {
+			symbolsWithSpread++
+			if coinTicker.Spread.MaxSpread.SpreadPercent > maxSpreadPercent {
+				maxSpreadPercent = coinTicker.Spread.MaxSpread.SpreadPercent
+				maxSpreadSymbol = symbol
+				maxSpreadPair = coinTicker.Spread.MaxSpread.ExchangePair
+			}
+		}
+	}
+
+	ct.mu.RUnlock()
+
+	// 获取价差计算队列长度
+	queueLength := len(ct.spreadCalcChan)
+
+	// 获取交易所状态
+	exchangeStatuses := globalExchanges.GetStatuses()
+	connectedExchanges := 0
+	disconnectedExchanges := 0
+	for _, status := range exchangeStatuses {
+		if status.Connected {
+			connectedExchanges++
+		} else {
+			disconnectedExchanges++
+		}
+	}
+
+	return map[string]interface{}{
+		"totalSymbols":                 totalSymbols,
+		"symbolsWithSpread":            symbolsWithSpread,
+		"symbolsWithMultipleExchanges": symbolsWithMultipleExchanges,
+		"maxSpreadPercent":             maxSpreadPercent,
+		"maxSpreadSymbol":              maxSpreadSymbol,
+		"maxSpreadPair":                maxSpreadPair,
+		"spreadCalcQueueLength":        queueLength,
+		"connectedExchanges":           connectedExchanges,
+		"disconnectedExchanges":        disconnectedExchanges,
+		"totalExchanges":               len(exchangeStatuses),
+		"exchangeSymbolCounts":         exchangeSymbolCounts,
+	}
+}
+
+// startStatusLogger 启动状态日志记录器，每分钟记录一次整体状态
+func (ct *CoinTickers) startStatusLogger() {
+	go func() {
+		ticker := time.NewTicker(1 * time.Minute)
+		defer ticker.Stop()
+
+		for range ticker.C {
+			status := ct.getStatusInfo()
+
+			log.Infof("=== 整体状态 ===")
+			log.Infof("币种统计: 总数=%d, 有价差=%d, 多交易所=%d",
+				status["totalSymbols"],
+				status["symbolsWithSpread"],
+				status["symbolsWithMultipleExchanges"])
+			log.Infof("最大价差: %.4f%% (%s - %s)",
+				status["maxSpreadPercent"],
+				status["maxSpreadSymbol"],
+				status["maxSpreadPair"])
+			log.Infof("交易所状态: 已连接=%d/%d, 已断开=%d",
+				status["connectedExchanges"],
+				status["totalExchanges"],
+				status["disconnectedExchanges"])
+			log.Infof("价差计算队列: 当前长度=%d/%d",
+				status["spreadCalcQueueLength"],
+				appConfig.SpreadCalcQueueSize)
+
+			// 记录每个交易所的币种数量
+			if exchangeCounts, ok := status["exchangeSymbolCounts"].(map[string]int); ok && len(exchangeCounts) > 0 {
+				log.Infof("各交易所币种数量: %v", exchangeCounts)
+			}
+		}
+	}()
 }

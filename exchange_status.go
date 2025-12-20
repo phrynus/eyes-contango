@@ -31,12 +31,25 @@ func (m *ExchangeStatusManager) UpdateStatus(name string, connected bool) {
 	defer m.mu.Unlock()
 
 	status, exists := m.statuses[name]
-	if !exists {
+	oldConnected := false
+	if exists {
+		oldConnected = status.Connected
+	} else {
 		status = &ExchangeStatus{Name: name}
 		m.statuses[name] = status
 	}
+	
 	status.Connected = connected
 	status.LastSeen = time.Now()
+	
+	// 记录状态变化
+	if oldConnected != connected {
+		if connected {
+			log.Infof("交易所状态更新: %s 已连接", name)
+		} else {
+			log.Warnf("交易所状态更新: %s 已断开", name)
+		}
+	}
 }
 
 // GetStatuses 获取所有交易所状态的快照

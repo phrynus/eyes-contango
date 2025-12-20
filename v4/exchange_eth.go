@@ -2,6 +2,7 @@ package ccxt
 
 import (
 	"fmt"
+	"log"
 	"math/big"
 	"reflect"
 	"strings"
@@ -211,7 +212,7 @@ func (this *Exchange) EthEncodeStructuredData(domain2 interface{}, messageTypes2
 
 	hexData, err := ethEncodeStructuredData(primaryType, domainTyped, messageTypesTyped, messageData)
 	if err != nil {
-		// log.Fatalf("Error encoding data: %v", err)
+		log.Fatalf("Error encoding data: %v", err)
 		str, _ := fmt.Printf("Binary Data: %x\n", hexData)
 		panic(str)
 	}

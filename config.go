@@ -1,7 +1,6 @@
 package main
 
 import (
-	"log"
 	"os"
 	"strings"
 
@@ -9,18 +8,19 @@ import (
 )
 
 const (
-	defaultConfigFile          = "config.yaml"
-	defaultBatchSize           = 50
-	defaultMaxRetries          = 5
-	defaultInitialRetryDelay   = 1
-	defaultTickerValidity      = int64(10000)
-	defaultMinVolume           = 500000.0
-	defaultSpreadCalcWorkers   = 8
-	defaultSpreadCalcQueueSize = 1000
-	defaultSpreadCalcThrottle  = int64(500)
-	defaultRefreshInterval     = int64(2000)
-	defaultTableLimit          = 25
-	defaultMinSpreadPercent    = 0.1
+	defaultConfigFile           = "config.yaml"
+	defaultBatchSize            = 50
+	defaultMaxRetries           = 5
+	defaultInitialRetryDelay    = 1
+	defaultTickerValidity       = int64(10000)
+	defaultMinVolume            = 500000.0
+	defaultSpreadCalcWorkers    = 8
+	defaultSpreadCalcQueueSize  = 1000
+	defaultSpreadCalcThrottle   = int64(500)
+	defaultRefreshInterval      = int64(2000)
+	defaultTableLimit           = 25
+	defaultMinSpreadPercent     = 0.1
+	defaultExcludeUsdcUsdcPairs = false
 )
 
 var (
@@ -41,6 +41,7 @@ type runtimeConfig struct {
 	TableLimit           int
 	MinSpreadPercent     float64
 	EnabledExchanges     []string
+	ExcludeUsdcUsdcPairs bool
 }
 
 type fileConfig struct {
@@ -58,6 +59,7 @@ type fileConfig struct {
 	CommonBlacklist      []string            `yaml:"commonBlacklist"`
 	ExchangeBlacklists   map[string][]string `yaml:"exchangeBlacklists"`
 	EnabledExchanges     []string            `yaml:"enabledExchanges"`
+	ExcludeUsdcUsdcPairs *bool               `yaml:"excludeUsdcUsdcPairs"`
 }
 
 var (
@@ -79,9 +81,9 @@ func loadConfig() {
 	cfg, err := loadFileConfig(configPath)
 	if err != nil {
 		if os.IsNotExist(err) {
-			log.Printf("提示: 未找到配置文件 %s，使用内置默认值", configPath)
+			log.Infof("提示: 未找到配置文件 %s，使用内置默认值", configPath)
 		} else {
-			log.Printf("警告: 加载配置文件 %s 失败: %v，将使用内置默认值", configPath, err)
+			log.Warnf("警告: 加载配置文件 %s 失败: %v，将使用内置默认值", configPath, err)
 		}
 		cfg = &fileConfig{}
 	}
@@ -101,6 +103,7 @@ func loadConfig() {
 		TableLimit:           valueOrDefault(cfg.TableLimit, defaultTableLimit),
 		MinSpreadPercent:     valueOrDefault(cfg.MinSpreadPercent, defaultMinSpreadPercent),
 		EnabledExchanges:     fallbackSlice(cfg.EnabledExchanges, defaultEnabledExchanges),
+		ExcludeUsdcUsdcPairs: valueOrDefault(cfg.ExcludeUsdcUsdcPairs, defaultExcludeUsdcUsdcPairs),
 	}
 
 	// 初始化全局数据存储（需要配置值）
@@ -113,7 +116,7 @@ func loadConfig() {
 	// 初始化交易所状态管理器
 	globalExchanges = NewExchangeStatusManager()
 
-	log.Printf("配置加载完成 (config=%s): batchSize=%d, maxRetries=%d, tickerValidity=%dms, minVolume=%.0f, spreadCalcWorkers=%d, spreadCalcQueueSize=%d, spreadCalcThrottleMs=%d, refreshIntervalMs=%d, tableLimit=%d, minSpreadPercent=%.2f, enabledExchanges=%v",
+	log.Infof("配置加载完成 (config=%s): batchSize=%d, maxRetries=%d, tickerValidity=%dms, minVolume=%.0f, spreadCalcWorkers=%d, spreadCalcQueueSize=%d, spreadCalcThrottleMs=%d, refreshIntervalMs=%d, tableLimit=%d, minSpreadPercent=%.2f, excludeUsdcUsdcPairs=%v, enabledExchanges=%v",
 		configPath,
 		appConfig.BatchSize,
 		appConfig.MaxRetries,
@@ -125,6 +128,7 @@ func loadConfig() {
 		appConfig.RefreshIntervalMs,
 		appConfig.TableLimit,
 		appConfig.MinSpreadPercent,
+		appConfig.ExcludeUsdcUsdcPairs,
 		appConfig.EnabledExchanges,
 	)
 }
