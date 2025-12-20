@@ -10,8 +10,15 @@ import (
 	ccxtpro "github.com/ccxt/ccxt/go/v4/pro"
 )
 
+// exchangeInit 在每轮筛选时由各交易所发送其黑名单筛选后的币种列表，并提供接收响应的通道
+type exchangeInit struct {
+	Name    string
+	Symbols []string
+	Resp    chan []string
+}
+
 // watchExchange 为单个交易所处理订阅逻辑
-func watchExchange(exchangeName string, exchange ccxtpro.IExchange, blacklist map[string]bool, wg *sync.WaitGroup) {
+func watchExchange(exchangeName string, exchange ccxtpro.IExchange, blacklist map[string]bool, sendCh chan<- exchangeInit, wg *sync.WaitGroup) {
 	defer wg.Done()
 	log.Infof("%s: 开始初始化交易所监听器", exchangeName)
 
@@ -52,6 +59,7 @@ func watchExchange(exchangeName string, exchange ccxtpro.IExchange, blacklist ma
 				atomic.AddInt32(&activeBatches, 1)
 				log.Infof("%s - Batch %d: 启动批次，包含 %d 个交易对", exchangeName, batchNum, len(batchSymbols))
 
+				time.Sleep(300 * time.Millisecond)
 				watchBatchWithStop(exchangeName, exchange, batchNum, batchSymbols, stopCh, &activeBatches)
 
 				// 减少活跃批次计数
@@ -95,6 +103,20 @@ func watchExchange(exchangeName string, exchange ccxtpro.IExchange, blacklist ma
 		// 先筛选出符合条件的币种（格式和黑名单）
 		contractSymbols := filterContractSymbols(markets, blacklist)
 		log.Infof("%s: 格式和黑名单筛选后剩余 %d 个交易对", exchangeName, len(contractSymbols))
+
+		// 将本交易所黑名单筛选后的结果发送到协调器，等待所有交易所完成黑名单筛选后，接收去除仅存在于单一交易所的币种列表
+		if sendCh != nil {
+			respCh := make(chan []string, 1)
+			sendCh <- exchangeInit{
+				Name:    exchangeName,
+				Symbols: contractSymbols,
+				Resp:    respCh,
+			}
+			// 等待协调器返回经过“多交易所存在性”过滤后的列表
+			adjusted := <-respCh
+			contractSymbols = adjusted
+			log.Infof("%s: 去除仅存在于单一交易所后剩余 %d 个交易对", exchangeName, len(contractSymbols))
+		}
 
 		// 根据成交量进一步筛选
 		contractSymbols = filterSymbolsByVolume(exchangeName, exchange, contractSymbols)

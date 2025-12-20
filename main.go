@@ -135,6 +135,49 @@ func launchExchangeWatchers() *sync.WaitGroup {
 
 	var wg sync.WaitGroup
 	wg.Add(len(exchanges))
+	// 用于跨交易所协调：在每次黑名单筛选后，等待所有交易所完成黑名单筛选，
+	// 去除只存在于单个交易所的币种后再继续后续筛选与订阅。
+	sendCh := make(chan exchangeInit)
+	// 协调器 goroutine：每轮等待来自所有交易所的一次黑名单筛选结果，然后计算出现次数并返回过滤结果
+	go func() {
+		for {
+			received := make([]exchangeInit, 0, len(exchanges))
+			for i := 0; i < len(exchanges); i++ {
+				msg := <-sendCh
+				received = append(received, msg)
+			}
+
+			// 统计每个 symbol 出现次数
+			counts := make(map[string]int)
+			perExSets := make(map[string]map[string]bool, len(received))
+			for _, msg := range received {
+				set := make(map[string]bool)
+				for _, s := range msg.Symbols {
+					set[s] = true
+					counts[s]++
+				}
+				perExSets[msg.Name] = set
+			}
+
+			// 为每个交易所生成过滤后的列表（排除只出现在单一交易所的币种）
+			for _, msg := range received {
+				out := make([]string, 0)
+				if set, ok := perExSets[msg.Name]; ok {
+					for s := range set {
+						if counts[s] > 1 {
+							out = append(out, s)
+						}
+					}
+				}
+				// 将结果发送回对应的响应通道（不阻塞）
+				select {
+				case msg.Resp <- out:
+				default:
+					msg.Resp <- out
+				}
+			}
+		}
+	}()
 
 	// 添加启动延迟，避免所有交易所同时启动导致资源竞争
 	startDelay := 500 * time.Millisecond
@@ -151,7 +194,7 @@ func launchExchangeWatchers() *sync.WaitGroup {
 				time.Sleep(d)
 			}
 			log.Infof("启动交易所监听器: %s (黑名单: %d 项)", exName, blCount)
-			watchExchange(exName, ex, bl, &wg)
+			watchExchange(exName, ex, bl, sendCh, &wg)
 		}(name, exchange, mergedBlacklist, delay, blacklistCount)
 		idx++
 	}

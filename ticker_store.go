@@ -413,19 +413,42 @@ func calculateSpread(coinTicker *CoinTicker) {
 // snapshotTopSpreads 返回按价差百分比排序的前 N 条记录
 func (ct *CoinTickers) snapshotTopSpreads(limit int, minSpreadPercent float64) []SpreadRow {
 	ct.mu.RLock()
+	// 根据配置决定是展开所有价差条目，还是仅使用每个币种的最大价差
 	rows := make([]SpreadRow, 0, len(ct.data))
 	for symbol, ticker := range ct.data {
-		if ticker == nil || ticker.Spread.MaxSpread == nil {
+		if ticker == nil {
 			continue
 		}
-		if ticker.Spread.MaxSpread.SpreadPercent < minSpreadPercent {
-			continue
+
+		if appConfig.UseAllSpreadsInSnapshot {
+			// 扁平化该币种的所有价差条目
+			if len(ticker.Spread.AllSpreads) == 0 {
+				continue
+			}
+			for _, si := range ticker.Spread.AllSpreads {
+				if si.SpreadPercent < minSpreadPercent {
+					continue
+				}
+				rows = append(rows, SpreadRow{
+					Symbol:    symbol,
+					Spread:    si,
+					UpdatedAt: ticker.Spread.UpdatedAt,
+				})
+			}
+		} else {
+			// 仅使用该币种的最大价差（向后兼容原逻辑）
+			if ticker.Spread.MaxSpread == nil {
+				continue
+			}
+			if ticker.Spread.MaxSpread.SpreadPercent < minSpreadPercent {
+				continue
+			}
+			rows = append(rows, SpreadRow{
+				Symbol:    symbol,
+				Spread:    *ticker.Spread.MaxSpread,
+				UpdatedAt: ticker.Spread.UpdatedAt,
+			})
 		}
-		rows = append(rows, SpreadRow{
-			Symbol:    symbol,
-			Spread:    *ticker.Spread.MaxSpread,
-			UpdatedAt: ticker.Spread.UpdatedAt,
-		})
 	}
 	ct.mu.RUnlock()
 

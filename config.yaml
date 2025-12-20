@@ -1,33 +1,35 @@
-# 单次拉取的交易对数量
+# 批次大小
 batchSize: 50
-# ticker 请求失败可重试次数
+# 最大重试次数
 maxRetries: 10
-# 首次重试延迟（秒）
+# 初始重试延迟 秒
 initialRetryDelay: 1
-# ticker 保持有效的毫秒数
+# 数据有效期 毫秒
 tickerValidity: 10000
-# 最低 24h 交易额
+# 最小 24h 交易额
 minVolume: 500000
 # 价差计算线程数
 spreadCalcWorkers: 6
 # 价差计算队列容量
 spreadCalcQueueSize: 50
-# 单个交易对两次价差计算的最小间隔（毫秒）
+# 价差计算节流 毫秒
 spreadCalcThrottleMs: 100
-# UI 刷新间隔（毫秒）
+# UI 刷新间隔 毫秒
 refreshIntervalMs: 200
-# 表格显示的最大币种数量（0 表示不限）
+# 表格显示限制
 tableLimit: 35
-# 过滤的最小价差百分比
+# 最小价差百分比
 minSpreadPercent: 0.1
-# 是否排除 USDC
+# 排除 USDC/USDC 对
 excludeUsdcUsdcPairs: true
+# 展开所有价差条目
+useAllSpreadsInSnapshot: true
 
-# 交易所
+# 启用的交易所
 enabledExchanges:
   - binance
   - gate
-  - okx
+  # - okx
   - bybit
   - bitget
   # - kucoin
@@ -41,7 +43,7 @@ commonBlacklist:
   - BNB
   - USDC
 
-# 黑名单
+# 交易所黑名单
 exchangeBlacklists:
   binance:
     - 1000000BOB
@@ -53,38 +55,8 @@ exchangeBlacklists:
     []
   gate:
     []
-  coinbase:
-    []
-  kraken:
-    []
   bitget:
     []
-  mexc:
-    []
-  htx:
-    []
-  upbit:
-    []
-  poloniex:
-    []
-  bitfinex:
-    []
-  bitstamp:
-    []
-  coinex:
-    []
   backpack:
-    []
-  hyperliquid:
-    []
-  dydx:
-    []
-  paradex:
-    []
-  modetrade:
-    []
-  woofipro:
-    []
-  derive:
     []
 

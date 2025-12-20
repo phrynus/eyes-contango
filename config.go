@@ -8,19 +8,20 @@ import (
 )
 
 const (
-	defaultConfigFile           = "config.yaml"
-	defaultBatchSize            = 50
-	defaultMaxRetries           = 5
-	defaultInitialRetryDelay    = 1
-	defaultTickerValidity       = int64(10000)
-	defaultMinVolume            = 500000.0
-	defaultSpreadCalcWorkers    = 8
-	defaultSpreadCalcQueueSize  = 1000
-	defaultSpreadCalcThrottle   = int64(500)
-	defaultRefreshInterval      = int64(2000)
-	defaultTableLimit           = 25
-	defaultMinSpreadPercent     = 0.1
-	defaultExcludeUsdcUsdcPairs = false
+	defaultConfigFile              = "config.yaml"
+	defaultBatchSize               = 50
+	defaultMaxRetries              = 5
+	defaultInitialRetryDelay       = 1
+	defaultTickerValidity          = int64(10000)
+	defaultMinVolume               = 500000.0
+	defaultSpreadCalcWorkers       = 8
+	defaultSpreadCalcQueueSize     = 1000
+	defaultSpreadCalcThrottle      = int64(500)
+	defaultRefreshInterval         = int64(2000)
+	defaultTableLimit              = 25
+	defaultMinSpreadPercent        = 0.1
+	defaultExcludeUsdcUsdcPairs    = false
+	defaultUseAllSpreadsInSnapshot = false
 )
 
 var (
@@ -42,24 +43,27 @@ type runtimeConfig struct {
 	MinSpreadPercent     float64
 	EnabledExchanges     []string
 	ExcludeUsdcUsdcPairs bool
+	// 控制 snapshotTopSpreads 是否展开所有价差条目
+	UseAllSpreadsInSnapshot bool
 }
 
 type fileConfig struct {
-	BatchSize            *int                `yaml:"batchSize"`
-	MaxRetries           *int                `yaml:"maxRetries"`
-	InitialRetryDelay    *int                `yaml:"initialRetryDelay"`
-	TickerValidity       *int64              `yaml:"tickerValidity"`
-	MinVolume            *float64            `yaml:"minVolume"`
-	SpreadCalcWorkers    *int                `yaml:"spreadCalcWorkers"`
-	SpreadCalcQueueSize  *int                `yaml:"spreadCalcQueueSize"`
-	SpreadCalcThrottleMs *int64              `yaml:"spreadCalcThrottleMs"`
-	RefreshIntervalMs    *int64              `yaml:"refreshIntervalMs"`
-	TableLimit           *int                `yaml:"tableLimit"`
-	MinSpreadPercent     *float64            `yaml:"minSpreadPercent"`
-	CommonBlacklist      []string            `yaml:"commonBlacklist"`
-	ExchangeBlacklists   map[string][]string `yaml:"exchangeBlacklists"`
-	EnabledExchanges     []string            `yaml:"enabledExchanges"`
-	ExcludeUsdcUsdcPairs *bool               `yaml:"excludeUsdcUsdcPairs"`
+	BatchSize               *int                `yaml:"batchSize"`
+	MaxRetries              *int                `yaml:"maxRetries"`
+	InitialRetryDelay       *int                `yaml:"initialRetryDelay"`
+	TickerValidity          *int64              `yaml:"tickerValidity"`
+	MinVolume               *float64            `yaml:"minVolume"`
+	SpreadCalcWorkers       *int                `yaml:"spreadCalcWorkers"`
+	SpreadCalcQueueSize     *int                `yaml:"spreadCalcQueueSize"`
+	SpreadCalcThrottleMs    *int64              `yaml:"spreadCalcThrottleMs"`
+	RefreshIntervalMs       *int64              `yaml:"refreshIntervalMs"`
+	TableLimit              *int                `yaml:"tableLimit"`
+	MinSpreadPercent        *float64            `yaml:"minSpreadPercent"`
+	CommonBlacklist         []string            `yaml:"commonBlacklist"`
+	ExchangeBlacklists      map[string][]string `yaml:"exchangeBlacklists"`
+	EnabledExchanges        []string            `yaml:"enabledExchanges"`
+	ExcludeUsdcUsdcPairs    *bool               `yaml:"excludeUsdcUsdcPairs"`
+	UseAllSpreadsInSnapshot *bool               `yaml:"useAllSpreadsInSnapshot"`
 }
 
 var (
@@ -91,19 +95,20 @@ func loadConfig() {
 
 	// 读取配置项，提供默认值
 	appConfig = runtimeConfig{
-		BatchSize:            valueOrDefault(cfg.BatchSize, defaultBatchSize),
-		MaxRetries:           valueOrDefault(cfg.MaxRetries, defaultMaxRetries),
-		InitialRetryDelay:    valueOrDefault(cfg.InitialRetryDelay, defaultInitialRetryDelay),
-		TickerValidity:       valueOrDefault(cfg.TickerValidity, defaultTickerValidity),
-		MinVolume:            valueOrDefault(cfg.MinVolume, defaultMinVolume),
-		SpreadCalcWorkers:    valueOrDefault(cfg.SpreadCalcWorkers, defaultSpreadCalcWorkers),
-		SpreadCalcQueueSize:  valueOrDefault(cfg.SpreadCalcQueueSize, defaultSpreadCalcQueueSize),
-		SpreadCalcThrottleMs: valueOrDefault(cfg.SpreadCalcThrottleMs, defaultSpreadCalcThrottle),
-		RefreshIntervalMs:    valueOrDefault(cfg.RefreshIntervalMs, defaultRefreshInterval),
-		TableLimit:           valueOrDefault(cfg.TableLimit, defaultTableLimit),
-		MinSpreadPercent:     valueOrDefault(cfg.MinSpreadPercent, defaultMinSpreadPercent),
-		EnabledExchanges:     fallbackSlice(cfg.EnabledExchanges, defaultEnabledExchanges),
-		ExcludeUsdcUsdcPairs: valueOrDefault(cfg.ExcludeUsdcUsdcPairs, defaultExcludeUsdcUsdcPairs),
+		BatchSize:               valueOrDefault(cfg.BatchSize, defaultBatchSize),
+		MaxRetries:              valueOrDefault(cfg.MaxRetries, defaultMaxRetries),
+		InitialRetryDelay:       valueOrDefault(cfg.InitialRetryDelay, defaultInitialRetryDelay),
+		TickerValidity:          valueOrDefault(cfg.TickerValidity, defaultTickerValidity),
+		MinVolume:               valueOrDefault(cfg.MinVolume, defaultMinVolume),
+		SpreadCalcWorkers:       valueOrDefault(cfg.SpreadCalcWorkers, defaultSpreadCalcWorkers),
+		SpreadCalcQueueSize:     valueOrDefault(cfg.SpreadCalcQueueSize, defaultSpreadCalcQueueSize),
+		SpreadCalcThrottleMs:    valueOrDefault(cfg.SpreadCalcThrottleMs, defaultSpreadCalcThrottle),
+		RefreshIntervalMs:       valueOrDefault(cfg.RefreshIntervalMs, defaultRefreshInterval),
+		TableLimit:              valueOrDefault(cfg.TableLimit, defaultTableLimit),
+		MinSpreadPercent:        valueOrDefault(cfg.MinSpreadPercent, defaultMinSpreadPercent),
+		EnabledExchanges:        fallbackSlice(cfg.EnabledExchanges, defaultEnabledExchanges),
+		ExcludeUsdcUsdcPairs:    valueOrDefault(cfg.ExcludeUsdcUsdcPairs, defaultExcludeUsdcUsdcPairs),
+		UseAllSpreadsInSnapshot: valueOrDefault(cfg.UseAllSpreadsInSnapshot, defaultUseAllSpreadsInSnapshot),
 	}
 
 	// 初始化全局数据存储（需要配置值）

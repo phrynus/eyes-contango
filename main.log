@@ -1,0 +1,2626 @@
+[PHRYNUS][2025/12/20 16:39:58.139][INFO] config.go:123 配置加载完成 (config=config.yaml): batchSize=50, maxRetries=10, tickerValidity=10000ms, minVolume=500000, spreadCalcWorkers=6, spreadCalcQueueSize=50, spreadCalcThrottleMs=100, refreshIntervalMs=200, tableLimit=35, minSpreadPercent=0.10, excludeUsdcUsdcPairs=true, enabledExchanges=[binance gate okx bybit bitget]
+[PHRYNUS][2025/12/20 16:39:58.165][INFO] ticker_store.go:178 价差计算工作协程 #3 已启动
+[PHRYNUS][2025/12/20 16:39:58.165][INFO] ticker_store.go:178 价差计算工作协程 #0 已启动
+[PHRYNUS][2025/12/20 16:39:58.165][INFO] ticker_store.go:178 价差计算工作协程 #1 已启动
+[PHRYNUS][2025/12/20 16:39:58.165][INFO] ticker_store.go:178 价差计算工作协程 #2 已启动
+[PHRYNUS][2025/12/20 16:39:58.165][INFO] ticker_store.go:178 价差计算工作协程 #5 已启动
+[PHRYNUS][2025/12/20 16:39:58.165][INFO] ticker_store.go:178 价差计算工作协程 #4 已启动
+[PHRYNUS][2025/12/20 16:39:58.194][INFO] main.go:145 准备启动 5 个交易所监听器，每个延迟 500ms
+[PHRYNUS][2025/12/20 16:39:58.194][INFO] main.go:156 启动交易所监听器: okx (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:39:58.194][INFO] main.go:162 已启动 5 个交易所监听器（延迟启动以避免资源竞争）
+[PHRYNUS][2025/12/20 16:39:58.194][DEBUG] main.go:153 交易所 gate 等待 2s 后启动
+[PHRYNUS][2025/12/20 16:39:58.194][DEBUG] main.go:153 交易所 binance 等待 1.5s 后启动
+[PHRYNUS][2025/12/20 16:39:58.194][DEBUG] main.go:153 交易所 bitget 等待 1s 后启动
+[PHRYNUS][2025/12/20 16:39:58.194][DEBUG] main.go:153 交易所 bybit 等待 500ms 后启动
+[PHRYNUS][2025/12/20 16:39:58.194][INFO] watchers.go:16 okx: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:39:58.194][INFO] watchers.go:88 okx: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:39:58.194][DEBUG] watchers.go:278 okx: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:39:58.695][INFO] main.go:156 启动交易所监听器: bybit (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:39:58.695][INFO] watchers.go:16 bybit: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:39:58.695][INFO] watchers.go:88 bybit: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:39:58.695][DEBUG] watchers.go:278 bybit: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:39:58.797][INFO] watchers.go:281 okx: 成功获取市场数据，共 2367 个市场
+[PHRYNUS][2025/12/20 16:39:58.797][INFO] watchers.go:100 okx: 成功获取 2367 个市场
+[PHRYNUS][2025/12/20 16:39:58.797][INFO] watchers.go:104 okx: 格式和黑名单筛选后剩余 249 个交易对
+[PHRYNUS][2025/12/20 16:39:58.797][DEBUG] watchers.go:391 okx: 开始获取 249 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:39:59.195][INFO] main.go:156 启动交易所监听器: bitget (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:39:59.195][INFO] watchers.go:16 bitget: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:39:59.195][INFO] watchers.go:88 bitget: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:39:59.195][DEBUG] watchers.go:278 bitget: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:39:59.696][INFO] main.go:156 启动交易所监听器: binance (黑名单: 10 项)
+[PHRYNUS][2025/12/20 16:39:59.696][INFO] watchers.go:16 binance: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:39:59.696][INFO] watchers.go:88 binance: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:39:59.696][DEBUG] watchers.go:278 binance: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:40:00.195][INFO] main.go:156 启动交易所监听器: gate (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:40:00.195][INFO] watchers.go:16 gate: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:40:00.195][INFO] watchers.go:88 gate: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:40:00.195][DEBUG] watchers.go:278 gate: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:40:00.200][DEBUG] watchers.go:397 okx: 成功获取 249 个 ticker 数据
+[PHRYNUS][2025/12/20 16:40:00.200][INFO] watchers.go:431 okx: 成交量筛选完成，从 249 个币种筛选出 226 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:40:00.200][INFO] watchers.go:108 okx: 成交量筛选后最终剩余 226 个交易对
+[PHRYNUS][2025/12/20 16:40:00.200][INFO] symbol_coordinator.go:56 协调器: okx 已提交 226 个币种 (进度: 1/5)
+[PHRYNUS][2025/12/20 16:40:00.200][INFO] watchers.go:125 okx: 等待其他交易所完成过滤...
+[PHRYNUS][2025/12/20 16:40:00.281][INFO] watchers.go:281 bybit: 成功获取市场数据，共 2678 个市场
+[PHRYNUS][2025/12/20 16:40:00.281][INFO] watchers.go:100 bybit: 成功获取 2678 个市场
+[PHRYNUS][2025/12/20 16:40:00.281][INFO] watchers.go:104 bybit: 格式和黑名单筛选后剩余 545 个交易对
+[PHRYNUS][2025/12/20 16:40:00.281][DEBUG] watchers.go:391 bybit: 开始获取 545 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:40:00.655][INFO] watchers.go:281 bitget: 成功获取市场数据，共 1375 个市场
+[PHRYNUS][2025/12/20 16:40:00.655][INFO] watchers.go:100 bitget: 成功获取 1375 个市场
+[PHRYNUS][2025/12/20 16:40:00.655][INFO] watchers.go:104 bitget: 格式和黑名单筛选后剩余 504 个交易对
+[PHRYNUS][2025/12/20 16:40:00.655][DEBUG] watchers.go:391 bitget: 开始获取 504 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:40:02.265][DEBUG] watchers.go:397 bybit: 成功获取 545 个 ticker 数据
+[PHRYNUS][2025/12/20 16:40:02.265][INFO] watchers.go:431 bybit: 成交量筛选完成，从 545 个币种筛选出 335 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:40:02.265][INFO] watchers.go:108 bybit: 成交量筛选后最终剩余 335 个交易对
+[PHRYNUS][2025/12/20 16:40:02.265][INFO] symbol_coordinator.go:56 协调器: bybit 已提交 335 个币种 (进度: 2/5)
+[PHRYNUS][2025/12/20 16:40:02.265][INFO] watchers.go:125 bybit: 等待其他交易所完成过滤...
+[PHRYNUS][2025/12/20 16:40:02.787][WARN] watchers.go:286 binance: Error fetching markets (attempt 1/10): [ccxtError]::[NetworkError]::[Network error: Get "https://api.binance.com/api/v3/exchangeInfo": EOF]
+Stack:
+
+Stack trace:
+goroutine 435 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1af0a0, 0xc0074bf1f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1.1(0x7ff6db1a
+Stack trace:
+goroutine 435 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0004a4ee0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6db1af0a0?, 0xc007a18410?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1.1.1.1({0x7ff6db1af0a0, 0xc007a18410}, 0x0, 0xc001477f38, 0xc001477f20, 0xc0000c4008)
+	F:/github/eyes-contango/v4/exchange_generated.go:4481 +0x3a7
+github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1.1.1()
+	F:/github/eyes-contango/v4/exchange_generated.go:4484 +0x9d
+panic({0x7ff6db1af0a0?, 0xc007a18410?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1af0a0, 0xc0074bf1f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1.1(0x7ff6db1af2e0?, 0xc001477ec8?, 0x7ff6db1af2e0?, {0x7ff6db204860, 0xc004b5eab0}, 0xc0004a4ee0, 0xc0000c4008)
+	F:/github/eyes-contango/v4/exchange_generated.go:4490 +0x1bd
+github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1()
+	F:/github/eyes-contango/v4/exchange_generated.go:4494 +0x8ad
+created by github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2 in goroutine 434
+	F:/github/eyes-contango/v4/exchange_generated.go:4419 +0x10c
+
+Stack trace:
+goroutine 434 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1af0a0, 0xc007a18430})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4.(*Exchange).callEndpoint.func1()
+	F:/
+Stack trace:
+goroutine 434 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.(*Exchange).callEndpoint.func1.1()
+	F:/github/eyes-contango/v4/exchange.go:523 +0x45
+panic({0x7ff6db1af0a0?, 0xc007a18450?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1af0a0, 0xc007a18430})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4.(*Exchange).callEndpoint.func1()
+	F:/github/eyes-contango/v4/exchange.go:541 +0x45a
+created by github.com/ccxt/ccxt/go/v4.(*Exchange).callEndpoint in goroutine 219
+	F:/github/eyes-contango/v4/exchange.go:519 +0xc5
+
+Stack trace:
+goroutine 218 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1a4340, 0xc00b2d2498})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3218 +0x59d
+github.com/ccxt/ccxt/go/v4.(*BinanceCore).FetchMarkets.func1()
+	
+Stack trace:
+goroutine 218 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc00054ea10)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6db1af0a0?, 0xc007a18480?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1a4340, 0xc00b2d2498})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3220 +0x659
+github.com/ccxt/ccxt/go/v4.(*BinanceCore).FetchMarkets.func1()
+	F:/github/eyes-contango/v4/binance.go:3115 +0xbc7
+created by github.com/ccxt/ccxt/go/v4.(*BinanceCore).FetchMarkets in goroutine 12
+	F:/github/eyes-contango/v4/binance.go:3061 +0xe7]
+Stack:
+panic: panic:runtime.goexit:panic:github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1:panic:[ccxtError]::[NetworkError]::[Network error: Get "https://api.binance.com/api/v3/exchangeInfo": EOF]
+Stack:
+
+Stack trace:
+goroutine 435 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1af0a0, 0xc0074bf1f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1.1(0x7ff6db1a
+Stack trace:
+goroutine 435 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0004a4ee0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6db1af0a0?, 0xc007a18410?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1.1.1.1({0x7ff6db1af0a0, 0xc007a18410}, 0x0, 0xc001477f38, 0xc001477f20, 0xc0000c4008)
+	F:/github/eyes-contango/v4/exchange_generated.go:4481 +0x3a7
+github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1.1.1()
+	F:/github/eyes-contango/v4/exchange_generated.go:4484 +0x9d
+panic({0x7ff6db1af0a0?, 0xc007a18410?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1af0a0, 0xc0074bf1f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1.1(0x7ff6db1af2e0?, 0xc001477ec8?, 0x7ff6db1af2e0?, {0x7ff6db204860, 0xc004b5eab0}, 0xc0004a4ee0, 0xc0000c4008)
+	F:/github/eyes-contango/v4/exchange_generated.go:4490 +0x1bd
+github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2.func1()
+	F:/github/eyes-contango/v4/exchange_generated.go:4494 +0x8ad
+created by github.com/ccxt/ccxt/go/v4.(*Exchange).Fetch2 in goroutine 434
+	F:/github/eyes-contango/v4/exchange_generated.go:4419 +0x10c
+
+Stack trace:
+goroutine 434 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1af0a0, 0xc007a18430})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4.(*Exchange).callEndpoint.func1()
+	F:/
+Stack trace:
+goroutine 434 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.(*Exchange).callEndpoint.func1.1()
+	F:/github/eyes-contango/v4/exchange.go:523 +0x45
+panic({0x7ff6db1af0a0?, 0xc007a18450?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1af0a0, 0xc007a18430})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4.(*Exchange).callEndpoint.func1()
+	F:/github/eyes-contango/v4/exchange.go:541 +0x45a
+created by github.com/ccxt/ccxt/go/v4.(*Exchange).callEndpoint in goroutine 219
+	F:/github/eyes-contango/v4/exchange.go:519 +0xc5
+
+Stack trace:
+goroutine 218 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1a4340, 0xc00b2d2498})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3218 +0x59d
+github.com/ccxt/ccxt/go/v4.(*BinanceCore).FetchMarkets.func1()
+	
+Stack trace:
+goroutine 218 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc00054ea10)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6db1af0a0?, 0xc007a18480?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6db1a4340, 0xc00b2d2498})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3220 +0x659
+github.com/ccxt/ccxt/go/v4.(*BinanceCore).FetchMarkets.func1()
+	F:/github/eyes-contango/v4/binance.go:3115 +0xbc7
+created by github.com/ccxt/ccxt/go/v4.(*BinanceCore).FetchMarkets in goroutine 12
+	F:/github/eyes-contango/v4/binance.go:3061 +0xe7
+, retrying in 1s
+[PHRYNUS][2025/12/20 16:40:03.787][DEBUG] watchers.go:278 binance: 尝试获取市场数据 (第 2/10 次)
+[PHRYNUS][2025/12/20 16:40:05.109][INFO] watchers.go:281 binance: 成功获取市场数据，共 4141 个市场
+[PHRYNUS][2025/12/20 16:40:05.109][INFO] watchers.go:100 binance: 成功获取 4141 个市场
+[PHRYNUS][2025/12/20 16:40:05.109][INFO] watchers.go:104 binance: 格式和黑名单筛选后剩余 526 个交易对
+[PHRYNUS][2025/12/20 16:40:05.109][DEBUG] watchers.go:391 binance: 开始获取 526 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:40:05.727][DEBUG] watchers.go:397 bitget: 成功获取 504 个 ticker 数据
+[PHRYNUS][2025/12/20 16:40:05.727][INFO] watchers.go:431 bitget: 成交量筛选完成，从 504 个币种筛选出 278 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:40:05.727][INFO] watchers.go:108 bitget: 成交量筛选后最终剩余 278 个交易对
+[PHRYNUS][2025/12/20 16:40:05.727][INFO] symbol_coordinator.go:56 协调器: bitget 已提交 278 个币种 (进度: 3/5)
+[PHRYNUS][2025/12/20 16:40:05.727][INFO] watchers.go:125 bitget: 等待其他交易所完成过滤...
+[PHRYNUS][2025/12/20 16:40:06.842][DEBUG] watchers.go:397 binance: 成功获取 526 个 ticker 数据
+[PHRYNUS][2025/12/20 16:40:06.842][INFO] watchers.go:431 binance: 成交量筛选完成，从 526 个币种筛选出 515 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:40:06.842][INFO] watchers.go:108 binance: 成交量筛选后最终剩余 515 个交易对
+[PHRYNUS][2025/12/20 16:40:06.842][INFO] symbol_coordinator.go:56 协调器: binance 已提交 515 个币种 (进度: 4/5)
+[PHRYNUS][2025/12/20 16:40:06.842][INFO] watchers.go:125 binance: 等待其他交易所完成过滤...
+[PHRYNUS][2025/12/20 16:40:06.913][INFO] watchers.go:281 gate: 成功获取市场数据，共 6132 个市场
+[PHRYNUS][2025/12/20 16:40:06.913][INFO] watchers.go:100 gate: 成功获取 6132 个市场
+[PHRYNUS][2025/12/20 16:40:06.914][INFO] watchers.go:104 gate: 格式和黑名单筛选后剩余 584 个交易对
+[PHRYNUS][2025/12/20 16:40:06.914][DEBUG] watchers.go:391 gate: 开始获取 584 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:40:11.251][DEBUG] watchers.go:397 gate: 成功获取 584 个 ticker 数据
+[PHRYNUS][2025/12/20 16:40:11.251][INFO] watchers.go:431 gate: 成交量筛选完成，从 584 个币种筛选出 211 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:40:11.251][INFO] watchers.go:108 gate: 成交量筛选后最终剩余 211 个交易对
+[PHRYNUS][2025/12/20 16:40:11.251][INFO] symbol_coordinator.go:56 协调器: gate 已提交 211 个币种 (进度: 5/5)
+[PHRYNUS][2025/12/20 16:40:11.251][INFO] symbol_coordinator.go:60 协调器: 所有交易所已完成过滤，开始排除单交易所币种...
+[PHRYNUS][2025/12/20 16:40:58.166][INFO] ticker_store.go:537 === 整体状态 ===
+[PHRYNUS][2025/12/20 16:40:58.166][INFO] ticker_store.go:538 币种统计: 总数=0, 有价差=0, 多交易所=0
+[PHRYNUS][2025/12/20 16:40:58.166][INFO] ticker_store.go:542 最大价差: 0.0000% ( - )
+[PHRYNUS][2025/12/20 16:40:58.166][INFO] ticker_store.go:546 交易所状态: 已连接=0/5, 已断开=5
+[PHRYNUS][2025/12/20 16:40:58.166][INFO] ticker_store.go:550 价差计算队列: 当前长度=0/50
+[PHRYNUS][2025/12/20 16:41:58.166][INFO] ticker_store.go:537 === 整体状态 ===
+[PHRYNUS][2025/12/20 16:41:58.166][INFO] ticker_store.go:538 币种统计: 总数=0, 有价差=0, 多交易所=0
+[PHRYNUS][2025/12/20 16:41:58.166][INFO] ticker_store.go:542 最大价差: 0.0000% ( - )
+[PHRYNUS][2025/12/20 16:41:58.166][INFO] ticker_store.go:546 交易所状态: 已连接=0/5, 已断开=5
+[PHRYNUS][2025/12/20 16:41:58.166][INFO] ticker_store.go:550 价差计算队列: 当前长度=0/50
+[PHRYNUS][2025/12/20 16:51:58.553][INFO] config.go:123 配置加载完成 (config=config.yaml): batchSize=50, maxRetries=10, tickerValidity=10000ms, minVolume=500000, spreadCalcWorkers=6, spreadCalcQueueSize=50, spreadCalcThrottleMs=100, refreshIntervalMs=200, tableLimit=35, minSpreadPercent=0.10, excludeUsdcUsdcPairs=true, enabledExchanges=[binance gate okx bybit bitget]
+[PHRYNUS][2025/12/20 16:51:58.572][INFO] ticker_store.go:178 价差计算工作协程 #2 已启动
+[PHRYNUS][2025/12/20 16:51:58.573][INFO] ticker_store.go:178 价差计算工作协程 #4 已启动
+[PHRYNUS][2025/12/20 16:51:58.573][INFO] ticker_store.go:178 价差计算工作协程 #3 已启动
+[PHRYNUS][2025/12/20 16:51:58.573][INFO] ticker_store.go:178 价差计算工作协程 #5 已启动
+[PHRYNUS][2025/12/20 16:51:58.573][INFO] ticker_store.go:178 价差计算工作协程 #0 已启动
+[PHRYNUS][2025/12/20 16:51:58.573][INFO] ticker_store.go:178 价差计算工作协程 #1 已启动
+[PHRYNUS][2025/12/20 16:51:58.600][INFO] main.go:145 准备启动 5 个交易所监听器，每个延迟 500ms
+[PHRYNUS][2025/12/20 16:51:58.600][INFO] main.go:162 已启动 5 个交易所监听器（延迟启动以避免资源竞争）
+[PHRYNUS][2025/12/20 16:51:58.600][DEBUG] main.go:153 交易所 bybit 等待 2s 后启动
+[PHRYNUS][2025/12/20 16:51:58.600][DEBUG] main.go:153 交易所 binance 等待 500ms 后启动
+[PHRYNUS][2025/12/20 16:51:58.600][DEBUG] main.go:153 交易所 gate 等待 1s 后启动
+[PHRYNUS][2025/12/20 16:51:58.600][INFO] main.go:156 启动交易所监听器: bitget (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:51:58.600][DEBUG] main.go:153 交易所 okx 等待 1.5s 后启动
+[PHRYNUS][2025/12/20 16:51:58.600][INFO] watchers.go:16 bitget: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:51:58.601][INFO] watchers.go:88 bitget: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:51:58.601][DEBUG] watchers.go:278 bitget: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:51:59.101][INFO] main.go:156 启动交易所监听器: binance (黑名单: 10 项)
+[PHRYNUS][2025/12/20 16:51:59.101][INFO] watchers.go:16 binance: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:51:59.101][INFO] watchers.go:88 binance: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:51:59.101][DEBUG] watchers.go:278 binance: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:51:59.391][INFO] watchers.go:281 bitget: 成功获取市场数据，共 1375 个市场
+[PHRYNUS][2025/12/20 16:51:59.391][INFO] watchers.go:100 bitget: 成功获取 1375 个市场
+[PHRYNUS][2025/12/20 16:51:59.391][INFO] watchers.go:104 bitget: 格式和黑名单筛选后剩余 504 个交易对
+[PHRYNUS][2025/12/20 16:51:59.391][DEBUG] watchers.go:391 bitget: 开始获取 504 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:51:59.601][INFO] main.go:156 启动交易所监听器: gate (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:51:59.601][INFO] watchers.go:16 gate: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:51:59.601][INFO] watchers.go:88 gate: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:51:59.601][DEBUG] watchers.go:278 gate: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:52:00.101][INFO] main.go:156 启动交易所监听器: okx (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:52:00.101][INFO] watchers.go:16 okx: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:52:00.101][INFO] watchers.go:88 okx: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:52:00.101][DEBUG] watchers.go:278 okx: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:52:00.206][INFO] watchers.go:281 binance: 成功获取市场数据，共 4141 个市场
+[PHRYNUS][2025/12/20 16:52:00.206][INFO] watchers.go:100 binance: 成功获取 4141 个市场
+[PHRYNUS][2025/12/20 16:52:00.206][INFO] watchers.go:104 binance: 格式和黑名单筛选后剩余 526 个交易对
+[PHRYNUS][2025/12/20 16:52:00.206][DEBUG] watchers.go:391 binance: 开始获取 526 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:52:00.601][INFO] main.go:156 启动交易所监听器: bybit (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:52:00.601][INFO] watchers.go:16 bybit: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:52:00.601][INFO] watchers.go:88 bybit: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:52:00.601][DEBUG] watchers.go:278 bybit: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:52:00.826][INFO] watchers.go:281 okx: 成功获取市场数据，共 2367 个市场
+[PHRYNUS][2025/12/20 16:52:00.826][INFO] watchers.go:100 okx: 成功获取 2367 个市场
+[PHRYNUS][2025/12/20 16:52:00.826][INFO] watchers.go:104 okx: 格式和黑名单筛选后剩余 249 个交易对
+[PHRYNUS][2025/12/20 16:52:00.826][DEBUG] watchers.go:391 okx: 开始获取 249 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:52:01.116][DEBUG] watchers.go:397 bitget: 成功获取 504 个 ticker 数据
+[PHRYNUS][2025/12/20 16:52:01.118][INFO] watchers.go:431 bitget: 成交量筛选完成，从 504 个币种筛选出 279 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:52:01.118][INFO] watchers.go:108 bitget: 成交量筛选后最终剩余 279 个交易对
+[PHRYNUS][2025/12/20 16:52:01.118][INFO] symbol_coordinator.go:56 协调器: bitget 已提交 279 个币种 (进度: 1/5)
+[PHRYNUS][2025/12/20 16:52:01.118][INFO] watchers.go:125 bitget: 等待其他交易所完成过滤...
+[PHRYNUS][2025/12/20 16:52:01.569][INFO] watchers.go:281 bybit: 成功获取市场数据，共 2678 个市场
+[PHRYNUS][2025/12/20 16:52:01.569][INFO] watchers.go:100 bybit: 成功获取 2678 个市场
+[PHRYNUS][2025/12/20 16:52:01.569][INFO] watchers.go:104 bybit: 格式和黑名单筛选后剩余 545 个交易对
+[PHRYNUS][2025/12/20 16:52:01.569][DEBUG] watchers.go:391 bybit: 开始获取 545 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:52:01.626][DEBUG] watchers.go:397 binance: 成功获取 526 个 ticker 数据
+[PHRYNUS][2025/12/20 16:52:01.627][INFO] watchers.go:431 binance: 成交量筛选完成，从 526 个币种筛选出 516 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:52:01.627][INFO] watchers.go:108 binance: 成交量筛选后最终剩余 516 个交易对
+[PHRYNUS][2025/12/20 16:52:01.627][INFO] symbol_coordinator.go:56 协调器: binance 已提交 516 个币种 (进度: 2/5)
+[PHRYNUS][2025/12/20 16:52:01.627][INFO] watchers.go:125 binance: 等待其他交易所完成过滤...
+[PHRYNUS][2025/12/20 16:52:02.127][DEBUG] watchers.go:397 okx: 成功获取 249 个 ticker 数据
+[PHRYNUS][2025/12/20 16:52:02.127][INFO] watchers.go:431 okx: 成交量筛选完成，从 249 个币种筛选出 226 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:52:02.127][INFO] watchers.go:108 okx: 成交量筛选后最终剩余 226 个交易对
+[PHRYNUS][2025/12/20 16:52:02.127][INFO] symbol_coordinator.go:56 协调器: okx 已提交 226 个币种 (进度: 3/5)
+[PHRYNUS][2025/12/20 16:52:02.127][INFO] watchers.go:125 okx: 等待其他交易所完成过滤...
+[PHRYNUS][2025/12/20 16:52:02.879][DEBUG] watchers.go:397 bybit: 成功获取 545 个 ticker 数据
+[PHRYNUS][2025/12/20 16:52:02.879][INFO] watchers.go:431 bybit: 成交量筛选完成，从 545 个币种筛选出 335 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:52:02.879][INFO] watchers.go:108 bybit: 成交量筛选后最终剩余 335 个交易对
+[PHRYNUS][2025/12/20 16:52:02.879][INFO] symbol_coordinator.go:56 协调器: bybit 已提交 335 个币种 (进度: 4/5)
+[PHRYNUS][2025/12/20 16:52:02.879][INFO] watchers.go:125 bybit: 等待其他交易所完成过滤...
+[PHRYNUS][2025/12/20 16:52:03.082][INFO] watchers.go:281 gate: 成功获取市场数据，共 6132 个市场
+[PHRYNUS][2025/12/20 16:52:03.082][INFO] watchers.go:100 gate: 成功获取 6132 个市场
+[PHRYNUS][2025/12/20 16:52:03.083][INFO] watchers.go:104 gate: 格式和黑名单筛选后剩余 584 个交易对
+[PHRYNUS][2025/12/20 16:52:03.083][DEBUG] watchers.go:391 gate: 开始获取 584 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:52:06.118][DEBUG] watchers.go:397 gate: 成功获取 584 个 ticker 数据
+[PHRYNUS][2025/12/20 16:52:06.118][INFO] watchers.go:431 gate: 成交量筛选完成，从 584 个币种筛选出 212 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:52:06.118][INFO] watchers.go:108 gate: 成交量筛选后最终剩余 212 个交易对
+[PHRYNUS][2025/12/20 16:52:06.118][INFO] symbol_coordinator.go:56 协调器: gate 已提交 212 个币种 (进度: 5/5)
+[PHRYNUS][2025/12/20 16:52:06.118][INFO] symbol_coordinator.go:60 协调器: 所有交易所已完成过滤，开始排除单交易所币种...
+[PHRYNUS][2025/12/20 16:52:39.846][INFO] config.go:119 配置加载完成 (config=config.yaml): batchSize=50, maxRetries=10, tickerValidity=10000ms, minVolume=500000, spreadCalcWorkers=6, spreadCalcQueueSize=50, spreadCalcThrottleMs=100, refreshIntervalMs=200, tableLimit=35, minSpreadPercent=0.10, excludeUsdcUsdcPairs=true, enabledExchanges=[binance gate okx bybit bitget]
+[PHRYNUS][2025/12/20 16:52:39.868][INFO] ticker_store.go:178 价差计算工作协程 #2 已启动
+[PHRYNUS][2025/12/20 16:52:39.868][INFO] ticker_store.go:178 价差计算工作协程 #4 已启动
+[PHRYNUS][2025/12/20 16:52:39.868][INFO] ticker_store.go:178 价差计算工作协程 #3 已启动
+[PHRYNUS][2025/12/20 16:52:39.868][INFO] ticker_store.go:178 价差计算工作协程 #0 已启动
+[PHRYNUS][2025/12/20 16:52:39.868][INFO] ticker_store.go:178 价差计算工作协程 #1 已启动
+[PHRYNUS][2025/12/20 16:52:39.868][INFO] ticker_store.go:178 价差计算工作协程 #5 已启动
+[PHRYNUS][2025/12/20 16:52:39.895][INFO] main.go:185 准备启动 5 个交易所监听器，每个延迟 500ms
+[PHRYNUS][2025/12/20 16:52:39.895][INFO] main.go:202 已启动 5 个交易所监听器（延迟启动以避免资源竞争）
+[PHRYNUS][2025/12/20 16:52:39.895][DEBUG] main.go:193 交易所 gate 等待 500ms 后启动
+[PHRYNUS][2025/12/20 16:52:39.896][INFO] main.go:196 启动交易所监听器: binance (黑名单: 10 项)
+[PHRYNUS][2025/12/20 16:52:39.896][DEBUG] main.go:193 交易所 okx 等待 1s 后启动
+[PHRYNUS][2025/12/20 16:52:39.896][DEBUG] main.go:193 交易所 bybit 等待 1.5s 后启动
+[PHRYNUS][2025/12/20 16:52:39.896][DEBUG] main.go:193 交易所 bitget 等待 2s 后启动
+[PHRYNUS][2025/12/20 16:52:39.896][INFO] watchers.go:23 binance: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:52:39.896][INFO] watchers.go:92 binance: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:52:39.896][DEBUG] watchers.go:262 binance: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:52:40.397][INFO] main.go:196 启动交易所监听器: gate (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:52:40.397][INFO] watchers.go:23 gate: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:52:40.397][INFO] watchers.go:92 gate: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:52:40.397][DEBUG] watchers.go:262 gate: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:52:40.899][INFO] main.go:196 启动交易所监听器: okx (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:52:40.899][INFO] watchers.go:23 okx: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:52:40.899][INFO] watchers.go:92 okx: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:52:40.899][DEBUG] watchers.go:262 okx: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:52:40.993][INFO] watchers.go:265 binance: 成功获取市场数据，共 4141 个市场
+[PHRYNUS][2025/12/20 16:52:40.994][INFO] watchers.go:100 binance: 成功获取 4141 个市场
+[PHRYNUS][2025/12/20 16:52:40.994][INFO] watchers.go:104 binance: 格式和黑名单筛选后剩余 526 个交易对
+[PHRYNUS][2025/12/20 16:52:41.396][INFO] main.go:196 启动交易所监听器: bybit (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:52:41.396][INFO] watchers.go:23 bybit: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:52:41.396][INFO] watchers.go:92 bybit: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:52:41.396][DEBUG] watchers.go:262 bybit: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:52:41.476][INFO] watchers.go:265 okx: 成功获取市场数据，共 2367 个市场
+[PHRYNUS][2025/12/20 16:52:41.476][INFO] watchers.go:100 okx: 成功获取 2367 个市场
+[PHRYNUS][2025/12/20 16:52:41.476][INFO] watchers.go:104 okx: 格式和黑名单筛选后剩余 249 个交易对
+[PHRYNUS][2025/12/20 16:52:41.896][INFO] main.go:196 启动交易所监听器: bitget (黑名单: 9 项)
+[PHRYNUS][2025/12/20 16:52:41.896][INFO] watchers.go:23 bitget: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 16:52:41.896][INFO] watchers.go:92 bitget: 开始获取市场数据...
+[PHRYNUS][2025/12/20 16:52:41.896][DEBUG] watchers.go:262 bitget: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 16:52:42.549][INFO] watchers.go:265 bybit: 成功获取市场数据，共 2678 个市场
+[PHRYNUS][2025/12/20 16:52:42.549][INFO] watchers.go:100 bybit: 成功获取 2678 个市场
+[PHRYNUS][2025/12/20 16:52:42.549][INFO] watchers.go:104 bybit: 格式和黑名单筛选后剩余 545 个交易对
+[PHRYNUS][2025/12/20 16:52:42.656][INFO] watchers.go:265 bitget: 成功获取市场数据，共 1375 个市场
+[PHRYNUS][2025/12/20 16:52:42.656][INFO] watchers.go:100 bitget: 成功获取 1375 个市场
+[PHRYNUS][2025/12/20 16:52:42.657][INFO] watchers.go:104 bitget: 格式和黑名单筛选后剩余 504 个交易对
+[PHRYNUS][2025/12/20 16:52:46.640][INFO] watchers.go:265 gate: 成功获取市场数据，共 6132 个市场
+[PHRYNUS][2025/12/20 16:52:46.640][INFO] watchers.go:100 gate: 成功获取 6132 个市场
+[PHRYNUS][2025/12/20 16:52:46.642][INFO] watchers.go:104 gate: 格式和黑名单筛选后剩余 584 个交易对
+[PHRYNUS][2025/12/20 16:52:46.643][INFO] watchers.go:117 binance: 去除仅存在于单一交易所后剩余 517 个交易对
+[PHRYNUS][2025/12/20 16:52:46.643][DEBUG] watchers.go:375 binance: 开始获取 517 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:52:46.643][INFO] watchers.go:117 gate: 去除仅存在于单一交易所后剩余 544 个交易对
+[PHRYNUS][2025/12/20 16:52:46.643][DEBUG] watchers.go:375 gate: 开始获取 544 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:52:46.643][INFO] watchers.go:117 okx: 去除仅存在于单一交易所后剩余 249 个交易对
+[PHRYNUS][2025/12/20 16:52:46.643][DEBUG] watchers.go:375 okx: 开始获取 249 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:52:46.643][INFO] watchers.go:117 bybit: 去除仅存在于单一交易所后剩余 509 个交易对
+[PHRYNUS][2025/12/20 16:52:46.643][DEBUG] watchers.go:375 bybit: 开始获取 509 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:52:46.643][INFO] watchers.go:117 bitget: 去除仅存在于单一交易所后剩余 500 个交易对
+[PHRYNUS][2025/12/20 16:52:46.643][DEBUG] watchers.go:375 bitget: 开始获取 500 个交易对的成交量数据
+[PHRYNUS][2025/12/20 16:52:47.837][DEBUG] watchers.go:381 okx: 成功获取 249 个 ticker 数据
+[PHRYNUS][2025/12/20 16:52:47.837][INFO] watchers.go:415 okx: 成交量筛选完成，从 249 个币种筛选出 226 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:52:47.837][INFO] watchers.go:122 okx: 成交量筛选后最终剩余 226 个交易对
+[PHRYNUS][2025/12/20 16:52:47.837][INFO] watchers.go:127 okx: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 16:52:48.354][DEBUG] watchers.go:381 bitget: 成功获取 500 个 ticker 数据
+[PHRYNUS][2025/12/20 16:52:48.355][INFO] watchers.go:415 bitget: 成交量筛选完成，从 500 个币种筛选出 277 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:52:48.355][INFO] watchers.go:122 bitget: 成交量筛选后最终剩余 277 个交易对
+[PHRYNUS][2025/12/20 16:52:48.355][INFO] watchers.go:127 bitget: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 16:52:48.526][DEBUG] watchers.go:381 bybit: 成功获取 509 个 ticker 数据
+[PHRYNUS][2025/12/20 16:52:48.526][INFO] watchers.go:415 bybit: 成交量筛选完成，从 509 个币种筛选出 322 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:52:48.526][INFO] watchers.go:122 bybit: 成交量筛选后最终剩余 322 个交易对
+[PHRYNUS][2025/12/20 16:52:48.526][INFO] watchers.go:127 bybit: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 16:52:48.716][DEBUG] watchers.go:381 binance: 成功获取 517 个 ticker 数据
+[PHRYNUS][2025/12/20 16:52:48.716][INFO] watchers.go:415 binance: 成交量筛选完成，从 517 个币种筛选出 508 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:52:48.716][INFO] watchers.go:122 binance: 成交量筛选后最终剩余 508 个交易对
+[PHRYNUS][2025/12/20 16:52:48.716][INFO] watchers.go:127 binance: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 16:52:49.837][INFO] watchers.go:44 okx: 准备启动 5 个批次，共 226 个交易对
+[PHRYNUS][2025/12/20 16:52:49.837][INFO] watchers.go:60 okx - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:49.837][INFO] watchers.go:60 okx - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:49.837][INFO] watchers.go:60 okx - Batch 5: 启动批次，包含 26 个交易对
+[PHRYNUS][2025/12/20 16:52:49.837][INFO] watchers.go:60 okx - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:49.837][INFO] watchers.go:60 okx - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.355][INFO] watchers.go:44 bitget: 准备启动 6 个批次，共 277 个交易对
+[PHRYNUS][2025/12/20 16:52:50.355][INFO] watchers.go:60 bitget - Batch 6: 启动批次，包含 27 个交易对
+[PHRYNUS][2025/12/20 16:52:50.355][INFO] watchers.go:60 bitget - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.355][INFO] watchers.go:60 bitget - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.355][INFO] watchers.go:60 bitget - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.355][INFO] watchers.go:60 bitget - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.355][INFO] watchers.go:60 bitget - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.526][INFO] watchers.go:44 bybit: 准备启动 7 个批次，共 322 个交易对
+[PHRYNUS][2025/12/20 16:52:50.526][INFO] watchers.go:60 bybit - Batch 7: 启动批次，包含 22 个交易对
+[PHRYNUS][2025/12/20 16:52:50.526][INFO] watchers.go:60 bybit - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.526][INFO] watchers.go:60 bybit - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.526][INFO] watchers.go:60 bybit - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.526][INFO] watchers.go:60 bybit - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.526][INFO] watchers.go:60 bybit - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.526][INFO] watchers.go:60 bybit - Batch 6: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.716][INFO] watchers.go:44 binance: 准备启动 11 个批次，共 508 个交易对
+[PHRYNUS][2025/12/20 16:52:50.716][INFO] watchers.go:60 binance - Batch 11: 启动批次，包含 8 个交易对
+[PHRYNUS][2025/12/20 16:52:50.716][INFO] watchers.go:60 binance - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.716][INFO] watchers.go:60 binance - Batch 8: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.716][INFO] watchers.go:60 binance - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.716][INFO] watchers.go:60 binance - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.716][INFO] watchers.go:60 binance - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.716][INFO] watchers.go:60 binance - Batch 9: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.716][INFO] watchers.go:60 binance - Batch 6: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.717][INFO] watchers.go:60 binance - Batch 7: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.717][INFO] watchers.go:60 binance - Batch 10: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.717][INFO] watchers.go:60 binance - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:50.729][INFO] watchers.go:236 okx - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (26 个交易对)
+[PHRYNUS][2025/12/20 16:52:50.729][INFO] exchange_status.go:48 交易所状态更新: okx 已连接
+[PHRYNUS][2025/12/20 16:52:50.778][INFO] watchers.go:236 okx - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:50.791][INFO] watchers.go:236 okx - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:50.801][INFO] watchers.go:236 okx - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:50.810][INFO] watchers.go:236 okx - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.123][INFO] watchers.go:236 binance - Batch 8: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.123][INFO] exchange_status.go:48 交易所状态更新: binance 已连接
+[PHRYNUS][2025/12/20 16:52:51.144][INFO] watchers.go:236 bitget - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.144][INFO] exchange_status.go:48 交易所状态更新: bitget 已连接
+[PHRYNUS][2025/12/20 16:52:51.144][INFO] watchers.go:236 bitget - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.146][INFO] watchers.go:236 binance - Batch 7: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.146][INFO] watchers.go:236 binance - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.147][INFO] watchers.go:236 bitget - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.147][INFO] watchers.go:236 binance - Batch 10: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.147][INFO] watchers.go:236 bitget - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.148][INFO] watchers.go:236 bitget - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.166][INFO] watchers.go:236 binance - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.180][INFO] watchers.go:236 binance - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.183][INFO] watchers.go:236 bitget - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (27 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.206][INFO] watchers.go:236 binance - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.213][INFO] watchers.go:236 bybit - Batch 7: 成功连接（使用WatchBidsAsks），开始接收数据 (22 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.213][INFO] exchange_status.go:48 交易所状态更新: bybit 已连接
+[PHRYNUS][2025/12/20 16:52:51.216][INFO] watchers.go:236 binance - Batch 11: 成功连接（使用WatchBidsAsks），开始接收数据 (8 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.216][INFO] watchers.go:236 bybit - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.219][INFO] watchers.go:236 binance - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.222][INFO] watchers.go:236 binance - Batch 9: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.261][INFO] watchers.go:236 bybit - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.326][INFO] watchers.go:236 bybit - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.342][INFO] watchers.go:236 bybit - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.352][INFO] watchers.go:236 bybit - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.366][INFO] watchers.go:236 bybit - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:51.416][INFO] watchers.go:236 binance - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:53.636][DEBUG] watchers.go:381 gate: 成功获取 544 个 ticker 数据
+[PHRYNUS][2025/12/20 16:52:53.636][INFO] watchers.go:415 gate: 成交量筛选完成，从 544 个币种筛选出 195 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 16:52:53.636][INFO] watchers.go:122 gate: 成交量筛选后最终剩余 195 个交易对
+[PHRYNUS][2025/12/20 16:52:53.636][INFO] watchers.go:127 gate: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 16:52:55.636][INFO] watchers.go:44 gate: 准备启动 4 个批次，共 195 个交易对
+[PHRYNUS][2025/12/20 16:52:55.636][INFO] watchers.go:60 gate - Batch 4: 启动批次，包含 45 个交易对
+[PHRYNUS][2025/12/20 16:52:55.636][INFO] watchers.go:60 gate - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:55.636][INFO] watchers.go:60 gate - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:55.636][INFO] watchers.go:60 gate - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 16:52:56.512][INFO] watchers.go:236 gate - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:56.512][INFO] exchange_status.go:48 交易所状态更新: gate 已连接
+[PHRYNUS][2025/12/20 16:52:56.521][INFO] watchers.go:236 gate - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:56.523][INFO] watchers.go:236 gate - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 16:52:56.524][INFO] watchers.go:236 gate - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (45 个交易对)
+[PHRYNUS][2025/12/20 16:53:39.869][INFO] ticker_store.go:537 === 整体状态 ===
+[PHRYNUS][2025/12/20 16:53:39.869][INFO] ticker_store.go:538 币种统计: 总数=543, 有价差=370, 多交易所=382
+[PHRYNUS][2025/12/20 16:53:39.869][INFO] ticker_store.go:542 最大价差: 3.4790% (LIGHT/USDT:USDT - bitget->okx)
+[PHRYNUS][2025/12/20 16:53:39.869][INFO] ticker_store.go:546 交易所状态: 已连接=5/5, 已断开=0
+[PHRYNUS][2025/12/20 16:53:39.869][INFO] ticker_store.go:550 价差计算队列: 当前长度=0/50
+[PHRYNUS][2025/12/20 16:53:39.869][INFO] ticker_store.go:556 各交易所币种数量: map[binance:508 bitget:277 bybit:322 gate:188 okx:226]
+[PHRYNUS][2025/12/20 16:54:39.868][INFO] ticker_store.go:537 === 整体状态 ===
+[PHRYNUS][2025/12/20 16:54:39.868][INFO] ticker_store.go:538 币种统计: 总数=543, 有价差=367, 多交易所=384
+[PHRYNUS][2025/12/20 16:54:39.868][INFO] ticker_store.go:542 最大价差: 3.4379% (LIGHT/USDT:USDT - bitget->okx)
+[PHRYNUS][2025/12/20 16:54:39.868][INFO] ticker_store.go:546 交易所状态: 已连接=5/5, 已断开=0
+[PHRYNUS][2025/12/20 16:54:39.868][INFO] ticker_store.go:550 价差计算队列: 当前长度=0/50
+[PHRYNUS][2025/12/20 16:54:39.868][INFO] ticker_store.go:556 各交易所币种数量: map[binance:508 bitget:277 bybit:322 gate:194 okx:226]
+[PHRYNUS][2025/12/20 16:55:39.869][INFO] ticker_store.go:537 === 整体状态 ===
+[PHRYNUS][2025/12/20 16:55:39.869][INFO] ticker_store.go:538 币种统计: 总数=543, 有价差=376, 多交易所=385
+[PHRYNUS][2025/12/20 16:55:39.869][INFO] ticker_store.go:542 最大价差: 3.4889% (LIGHT/USDT:USDT - bitget->okx)
+[PHRYNUS][2025/12/20 16:55:39.869][INFO] ticker_store.go:546 交易所状态: 已连接=5/5, 已断开=0
+[PHRYNUS][2025/12/20 16:55:39.869][INFO] ticker_store.go:550 价差计算队列: 当前长度=0/50
+[PHRYNUS][2025/12/20 16:55:39.869][INFO] ticker_store.go:556 各交易所币种数量: map[binance:508 bitget:277 bybit:322 gate:195 okx:226]
+[PHRYNUS][2025/12/20 16:56:39.868][INFO] ticker_store.go:537 === 整体状态 ===
+[PHRYNUS][2025/12/20 16:56:39.868][INFO] ticker_store.go:538 币种统计: 总数=543, 有价差=355, 多交易所=385
+[PHRYNUS][2025/12/20 16:56:39.868][INFO] ticker_store.go:542 最大价差: 3.4325% (LIGHT/USDT:USDT - bitget->okx)
+[PHRYNUS][2025/12/20 16:56:39.868][INFO] ticker_store.go:546 交易所状态: 已连接=5/5, 已断开=0
+[PHRYNUS][2025/12/20 16:56:39.868][INFO] ticker_store.go:550 价差计算队列: 当前长度=0/50
+[PHRYNUS][2025/12/20 16:56:39.868][INFO] ticker_store.go:556 各交易所币种数量: map[binance:508 bitget:277 bybit:322 gate:195 okx:226]
+[PHRYNUS][2025/12/20 16:57:39.858][INFO] ticker_store.go:537 === 整体状态 ===
+[PHRYNUS][2025/12/20 16:57:39.858][INFO] ticker_store.go:538 币种统计: 总数=543, 有价差=370, 多交易所=385
+[PHRYNUS][2025/12/20 16:57:39.858][INFO] ticker_store.go:542 最大价差: 3.4500% (LIGHT/USDT:USDT - bitget->okx)
+[PHRYNUS][2025/12/20 16:57:39.858][INFO] ticker_store.go:546 交易所状态: 已连接=5/5, 已断开=0
+[PHRYNUS][2025/12/20 16:57:39.858][INFO] ticker_store.go:550 价差计算队列: 当前长度=0/50
+[PHRYNUS][2025/12/20 16:57:39.858][INFO] ticker_store.go:556 各交易所币种数量: map[binance:508 bitget:277 bybit:322 gate:195 okx:226]
+[PHRYNUS][2025/12/20 16:58:39.858][INFO] ticker_store.go:537 === 整体状态 ===
+[PHRYNUS][2025/12/20 16:58:39.858][INFO] ticker_store.go:538 币种统计: 总数=543, 有价差=372, 多交易所=385
+[PHRYNUS][2025/12/20 16:58:39.858][INFO] ticker_store.go:542 最大价差: 3.4050% (LIGHT/USDT:USDT - bitget->okx)
+[PHRYNUS][2025/12/20 16:58:39.858][INFO] ticker_store.go:546 交易所状态: 已连接=5/5, 已断开=0
+[PHRYNUS][2025/12/20 16:58:39.858][INFO] ticker_store.go:550 价差计算队列: 当前长度=0/50
+[PHRYNUS][2025/12/20 16:58:39.858][INFO] ticker_store.go:556 各交易所币种数量: map[binance:508 bitget:277 bybit:322 gate:195 okx:226]
+[PHRYNUS][2025/12/20 16:59:39.859][INFO] ticker_store.go:537 === 整体状态 ===
+[PHRYNUS][2025/12/20 16:59:39.859][INFO] ticker_store.go:538 币种统计: 总数=543, 有价差=365, 多交易所=385
+[PHRYNUS][2025/12/20 16:59:39.859][INFO] ticker_store.go:542 最大价差: 3.4607% (LIGHT/USDT:USDT - bitget->okx)
+[PHRYNUS][2025/12/20 16:59:39.859][INFO] ticker_store.go:546 交易所状态: 已连接=5/5, 已断开=0
+[PHRYNUS][2025/12/20 16:59:39.859][INFO] ticker_store.go:550 价差计算队列: 当前长度=0/50
+[PHRYNUS][2025/12/20 16:59:39.859][INFO] ticker_store.go:556 各交易所币种数量: map[binance:508 bitget:277 bybit:322 gate:195 okx:226]
+[PHRYNUS][2025/12/20 17:01:15.671][INFO] config.go:119 配置加载完成 (config=config.yaml): batchSize=50, maxRetries=10, tickerValidity=10000ms, minVolume=500000, spreadCalcWorkers=6, spreadCalcQueueSize=50, spreadCalcThrottleMs=100, refreshIntervalMs=200, tableLimit=35, minSpreadPercent=0.10, excludeUsdcUsdcPairs=true, enabledExchanges=[binance gate okx bybit bitget]
+[PHRYNUS][2025/12/20 17:01:15.692][INFO] ticker_store.go:178 价差计算工作协程 #2 已启动
+[PHRYNUS][2025/12/20 17:01:15.692][INFO] ticker_store.go:178 价差计算工作协程 #1 已启动
+[PHRYNUS][2025/12/20 17:01:15.692][INFO] ticker_store.go:178 价差计算工作协程 #5 已启动
+[PHRYNUS][2025/12/20 17:01:15.692][INFO] ticker_store.go:178 价差计算工作协程 #3 已启动
+[PHRYNUS][2025/12/20 17:01:15.692][INFO] ticker_store.go:178 价差计算工作协程 #4 已启动
+[PHRYNUS][2025/12/20 17:01:15.692][INFO] ticker_store.go:178 价差计算工作协程 #0 已启动
+[PHRYNUS][2025/12/20 17:01:15.718][INFO] main.go:185 准备启动 5 个交易所监听器，每个延迟 500ms
+[PHRYNUS][2025/12/20 17:01:15.719][INFO] main.go:202 已启动 5 个交易所监听器（延迟启动以避免资源竞争）
+[PHRYNUS][2025/12/20 17:01:15.719][DEBUG] main.go:193 交易所 okx 等待 1s 后启动
+[PHRYNUS][2025/12/20 17:01:15.719][DEBUG] main.go:193 交易所 bybit 等待 1.5s 后启动
+[PHRYNUS][2025/12/20 17:01:15.719][INFO] main.go:196 启动交易所监听器: binance (黑名单: 10 项)
+[PHRYNUS][2025/12/20 17:01:15.719][INFO] watchers.go:23 binance: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:01:15.719][DEBUG] main.go:193 交易所 bitget 等待 2s 后启动
+[PHRYNUS][2025/12/20 17:01:15.719][DEBUG] main.go:193 交易所 gate 等待 500ms 后启动
+[PHRYNUS][2025/12/20 17:01:15.719][INFO] watchers.go:92 binance: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:01:15.719][DEBUG] watchers.go:262 binance: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:01:16.219][INFO] main.go:196 启动交易所监听器: gate (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:01:16.219][INFO] watchers.go:23 gate: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:01:16.219][INFO] watchers.go:92 gate: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:01:16.219][DEBUG] watchers.go:262 gate: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:01:16.577][INFO] watchers.go:265 binance: 成功获取市场数据，共 4141 个市场
+[PHRYNUS][2025/12/20 17:01:16.577][INFO] watchers.go:100 binance: 成功获取 4141 个市场
+[PHRYNUS][2025/12/20 17:01:16.577][INFO] watchers.go:104 binance: 格式和黑名单筛选后剩余 526 个交易对
+[PHRYNUS][2025/12/20 17:01:16.719][INFO] main.go:196 启动交易所监听器: okx (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:01:16.719][INFO] watchers.go:23 okx: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:01:16.719][INFO] watchers.go:92 okx: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:01:16.719][DEBUG] watchers.go:262 okx: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:01:17.219][INFO] main.go:196 启动交易所监听器: bybit (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:01:17.219][INFO] watchers.go:23 bybit: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:01:17.219][INFO] watchers.go:92 bybit: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:01:17.219][DEBUG] watchers.go:262 bybit: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:01:17.303][INFO] watchers.go:265 okx: 成功获取市场数据，共 2367 个市场
+[PHRYNUS][2025/12/20 17:01:17.303][INFO] watchers.go:100 okx: 成功获取 2367 个市场
+[PHRYNUS][2025/12/20 17:01:17.305][INFO] watchers.go:104 okx: 格式和黑名单筛选后剩余 249 个交易对
+[PHRYNUS][2025/12/20 17:01:17.720][INFO] main.go:196 启动交易所监听器: bitget (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:01:17.720][INFO] watchers.go:23 bitget: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:01:17.720][INFO] watchers.go:92 bitget: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:01:17.720][DEBUG] watchers.go:262 bitget: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:01:18.079][INFO] watchers.go:265 bybit: 成功获取市场数据，共 2678 个市场
+[PHRYNUS][2025/12/20 17:01:18.079][INFO] watchers.go:100 bybit: 成功获取 2678 个市场
+[PHRYNUS][2025/12/20 17:01:18.079][INFO] watchers.go:104 bybit: 格式和黑名单筛选后剩余 545 个交易对
+[PHRYNUS][2025/12/20 17:01:18.482][INFO] watchers.go:265 bitget: 成功获取市场数据，共 1375 个市场
+[PHRYNUS][2025/12/20 17:01:18.482][INFO] watchers.go:100 bitget: 成功获取 1375 个市场
+[PHRYNUS][2025/12/20 17:01:18.482][INFO] watchers.go:104 bitget: 格式和黑名单筛选后剩余 504 个交易对
+[PHRYNUS][2025/12/20 17:01:19.035][INFO] watchers.go:265 gate: 成功获取市场数据，共 6132 个市场
+[PHRYNUS][2025/12/20 17:01:19.035][INFO] watchers.go:100 gate: 成功获取 6132 个市场
+[PHRYNUS][2025/12/20 17:01:19.036][INFO] watchers.go:104 gate: 格式和黑名单筛选后剩余 584 个交易对
+[PHRYNUS][2025/12/20 17:01:19.036][INFO] watchers.go:117 binance: 去除仅存在于单一交易所后剩余 517 个交易对
+[PHRYNUS][2025/12/20 17:01:19.036][DEBUG] watchers.go:375 binance: 开始获取 517 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:01:19.036][INFO] watchers.go:117 gate: 去除仅存在于单一交易所后剩余 544 个交易对
+[PHRYNUS][2025/12/20 17:01:19.036][DEBUG] watchers.go:375 gate: 开始获取 544 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:01:19.036][INFO] watchers.go:117 okx: 去除仅存在于单一交易所后剩余 249 个交易对
+[PHRYNUS][2025/12/20 17:01:19.036][DEBUG] watchers.go:375 okx: 开始获取 249 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:01:19.036][INFO] watchers.go:117 bybit: 去除仅存在于单一交易所后剩余 509 个交易对
+[PHRYNUS][2025/12/20 17:01:19.037][DEBUG] watchers.go:375 bybit: 开始获取 509 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:01:19.037][INFO] watchers.go:117 bitget: 去除仅存在于单一交易所后剩余 500 个交易对
+[PHRYNUS][2025/12/20 17:01:19.037][DEBUG] watchers.go:375 bitget: 开始获取 500 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:01:20.106][DEBUG] watchers.go:381 okx: 成功获取 249 个 ticker 数据
+[PHRYNUS][2025/12/20 17:01:20.106][INFO] watchers.go:415 okx: 成交量筛选完成，从 249 个币种筛选出 225 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:01:20.106][INFO] watchers.go:122 okx: 成交量筛选后最终剩余 225 个交易对
+[PHRYNUS][2025/12/20 17:01:20.106][INFO] watchers.go:127 okx: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:01:20.284][DEBUG] watchers.go:381 binance: 成功获取 517 个 ticker 数据
+[PHRYNUS][2025/12/20 17:01:20.284][INFO] watchers.go:415 binance: 成交量筛选完成，从 517 个币种筛选出 508 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:01:20.284][INFO] watchers.go:122 binance: 成交量筛选后最终剩余 508 个交易对
+[PHRYNUS][2025/12/20 17:01:20.284][INFO] watchers.go:127 binance: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:01:20.481][DEBUG] watchers.go:381 bybit: 成功获取 509 个 ticker 数据
+[PHRYNUS][2025/12/20 17:01:20.481][INFO] watchers.go:415 bybit: 成交量筛选完成，从 509 个币种筛选出 321 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:01:20.481][INFO] watchers.go:122 bybit: 成交量筛选后最终剩余 321 个交易对
+[PHRYNUS][2025/12/20 17:01:20.481][INFO] watchers.go:127 bybit: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:01:20.597][DEBUG] watchers.go:381 bitget: 成功获取 500 个 ticker 数据
+[PHRYNUS][2025/12/20 17:01:20.597][INFO] watchers.go:415 bitget: 成交量筛选完成，从 500 个币种筛选出 277 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:01:20.597][INFO] watchers.go:122 bitget: 成交量筛选后最终剩余 277 个交易对
+[PHRYNUS][2025/12/20 17:01:20.597][INFO] watchers.go:127 bitget: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:01:22.106][INFO] watchers.go:44 okx: 准备启动 5 个批次，共 225 个交易对
+[PHRYNUS][2025/12/20 17:01:22.106][INFO] watchers.go:60 okx - Batch 5: 启动批次，包含 25 个交易对
+[PHRYNUS][2025/12/20 17:01:22.106][INFO] watchers.go:60 okx - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.106][INFO] watchers.go:60 okx - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.106][INFO] watchers.go:60 okx - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.106][INFO] watchers.go:60 okx - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.203][DEBUG] watchers.go:381 gate: 成功获取 544 个 ticker 数据
+[PHRYNUS][2025/12/20 17:01:22.204][INFO] watchers.go:415 gate: 成交量筛选完成，从 544 个币种筛选出 189 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:01:22.204][INFO] watchers.go:122 gate: 成交量筛选后最终剩余 189 个交易对
+[PHRYNUS][2025/12/20 17:01:22.204][INFO] watchers.go:127 gate: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:44 binance: 准备启动 11 个批次，共 508 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 11: 启动批次，包含 8 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 8: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 6: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 9: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 7: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 10: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.284][INFO] watchers.go:60 binance - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.482][INFO] watchers.go:44 bybit: 准备启动 7 个批次，共 321 个交易对
+[PHRYNUS][2025/12/20 17:01:22.482][INFO] watchers.go:60 bybit - Batch 7: 启动批次，包含 21 个交易对
+[PHRYNUS][2025/12/20 17:01:22.482][INFO] watchers.go:60 bybit - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.482][INFO] watchers.go:60 bybit - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.482][INFO] watchers.go:60 bybit - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.482][INFO] watchers.go:60 bybit - Batch 6: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.482][INFO] watchers.go:60 bybit - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.482][INFO] watchers.go:60 bybit - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.598][INFO] watchers.go:44 bitget: 准备启动 6 个批次，共 277 个交易对
+[PHRYNUS][2025/12/20 17:01:22.598][INFO] watchers.go:60 bitget - Batch 6: 启动批次，包含 27 个交易对
+[PHRYNUS][2025/12/20 17:01:22.598][INFO] watchers.go:60 bitget - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.598][INFO] watchers.go:60 bitget - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.598][INFO] watchers.go:60 bitget - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.598][INFO] watchers.go:60 bitget - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.598][INFO] watchers.go:60 bitget - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:22.705][INFO] watchers.go:236 okx - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (25 个交易对)
+[PHRYNUS][2025/12/20 17:01:22.705][INFO] exchange_status.go:48 交易所状态更新: okx 已连接
+[PHRYNUS][2025/12/20 17:01:22.715][INFO] watchers.go:236 okx - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:22.748][INFO] watchers.go:236 okx - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:22.767][INFO] watchers.go:236 okx - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:22.783][INFO] watchers.go:236 okx - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.243][INFO] watchers.go:236 bybit - Batch 7: 成功连接（使用WatchBidsAsks），开始接收数据 (21 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.243][INFO] exchange_status.go:48 交易所状态更新: bybit 已连接
+[PHRYNUS][2025/12/20 17:01:23.245][INFO] watchers.go:236 bybit - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.288][INFO] watchers.go:236 bybit - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.295][INFO] watchers.go:236 bybit - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.299][INFO] watchers.go:236 bybit - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.328][INFO] watchers.go:236 bybit - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.336][INFO] watchers.go:236 bybit - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.460][INFO] watchers.go:236 bitget - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.460][INFO] exchange_status.go:48 交易所状态更新: bitget 已连接
+[PHRYNUS][2025/12/20 17:01:23.460][INFO] watchers.go:236 bitget - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (27 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.460][INFO] watchers.go:236 bitget - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.464][INFO] watchers.go:236 bitget - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.503][INFO] watchers.go:236 bitget - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:23.504][INFO] watchers.go:236 bitget - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:24.204][INFO] watchers.go:44 gate: 准备启动 4 个批次，共 189 个交易对
+[PHRYNUS][2025/12/20 17:01:24.204][INFO] watchers.go:60 gate - Batch 4: 启动批次，包含 39 个交易对
+[PHRYNUS][2025/12/20 17:01:24.204][INFO] watchers.go:60 gate - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:24.204][INFO] watchers.go:60 gate - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:24.204][INFO] watchers.go:60 gate - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:01:25.039][INFO] watchers.go:236 gate - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:25.039][INFO] exchange_status.go:48 交易所状态更新: gate 已连接
+[PHRYNUS][2025/12/20 17:01:25.039][INFO] watchers.go:236 gate - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (39 个交易对)
+[PHRYNUS][2025/12/20 17:01:25.039][INFO] watchers.go:236 gate - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:25.091][INFO] watchers.go:236 gate - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:27.289][WARN] watchers.go:206 binance - Batch 11: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 1182 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicke
+Stack trace:
+goroutine 1182 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc017f541c0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032da0790?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 1181
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 1181 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032da07b0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.fun
+Stack trace:
+goroutine 1181 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc017f54150)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032da07d0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032da07b0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1180
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:27.292][WARN] watchers.go:206 binance - Batch 8: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 957 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 957 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0003d1260)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032aea670?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 955
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 955 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032aea690})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func
+Stack trace:
+goroutine 955 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0003d0fc0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032aea6b0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032aea690})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1177
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:27.294][WARN] watchers.go:206 binance - Batch 6: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 1218 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicke
+Stack trace:
+goroutine 1218 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc00021a690)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc033480c30?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 1148
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 1148 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc033480c50})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.fun
+Stack trace:
+goroutine 1148 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0000fbd50)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc033480c70?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc033480c50})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1175
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:27.295][WARN] watchers.go:206 binance - Batch 7: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 959 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 959 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0003d13b0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032bb6340?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 956
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 956 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032bb6360})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func
+Stack trace:
+goroutine 956 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0003d1110)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032bb6380?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032bb6360})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1176
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:27.295][WARN] watchers.go:206 binance - Batch 3: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 1219 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicke
+Stack trace:
+goroutine 1219 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc00021a700)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0334d0770?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 1184
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 1184 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0334d0790})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.fun
+Stack trace:
+goroutine 1184 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc017f542a0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0334d07b0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0334d0790})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1172
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:27.295][WARN] watchers.go:206 binance - Batch 5: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 960 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 960 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0003d1490)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0330180a0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 1169
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 1169 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0330180e0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.fun
+Stack trace:
+goroutine 1169 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc00021a5b0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc033018100?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0330180e0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1174
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:27.296][WARN] watchers.go:206 binance - Batch 1: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 958 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 958 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0003d1340)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032bb6890?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 1001
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 1001 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032bb68b0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.fun
+Stack trace:
+goroutine 1001 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0037e3dc0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032bb68d0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032bb68b0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1170
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:27.297][WARN] watchers.go:206 binance - Batch 2: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 1149 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicke
+Stack trace:
+goroutine 1149 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0000fbdc0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0333d0ec0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 1000
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 1000 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0333d0ee0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.fun
+Stack trace:
+goroutine 1000 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0037e3d50)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0333d0f00?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0333d0ee0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1171
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:27.297][WARN] watchers.go:206 binance - Batch 10: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 961 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 961 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0003d1500)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032bfd9b0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 1186
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 1186 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032bfd9e0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.fun
+Stack trace:
+goroutine 1186 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0065028c0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032bfda10?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032bfd9e0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1179
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:27.297][WARN] watchers.go:206 binance - Batch 4: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 1150 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicke
+Stack trace:
+goroutine 1150 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0000fbe30)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032bfda80?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 1185
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 1185 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032bfdaa0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.fun
+Stack trace:
+goroutine 1185 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc017f54310)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032bfdac0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032bfdaa0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1173
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:27.298][WARN] watchers.go:206 binance - Batch 9: WatchBidsAsks失败 (retry 1/10): [ccxtError]::[Exception]::[runtime.goexit:error:runtime.goexit:EOF
+Stack trace:
+goroutine 1220 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3231 +0x292
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicke
+Stack trace:
+goroutine 1220 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc00021a770)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032bb73e0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64ea0, 0x7ff6cde2c590})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3233 +0x379
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 1183
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 1183 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032bb7410})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.fun
+Stack trace:
+goroutine 1183 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc017f54230)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc032bb7430?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc032bb7410})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1178
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+]
+Stack:
+, retrying in 1s
+[PHRYNUS][2025/12/20 17:01:32.285][WARN] watchers.go:206 binance - Batch 11: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/0 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 432412 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0612c18f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 432412 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057caf340)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05982d000?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0612c18f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 432411
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 432411 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05982d020})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 432411 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057caf2d0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05982d040?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05982d020})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1180
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/0 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 432412 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0612c18f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 432412 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057caf340)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05982d000?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0612c18f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 432411
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 432411 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05982d020})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 432411 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057caf2d0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05982d040?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05982d020})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1180
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:32.289][WARN] watchers.go:206 binance - Batch 8: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/1 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433780 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc061437d40})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433780 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc05787ce00)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05983cad0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc061437d40})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433779
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433779 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05983caf0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433779 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc05787cd90)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05982df70?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05983caf0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1177
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/1 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433780 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc061437d40})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433780 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc05787ce00)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05983cad0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc061437d40})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433779
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433779 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05983caf0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433779 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc05787cd90)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05982df70?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05983caf0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1177
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:32.289][WARN] watchers.go:206 binance - Batch 6: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/2 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433945 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0614155f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433945 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0592a65b0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0599c2120?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0614155f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433944
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433944 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0599c2140})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433944 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0592a6540)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059ad3b60?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0599c2140})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1175
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/2 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433945 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0614155f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433945 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0592a65b0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0599c2120?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0614155f0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433944
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433944 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0599c2140})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433944 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0592a6540)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059ad3b60?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0599c2140})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1175
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:32.290][WARN] watchers.go:206 binance - Batch 5: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/4 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433835 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0614158c0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433835 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc059258a80)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0599c2180?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0614158c0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433834
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433834 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0599c21a0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433834 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc059258a10)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0599c21c0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0599c21a0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1174
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/4 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433835 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0614158c0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433835 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc059258a80)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0599c2180?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0614158c0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433834
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433834 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0599c21a0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433834 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc059258a10)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0599c21c0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0599c21a0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1174
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:32.290][WARN] watchers.go:206 binance - Batch 7: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/3 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433998 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0612c1aa0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433998 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0592a6690)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05983cc30?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0612c1aa0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433997
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433997 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05983cc50})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433997 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0592a6620)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05983cc80?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05983cc50})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1176
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/3 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433998 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0612c1aa0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433998 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0592a6690)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05983cc30?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0612c1aa0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433997
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433997 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05983cc50})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433997 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0592a6620)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc05983cc80?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc05983cc50})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1176
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:32.291][WARN] watchers.go:206 binance - Batch 3: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/7 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433675 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0610f69c0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433675 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057b4f5e0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059878670?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0610f69c0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433674
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433674 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059878690})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433674 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057b4f570)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0598786c0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059878690})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1172
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/7 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433675 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0610f69c0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433675 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057b4f5e0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059878670?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0610f69c0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433674
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433674 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059878690})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433674 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057b4f570)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0598786c0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059878690})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1172
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:32.291][WARN] watchers.go:206 binance - Batch 1: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/5 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433728 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611be600})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433728 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0584acd90)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0594fcd10?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611be600})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433727
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433727 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0594fcd30})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433727 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0584acd20)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0594fcd50?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0594fcd30})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1170
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/5 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433728 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611be600})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433728 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0584acd90)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0594fcd10?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611be600})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433727
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433727 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0594fcd30})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433727 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0584acd20)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0594fcd50?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0594fcd30})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1170
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:32.292][WARN] watchers.go:206 binance - Batch 4: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/9 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433900 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611485d0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433900 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc05787d030)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0592f3670?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611485d0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433510
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433510 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0592f3690})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433510 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0593b6690)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0592f36c0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0592f3690})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1173
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/9 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433900 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611485d0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433900 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc05787d030)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0592f3670?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611485d0})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433510
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433510 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0592f3690})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433510 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0593b6690)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0592f36c0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0592f3690})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1173
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:32.292][WARN] watchers.go:206 binance - Batch 2: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/10 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 434214 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc061148660})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 434214 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0584acee0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059b2e4e0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc061148660})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 434212
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 434212 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059b2e500})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 434212 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0584ace00)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059b2e520?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059b2e500})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1171
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/10 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 434214 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc061148660})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 434214 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0584acee0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059b2e4e0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc061148660})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 434212
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 434212 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059b2e500})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 434212 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0584ace00)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059b2e520?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059b2e500})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1171
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:32.292][WARN] watchers.go:206 binance - Batch 10: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/6 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 434213 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc060dfa450})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 434213 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0584ace70)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059ade4e0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc060dfa450})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 434047
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 434047 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059ade500})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 434047 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057b4f650)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059ade520?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059ade500})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1179
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/6 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 434213 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc060dfa450})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 434213 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc0584ace70)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059ade4e0?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc060dfa450})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 434047
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 434047 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059ade500})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 434047 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057b4f650)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc059ade520?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc059ade500})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1179
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:32.293][WARN] watchers.go:206 binance - Batch 9: WatchBidsAsks失败 (retry 2/10): [ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/8 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433846 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611bee10})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433846 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057caf3b0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0592dfd30?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611bee10})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433899
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433899 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0592dfd50})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433899 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc05787cfc0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0592dfd70?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0592dfd50})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1178
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7]
+Stack:
+panic:runtime.goexit:panic:ccxt.Error:runtime.goexit:[ccxtError]::[RequestTimeout]::[Connection to wss://fstream.binance.com/ws/8 failed due to a connection timeout]
+Stack:
+
+Stack trace:
+goroutine 433846 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611bee10})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3227 +0x85
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTicker
+Stack trace:
+goroutine 433846 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc057caf3b0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0592dfd30?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb64c60, 0xc0611bee10})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3229 +0x15f
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2639 +0x13ca
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchMultiTickerHelper in goroutine 433899
+	F:/github/eyes-contango/v4/pro/binance.go:2529 +0x136
+
+Stack trace:
+goroutine 433899 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0592dfd50})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3211 +0x394
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.f
+Stack trace:
+goroutine 433899 [running]:
+runtime/debug.Stack()
+	C:/Program Files/Go/src/runtime/debug/stack.go:26 +0x5e
+github.com/ccxt/ccxt/go/v4.ReturnPanicError(0xc05787cfc0)
+	F:/github/eyes-contango/v4/exchange_helpers.go:3243 +0x72
+panic({0x7ff6ccb2efe0?, 0xc0592dfd70?})
+	C:/Program Files/Go/src/runtime/panic.go:783 +0x132
+github.com/ccxt/ccxt/go/v4.PanicOnError({0x7ff6ccb2efe0, 0xc0592dfd50})
+	F:/github/eyes-contango/v4/exchange_helpers.go:3213 +0x485
+github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks.func1()
+	F:/github/eyes-contango/v4/pro/binance.go:2514 +0x327
+created by github.com/ccxt/ccxt/go/v4/pro.(*BinanceCore).WatchBidsAsks in goroutine 1178
+	F:/github/eyes-contango/v4/pro/binance.go:2501 +0xe7
+, retrying in 2s
+[PHRYNUS][2025/12/20 17:01:35.128][INFO] watchers.go:236 binance - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:35.128][INFO] exchange_status.go:48 交易所状态更新: binance 已连接
+[PHRYNUS][2025/12/20 17:01:35.132][INFO] watchers.go:236 binance - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:35.138][INFO] watchers.go:236 binance - Batch 9: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:35.141][INFO] watchers.go:236 binance - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:35.148][INFO] watchers.go:236 binance - Batch 7: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:35.148][INFO] watchers.go:236 binance - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:35.151][INFO] watchers.go:236 binance - Batch 10: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:35.161][INFO] watchers.go:236 binance - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:35.168][INFO] watchers.go:236 binance - Batch 11: 成功连接（使用WatchBidsAsks），开始接收数据 (8 个交易对)
+[PHRYNUS][2025/12/20 17:01:35.168][INFO] watchers.go:236 binance - Batch 8: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:01:35.223][INFO] watchers.go:236 binance - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:38.576][INFO] config.go:119 配置加载完成 (config=config.yaml): batchSize=50, maxRetries=10, tickerValidity=10000ms, minVolume=500000, spreadCalcWorkers=6, spreadCalcQueueSize=50, spreadCalcThrottleMs=100, refreshIntervalMs=200, tableLimit=35, minSpreadPercent=0.10, excludeUsdcUsdcPairs=true, enabledExchanges=[binance gate okx bybit bitget kucoin backpack]
+[PHRYNUS][2025/12/20 17:02:38.599][INFO] ticker_store.go:178 价差计算工作协程 #0 已启动
+[PHRYNUS][2025/12/20 17:02:38.599][INFO] ticker_store.go:178 价差计算工作协程 #3 已启动
+[PHRYNUS][2025/12/20 17:02:38.599][INFO] ticker_store.go:178 价差计算工作协程 #1 已启动
+[PHRYNUS][2025/12/20 17:02:38.599][INFO] ticker_store.go:178 价差计算工作协程 #2 已启动
+[PHRYNUS][2025/12/20 17:02:38.599][INFO] ticker_store.go:178 价差计算工作协程 #5 已启动
+[PHRYNUS][2025/12/20 17:02:38.599][INFO] ticker_store.go:178 价差计算工作协程 #4 已启动
+[PHRYNUS][2025/12/20 17:02:38.625][INFO] main.go:185 准备启动 7 个交易所监听器，每个延迟 500ms
+[PHRYNUS][2025/12/20 17:02:38.625][INFO] main.go:202 已启动 7 个交易所监听器（延迟启动以避免资源竞争）
+[PHRYNUS][2025/12/20 17:02:38.625][DEBUG] main.go:193 交易所 backpack 等待 500ms 后启动
+[PHRYNUS][2025/12/20 17:02:38.625][INFO] main.go:196 启动交易所监听器: kucoin (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:02:38.625][INFO] watchers.go:23 kucoin: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:02:38.625][DEBUG] main.go:193 交易所 okx 等待 2s 后启动
+[PHRYNUS][2025/12/20 17:02:38.625][DEBUG] main.go:193 交易所 bybit 等待 2.5s 后启动
+[PHRYNUS][2025/12/20 17:02:38.625][DEBUG] main.go:193 交易所 gate 等待 1.5s 后启动
+[PHRYNUS][2025/12/20 17:02:38.625][DEBUG] main.go:193 交易所 binance 等待 1s 后启动
+[PHRYNUS][2025/12/20 17:02:38.625][DEBUG] main.go:193 交易所 bitget 等待 3s 后启动
+[PHRYNUS][2025/12/20 17:02:38.625][INFO] watchers.go:92 kucoin: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:02:38.625][DEBUG] watchers.go:262 kucoin: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:02:39.125][INFO] main.go:196 启动交易所监听器: backpack (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:02:39.125][INFO] watchers.go:23 backpack: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:02:39.125][INFO] watchers.go:92 backpack: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:02:39.125][DEBUG] watchers.go:262 backpack: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:02:39.554][INFO] watchers.go:265 kucoin: 成功获取市场数据，共 534 个市场
+[PHRYNUS][2025/12/20 17:02:39.554][INFO] watchers.go:100 kucoin: 成功获取 534 个市场
+[PHRYNUS][2025/12/20 17:02:39.554][INFO] watchers.go:104 kucoin: 格式和黑名单筛选后剩余 513 个交易对
+[PHRYNUS][2025/12/20 17:02:39.626][INFO] main.go:196 启动交易所监听器: binance (黑名单: 10 项)
+[PHRYNUS][2025/12/20 17:02:39.626][INFO] watchers.go:23 binance: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:02:39.626][INFO] watchers.go:92 binance: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:02:39.626][DEBUG] watchers.go:262 binance: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:02:40.126][INFO] main.go:196 启动交易所监听器: gate (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:02:40.126][INFO] watchers.go:23 gate: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:02:40.126][INFO] watchers.go:92 gate: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:02:40.126][DEBUG] watchers.go:262 gate: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:02:40.625][INFO] main.go:196 启动交易所监听器: okx (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:02:40.625][INFO] watchers.go:23 okx: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:02:40.625][INFO] watchers.go:92 okx: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:02:40.625][DEBUG] watchers.go:262 okx: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:02:40.768][INFO] watchers.go:265 binance: 成功获取市场数据，共 4141 个市场
+[PHRYNUS][2025/12/20 17:02:40.768][INFO] watchers.go:100 binance: 成功获取 4141 个市场
+[PHRYNUS][2025/12/20 17:02:40.768][INFO] watchers.go:104 binance: 格式和黑名单筛选后剩余 526 个交易对
+[PHRYNUS][2025/12/20 17:02:41.125][INFO] main.go:196 启动交易所监听器: bybit (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:02:41.125][INFO] watchers.go:23 bybit: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:02:41.125][INFO] watchers.go:92 bybit: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:02:41.125][DEBUG] watchers.go:262 bybit: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:02:41.175][INFO] watchers.go:265 okx: 成功获取市场数据，共 2367 个市场
+[PHRYNUS][2025/12/20 17:02:41.175][INFO] watchers.go:100 okx: 成功获取 2367 个市场
+[PHRYNUS][2025/12/20 17:02:41.176][INFO] watchers.go:104 okx: 格式和黑名单筛选后剩余 249 个交易对
+[PHRYNUS][2025/12/20 17:02:41.626][INFO] main.go:196 启动交易所监听器: bitget (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:02:41.626][INFO] watchers.go:23 bitget: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:02:41.626][INFO] watchers.go:92 bitget: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:02:41.626][DEBUG] watchers.go:262 bitget: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:02:42.057][INFO] watchers.go:265 bybit: 成功获取市场数据，共 2678 个市场
+[PHRYNUS][2025/12/20 17:02:42.057][INFO] watchers.go:100 bybit: 成功获取 2678 个市场
+[PHRYNUS][2025/12/20 17:02:42.057][INFO] watchers.go:104 bybit: 格式和黑名单筛选后剩余 545 个交易对
+[PHRYNUS][2025/12/20 17:02:42.386][INFO] watchers.go:265 bitget: 成功获取市场数据，共 1375 个市场
+[PHRYNUS][2025/12/20 17:02:42.386][INFO] watchers.go:100 bitget: 成功获取 1375 个市场
+[PHRYNUS][2025/12/20 17:02:42.386][INFO] watchers.go:104 bitget: 格式和黑名单筛选后剩余 504 个交易对
+[PHRYNUS][2025/12/20 17:02:44.026][INFO] watchers.go:265 gate: 成功获取市场数据，共 6132 个市场
+[PHRYNUS][2025/12/20 17:02:44.026][INFO] watchers.go:100 gate: 成功获取 6132 个市场
+[PHRYNUS][2025/12/20 17:02:44.027][INFO] watchers.go:104 gate: 格式和黑名单筛选后剩余 584 个交易对
+[PHRYNUS][2025/12/20 17:02:44.884][INFO] watchers.go:265 backpack: 成功获取市场数据，共 148 个市场
+[PHRYNUS][2025/12/20 17:02:44.884][INFO] watchers.go:100 backpack: 成功获取 148 个市场
+[PHRYNUS][2025/12/20 17:02:44.884][INFO] watchers.go:104 backpack: 格式和黑名单筛选后剩余 0 个交易对
+[PHRYNUS][2025/12/20 17:02:44.885][INFO] watchers.go:117 kucoin: 去除仅存在于单一交易所后剩余 496 个交易对
+[PHRYNUS][2025/12/20 17:02:44.885][DEBUG] watchers.go:375 kucoin: 开始获取 496 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:02:44.885][INFO] watchers.go:117 binance: 去除仅存在于单一交易所后剩余 518 个交易对
+[PHRYNUS][2025/12/20 17:02:44.885][INFO] watchers.go:117 okx: 去除仅存在于单一交易所后剩余 249 个交易对
+[PHRYNUS][2025/12/20 17:02:44.885][INFO] watchers.go:117 bybit: 去除仅存在于单一交易所后剩余 516 个交易对
+[PHRYNUS][2025/12/20 17:02:44.885][DEBUG] watchers.go:375 bybit: 开始获取 516 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:02:44.885][DEBUG] watchers.go:375 okx: 开始获取 249 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:02:44.885][DEBUG] watchers.go:375 binance: 开始获取 518 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:02:44.885][INFO] watchers.go:117 bitget: 去除仅存在于单一交易所后剩余 501 个交易对
+[PHRYNUS][2025/12/20 17:02:44.885][DEBUG] watchers.go:375 bitget: 开始获取 501 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:02:44.885][INFO] watchers.go:117 backpack: 去除仅存在于单一交易所后剩余 0 个交易对
+[PHRYNUS][2025/12/20 17:02:44.885][INFO] watchers.go:122 backpack: 成交量筛选后最终剩余 0 个交易对
+[PHRYNUS][2025/12/20 17:02:44.885][INFO] watchers.go:127 backpack: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:02:44.885][INFO] watchers.go:117 gate: 去除仅存在于单一交易所后剩余 550 个交易对
+[PHRYNUS][2025/12/20 17:02:44.885][DEBUG] watchers.go:375 gate: 开始获取 550 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:02:45.589][DEBUG] watchers.go:381 kucoin: 成功获取 496 个 ticker 数据
+[PHRYNUS][2025/12/20 17:02:45.589][INFO] watchers.go:415 kucoin: 成交量筛选完成，从 496 个币种筛选出 299 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:02:45.589][INFO] watchers.go:122 kucoin: 成交量筛选后最终剩余 299 个交易对
+[PHRYNUS][2025/12/20 17:02:45.590][INFO] watchers.go:127 kucoin: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:02:45.923][DEBUG] watchers.go:381 okx: 成功获取 249 个 ticker 数据
+[PHRYNUS][2025/12/20 17:02:45.923][INFO] watchers.go:415 okx: 成交量筛选完成，从 249 个币种筛选出 225 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:02:45.923][INFO] watchers.go:122 okx: 成交量筛选后最终剩余 225 个交易对
+[PHRYNUS][2025/12/20 17:02:45.923][INFO] watchers.go:127 okx: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:02:46.287][DEBUG] watchers.go:381 binance: 成功获取 518 个 ticker 数据
+[PHRYNUS][2025/12/20 17:02:46.287][INFO] watchers.go:415 binance: 成交量筛选完成，从 518 个币种筛选出 509 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:02:46.287][INFO] watchers.go:122 binance: 成交量筛选后最终剩余 509 个交易对
+[PHRYNUS][2025/12/20 17:02:46.287][INFO] watchers.go:127 binance: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:02:46.335][DEBUG] watchers.go:381 bybit: 成功获取 516 个 ticker 数据
+[PHRYNUS][2025/12/20 17:02:46.335][INFO] watchers.go:415 bybit: 成交量筛选完成，从 516 个币种筛选出 323 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:02:46.335][INFO] watchers.go:122 bybit: 成交量筛选后最终剩余 323 个交易对
+[PHRYNUS][2025/12/20 17:02:46.335][INFO] watchers.go:127 bybit: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:02:46.474][DEBUG] watchers.go:381 bitget: 成功获取 501 个 ticker 数据
+[PHRYNUS][2025/12/20 17:02:46.474][INFO] watchers.go:415 bitget: 成交量筛选完成，从 501 个币种筛选出 278 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:02:46.474][INFO] watchers.go:122 bitget: 成交量筛选后最终剩余 278 个交易对
+[PHRYNUS][2025/12/20 17:02:46.474][INFO] watchers.go:127 bitget: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:02:46.886][WARN] watchers.go:37 backpack: No contract symbols found
+[PHRYNUS][2025/12/20 17:02:47.590][INFO] watchers.go:44 kucoin: 准备启动 6 个批次，共 299 个交易对
+[PHRYNUS][2025/12/20 17:02:47.590][INFO] watchers.go:60 kucoin - Batch 6: 启动批次，包含 49 个交易对
+[PHRYNUS][2025/12/20 17:02:47.590][INFO] watchers.go:60 kucoin - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:47.590][INFO] watchers.go:60 kucoin - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:47.590][INFO] watchers.go:60 kucoin - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:47.590][INFO] watchers.go:60 kucoin - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:47.590][INFO] watchers.go:60 kucoin - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:47.923][INFO] watchers.go:44 okx: 准备启动 5 个批次，共 225 个交易对
+[PHRYNUS][2025/12/20 17:02:47.923][INFO] watchers.go:60 okx - Batch 5: 启动批次，包含 25 个交易对
+[PHRYNUS][2025/12/20 17:02:47.923][INFO] watchers.go:60 okx - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:47.923][INFO] watchers.go:60 okx - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:47.923][INFO] watchers.go:60 okx - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:47.923][INFO] watchers.go:60 okx - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:44 binance: 准备启动 11 个批次，共 509 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 11: 启动批次，包含 9 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 6: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 7: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 8: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 9: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.288][INFO] watchers.go:60 binance - Batch 10: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.336][INFO] watchers.go:44 bybit: 准备启动 7 个批次，共 323 个交易对
+[PHRYNUS][2025/12/20 17:02:48.336][INFO] watchers.go:60 bybit - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.336][INFO] watchers.go:60 bybit - Batch 7: 启动批次，包含 23 个交易对
+[PHRYNUS][2025/12/20 17:02:48.336][INFO] watchers.go:60 bybit - Batch 6: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.336][INFO] watchers.go:60 bybit - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.336][INFO] watchers.go:60 bybit - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.336][INFO] watchers.go:60 bybit - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.336][INFO] watchers.go:60 bybit - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.475][INFO] watchers.go:44 bitget: 准备启动 6 个批次，共 278 个交易对
+[PHRYNUS][2025/12/20 17:02:48.475][INFO] watchers.go:60 bitget - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.475][INFO] watchers.go:60 bitget - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.475][INFO] watchers.go:60 bitget - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.475][INFO] watchers.go:60 bitget - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.475][INFO] watchers.go:60 bitget - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:48.475][INFO] watchers.go:60 bitget - Batch 6: 启动批次，包含 28 个交易对
+[PHRYNUS][2025/12/20 17:02:48.581][INFO] watchers.go:236 okx - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:48.581][INFO] exchange_status.go:48 交易所状态更新: okx 已连接
+[PHRYNUS][2025/12/20 17:02:48.584][INFO] watchers.go:236 kucoin - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (49 个交易对)
+[PHRYNUS][2025/12/20 17:02:48.584][INFO] exchange_status.go:48 交易所状态更新: kucoin 已连接
+[PHRYNUS][2025/12/20 17:02:48.609][DEBUG] watchers.go:381 gate: 成功获取 550 个 ticker 数据
+[PHRYNUS][2025/12/20 17:02:48.609][INFO] watchers.go:415 gate: 成交量筛选完成，从 550 个币种筛选出 191 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:02:48.609][INFO] watchers.go:122 gate: 成交量筛选后最终剩余 191 个交易对
+[PHRYNUS][2025/12/20 17:02:48.609][INFO] watchers.go:127 gate: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:02:48.615][INFO] watchers.go:236 okx - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (25 个交易对)
+[PHRYNUS][2025/12/20 17:02:48.622][INFO] watchers.go:236 okx - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:48.635][INFO] watchers.go:236 kucoin - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:48.635][INFO] watchers.go:236 kucoin - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:48.636][INFO] watchers.go:236 kucoin - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:48.636][INFO] watchers.go:236 okx - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:48.637][INFO] watchers.go:236 kucoin - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:48.638][INFO] watchers.go:236 kucoin - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:48.647][INFO] watchers.go:236 okx - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.102][INFO] watchers.go:236 binance - Batch 7: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.102][INFO] exchange_status.go:48 交易所状态更新: binance 已连接
+[PHRYNUS][2025/12/20 17:02:49.110][INFO] watchers.go:236 binance - Batch 8: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.112][INFO] watchers.go:236 binance - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.113][INFO] watchers.go:236 bybit - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.113][INFO] exchange_status.go:48 交易所状态更新: bybit 已连接
+[PHRYNUS][2025/12/20 17:02:49.149][INFO] watchers.go:236 binance - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.155][INFO] watchers.go:236 bybit - Batch 7: 成功连接（使用WatchBidsAsks），开始接收数据 (23 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.157][INFO] watchers.go:236 bybit - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.166][INFO] watchers.go:236 bybit - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.172][INFO] watchers.go:236 binance - Batch 11: 成功连接（使用WatchBidsAsks），开始接收数据 (9 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.182][INFO] watchers.go:236 bybit - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.196][INFO] watchers.go:236 bybit - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.198][INFO] watchers.go:236 bybit - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.203][INFO] watchers.go:236 binance - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.535][INFO] watchers.go:236 bitget - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.535][INFO] exchange_status.go:48 交易所状态更新: bitget 已连接
+[PHRYNUS][2025/12/20 17:02:49.536][INFO] watchers.go:236 bitget - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.539][INFO] watchers.go:236 bitget - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.544][INFO] watchers.go:236 bitget - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (28 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.544][INFO] watchers.go:236 bitget - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:49.586][INFO] watchers.go:236 bitget - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:50.161][INFO] watchers.go:236 binance - Batch 10: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:50.214][INFO] watchers.go:236 binance - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:50.214][INFO] watchers.go:236 binance - Batch 9: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:50.249][INFO] watchers.go:236 binance - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:50.253][INFO] watchers.go:236 binance - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:50.609][INFO] watchers.go:44 gate: 准备启动 4 个批次，共 191 个交易对
+[PHRYNUS][2025/12/20 17:02:50.609][INFO] watchers.go:60 gate - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:50.609][INFO] watchers.go:60 gate - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:50.609][INFO] watchers.go:60 gate - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:02:50.609][INFO] watchers.go:60 gate - Batch 4: 启动批次，包含 41 个交易对
+[PHRYNUS][2025/12/20 17:02:51.453][INFO] watchers.go:236 gate - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (41 个交易对)
+[PHRYNUS][2025/12/20 17:02:51.453][INFO] exchange_status.go:48 交易所状态更新: gate 已连接
+[PHRYNUS][2025/12/20 17:02:51.453][INFO] watchers.go:236 gate - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:51.454][INFO] watchers.go:236 gate - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:02:51.456][INFO] watchers.go:236 gate - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:47.632][INFO] config.go:119 配置加载完成 (config=config.yaml): batchSize=50, maxRetries=10, tickerValidity=10000ms, minVolume=500000, spreadCalcWorkers=6, spreadCalcQueueSize=50, spreadCalcThrottleMs=100, refreshIntervalMs=200, tableLimit=35, minSpreadPercent=0.10, excludeUsdcUsdcPairs=false, enabledExchanges=[binance gate okx bybit bitget kucoin backpack]
+[PHRYNUS][2025/12/20 17:03:47.654][INFO] ticker_store.go:178 价差计算工作协程 #2 已启动
+[PHRYNUS][2025/12/20 17:03:47.654][INFO] ticker_store.go:178 价差计算工作协程 #1 已启动
+[PHRYNUS][2025/12/20 17:03:47.655][INFO] ticker_store.go:178 价差计算工作协程 #0 已启动
+[PHRYNUS][2025/12/20 17:03:47.655][INFO] ticker_store.go:178 价差计算工作协程 #5 已启动
+[PHRYNUS][2025/12/20 17:03:47.655][INFO] ticker_store.go:178 价差计算工作协程 #3 已启动
+[PHRYNUS][2025/12/20 17:03:47.655][INFO] ticker_store.go:178 价差计算工作协程 #4 已启动
+[PHRYNUS][2025/12/20 17:03:47.678][INFO] main.go:185 准备启动 7 个交易所监听器，每个延迟 500ms
+[PHRYNUS][2025/12/20 17:03:47.678][INFO] main.go:202 已启动 7 个交易所监听器（延迟启动以避免资源竞争）
+[PHRYNUS][2025/12/20 17:03:47.678][DEBUG] main.go:193 交易所 okx 等待 1.5s 后启动
+[PHRYNUS][2025/12/20 17:03:47.678][INFO] main.go:196 启动交易所监听器: backpack (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:03:47.678][INFO] watchers.go:23 backpack: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:03:47.678][DEBUG] main.go:193 交易所 bitget 等待 2.5s 后启动
+[PHRYNUS][2025/12/20 17:03:47.678][DEBUG] main.go:193 交易所 kucoin 等待 3s 后启动
+[PHRYNUS][2025/12/20 17:03:47.678][DEBUG] main.go:193 交易所 bybit 等待 2s 后启动
+[PHRYNUS][2025/12/20 17:03:47.678][INFO] watchers.go:92 backpack: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:03:47.678][DEBUG] watchers.go:262 backpack: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:03:47.678][DEBUG] main.go:193 交易所 binance 等待 500ms 后启动
+[PHRYNUS][2025/12/20 17:03:47.679][DEBUG] main.go:193 交易所 gate 等待 1s 后启动
+[PHRYNUS][2025/12/20 17:03:48.180][INFO] main.go:196 启动交易所监听器: binance (黑名单: 10 项)
+[PHRYNUS][2025/12/20 17:03:48.180][INFO] watchers.go:23 binance: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:03:48.180][INFO] watchers.go:92 binance: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:03:48.180][DEBUG] watchers.go:262 binance: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:03:48.302][INFO] watchers.go:265 backpack: 成功获取市场数据，共 148 个市场
+[PHRYNUS][2025/12/20 17:03:48.302][INFO] watchers.go:100 backpack: 成功获取 148 个市场
+[PHRYNUS][2025/12/20 17:03:48.302][INFO] watchers.go:104 backpack: 格式和黑名单筛选后剩余 64 个交易对
+[PHRYNUS][2025/12/20 17:03:48.679][INFO] main.go:196 启动交易所监听器: gate (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:03:48.679][INFO] watchers.go:23 gate: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:03:48.679][INFO] watchers.go:92 gate: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:03:48.679][DEBUG] watchers.go:262 gate: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:03:49.179][INFO] main.go:196 启动交易所监听器: okx (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:03:49.179][INFO] watchers.go:23 okx: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:03:49.179][INFO] watchers.go:92 okx: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:03:49.179][DEBUG] watchers.go:262 okx: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:03:49.253][INFO] watchers.go:265 binance: 成功获取市场数据，共 4141 个市场
+[PHRYNUS][2025/12/20 17:03:49.253][INFO] watchers.go:100 binance: 成功获取 4141 个市场
+[PHRYNUS][2025/12/20 17:03:49.254][INFO] watchers.go:104 binance: 格式和黑名单筛选后剩余 560 个交易对
+[PHRYNUS][2025/12/20 17:03:49.679][INFO] main.go:196 启动交易所监听器: bybit (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:03:49.679][INFO] watchers.go:23 bybit: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:03:49.679][INFO] watchers.go:92 bybit: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:03:49.679][DEBUG] watchers.go:262 bybit: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:03:49.780][INFO] watchers.go:265 okx: 成功获取市场数据，共 2367 个市场
+[PHRYNUS][2025/12/20 17:03:49.780][INFO] watchers.go:100 okx: 成功获取 2367 个市场
+[PHRYNUS][2025/12/20 17:03:49.780][INFO] watchers.go:104 okx: 格式和黑名单筛选后剩余 249 个交易对
+[PHRYNUS][2025/12/20 17:03:50.179][INFO] main.go:196 启动交易所监听器: bitget (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:03:50.179][INFO] watchers.go:23 bitget: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:03:50.179][INFO] watchers.go:92 bitget: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:03:50.179][DEBUG] watchers.go:262 bitget: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:03:50.553][INFO] watchers.go:265 bybit: 成功获取市场数据，共 2678 个市场
+[PHRYNUS][2025/12/20 17:03:50.553][INFO] watchers.go:100 bybit: 成功获取 2678 个市场
+[PHRYNUS][2025/12/20 17:03:50.555][INFO] watchers.go:104 bybit: 格式和黑名单筛选后剩余 597 个交易对
+[PHRYNUS][2025/12/20 17:03:50.679][INFO] main.go:196 启动交易所监听器: kucoin (黑名单: 9 项)
+[PHRYNUS][2025/12/20 17:03:50.679][INFO] watchers.go:23 kucoin: 开始初始化交易所监听器
+[PHRYNUS][2025/12/20 17:03:50.679][INFO] watchers.go:92 kucoin: 开始获取市场数据...
+[PHRYNUS][2025/12/20 17:03:50.679][DEBUG] watchers.go:262 kucoin: 尝试获取市场数据 (第 1/10 次)
+[PHRYNUS][2025/12/20 17:03:50.935][INFO] watchers.go:265 bitget: 成功获取市场数据，共 1375 个市场
+[PHRYNUS][2025/12/20 17:03:50.935][INFO] watchers.go:100 bitget: 成功获取 1375 个市场
+[PHRYNUS][2025/12/20 17:03:50.935][INFO] watchers.go:104 bitget: 格式和黑名单筛选后剩余 558 个交易对
+[PHRYNUS][2025/12/20 17:03:51.437][INFO] watchers.go:265 kucoin: 成功获取市场数据，共 534 个市场
+[PHRYNUS][2025/12/20 17:03:51.437][INFO] watchers.go:100 kucoin: 成功获取 534 个市场
+[PHRYNUS][2025/12/20 17:03:51.437][INFO] watchers.go:104 kucoin: 格式和黑名单筛选后剩余 517 个交易对
+[PHRYNUS][2025/12/20 17:03:51.593][INFO] watchers.go:265 gate: 成功获取市场数据，共 6132 个市场
+[PHRYNUS][2025/12/20 17:03:51.594][INFO] watchers.go:100 gate: 成功获取 6132 个市场
+[PHRYNUS][2025/12/20 17:03:51.595][INFO] watchers.go:104 gate: 格式和黑名单筛选后剩余 584 个交易对
+[PHRYNUS][2025/12/20 17:03:51.595][INFO] watchers.go:117 backpack: 去除仅存在于单一交易所后剩余 37 个交易对
+[PHRYNUS][2025/12/20 17:03:51.595][DEBUG] watchers.go:375 backpack: 开始获取 37 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:03:51.595][INFO] watchers.go:117 binance: 去除仅存在于单一交易所后剩余 551 个交易对
+[PHRYNUS][2025/12/20 17:03:51.595][DEBUG] watchers.go:375 binance: 开始获取 551 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:03:51.595][INFO] watchers.go:117 okx: 去除仅存在于单一交易所后剩余 249 个交易对
+[PHRYNUS][2025/12/20 17:03:51.595][DEBUG] watchers.go:375 okx: 开始获取 249 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:03:51.595][INFO] watchers.go:117 bybit: 去除仅存在于单一交易所后剩余 557 个交易对
+[PHRYNUS][2025/12/20 17:03:51.595][DEBUG] watchers.go:375 bybit: 开始获取 557 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:03:51.595][INFO] watchers.go:117 bitget: 去除仅存在于单一交易所后剩余 546 个交易对
+[PHRYNUS][2025/12/20 17:03:51.595][DEBUG] watchers.go:375 bitget: 开始获取 546 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:03:51.596][INFO] watchers.go:117 gate: 去除仅存在于单一交易所后剩余 550 个交易对
+[PHRYNUS][2025/12/20 17:03:51.596][INFO] watchers.go:117 kucoin: 去除仅存在于单一交易所后剩余 500 个交易对
+[PHRYNUS][2025/12/20 17:03:51.596][DEBUG] watchers.go:375 kucoin: 开始获取 500 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:03:51.596][DEBUG] watchers.go:375 gate: 开始获取 550 个交易对的成交量数据
+[PHRYNUS][2025/12/20 17:03:52.183][DEBUG] watchers.go:381 backpack: 成功获取 37 个 ticker 数据
+[PHRYNUS][2025/12/20 17:03:52.183][INFO] watchers.go:415 backpack: 成交量筛选完成，从 37 个币种筛选出 24 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:03:52.183][INFO] watchers.go:122 backpack: 成交量筛选后最终剩余 24 个交易对
+[PHRYNUS][2025/12/20 17:03:52.183][INFO] watchers.go:127 backpack: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:03:52.256][DEBUG] watchers.go:381 kucoin: 成功获取 500 个 ticker 数据
+[PHRYNUS][2025/12/20 17:03:52.256][INFO] watchers.go:415 kucoin: 成交量筛选完成，从 500 个币种筛选出 300 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:03:52.256][INFO] watchers.go:122 kucoin: 成交量筛选后最终剩余 300 个交易对
+[PHRYNUS][2025/12/20 17:03:52.256][INFO] watchers.go:127 kucoin: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:03:52.588][DEBUG] watchers.go:381 okx: 成功获取 249 个 ticker 数据
+[PHRYNUS][2025/12/20 17:03:52.590][INFO] watchers.go:415 okx: 成交量筛选完成，从 249 个币种筛选出 225 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:03:52.590][INFO] watchers.go:122 okx: 成交量筛选后最终剩余 225 个交易对
+[PHRYNUS][2025/12/20 17:03:52.590][INFO] watchers.go:127 okx: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:03:52.953][DEBUG] watchers.go:381 binance: 成功获取 551 个 ticker 数据
+[PHRYNUS][2025/12/20 17:03:52.953][INFO] watchers.go:415 binance: 成交量筛选完成，从 551 个币种筛选出 542 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:03:52.953][INFO] watchers.go:122 binance: 成交量筛选后最终剩余 542 个交易对
+[PHRYNUS][2025/12/20 17:03:52.953][INFO] watchers.go:127 binance: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:03:52.970][DEBUG] watchers.go:381 bybit: 成功获取 557 个 ticker 数据
+[PHRYNUS][2025/12/20 17:03:52.970][INFO] watchers.go:415 bybit: 成交量筛选完成，从 557 个币种筛选出 324 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:03:52.970][INFO] watchers.go:122 bybit: 成交量筛选后最终剩余 324 个交易对
+[PHRYNUS][2025/12/20 17:03:52.970][INFO] watchers.go:127 bybit: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:03:53.218][DEBUG] watchers.go:381 bitget: 成功获取 501 个 ticker 数据
+[PHRYNUS][2025/12/20 17:03:53.218][INFO] watchers.go:415 bitget: 成交量筛选完成，从 546 个币种筛选出 278 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:03:53.218][INFO] watchers.go:122 bitget: 成交量筛选后最终剩余 278 个交易对
+[PHRYNUS][2025/12/20 17:03:53.218][INFO] watchers.go:127 bitget: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:03:54.184][INFO] watchers.go:44 backpack: 准备启动 1 个批次，共 24 个交易对
+[PHRYNUS][2025/12/20 17:03:54.184][INFO] watchers.go:60 backpack - Batch 1: 启动批次，包含 24 个交易对
+[PHRYNUS][2025/12/20 17:03:54.256][INFO] watchers.go:44 kucoin: 准备启动 6 个批次，共 300 个交易对
+[PHRYNUS][2025/12/20 17:03:54.256][INFO] watchers.go:60 kucoin - Batch 6: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.256][INFO] watchers.go:60 kucoin - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.256][INFO] watchers.go:60 kucoin - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.256][INFO] watchers.go:60 kucoin - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.256][INFO] watchers.go:60 kucoin - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.256][INFO] watchers.go:60 kucoin - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.590][INFO] watchers.go:44 okx: 准备启动 5 个批次，共 225 个交易对
+[PHRYNUS][2025/12/20 17:03:54.590][INFO] watchers.go:60 okx - Batch 5: 启动批次，包含 25 个交易对
+[PHRYNUS][2025/12/20 17:03:54.590][INFO] watchers.go:60 okx - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.590][INFO] watchers.go:60 okx - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.590][INFO] watchers.go:60 okx - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.590][INFO] watchers.go:60 okx - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.938][DEBUG] watchers.go:381 gate: 成功获取 550 个 ticker 数据
+[PHRYNUS][2025/12/20 17:03:54.938][INFO] watchers.go:415 gate: 成交量筛选完成，从 550 个币种筛选出 191 个（24小时成交量 >= 500000）
+[PHRYNUS][2025/12/20 17:03:54.938][INFO] watchers.go:122 gate: 成交量筛选后最终剩余 191 个交易对
+[PHRYNUS][2025/12/20 17:03:54.938][INFO] watchers.go:127 gate: 停止 0 个旧批次
+[PHRYNUS][2025/12/20 17:03:54.953][INFO] watchers.go:44 binance: 准备启动 11 个批次，共 542 个交易对
+[PHRYNUS][2025/12/20 17:03:54.953][INFO] watchers.go:60 binance - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.953][INFO] watchers.go:60 binance - Batch 10: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.953][INFO] watchers.go:60 binance - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.953][INFO] watchers.go:60 binance - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.953][INFO] watchers.go:60 binance - Batch 11: 启动批次，包含 42 个交易对
+[PHRYNUS][2025/12/20 17:03:54.954][INFO] watchers.go:60 binance - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.954][INFO] watchers.go:60 binance - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.954][INFO] watchers.go:60 binance - Batch 6: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.954][INFO] watchers.go:60 binance - Batch 7: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.954][INFO] watchers.go:60 binance - Batch 8: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.954][INFO] watchers.go:60 binance - Batch 9: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.971][INFO] watchers.go:44 bybit: 准备启动 7 个批次，共 324 个交易对
+[PHRYNUS][2025/12/20 17:03:54.971][INFO] watchers.go:60 bybit - Batch 7: 启动批次，包含 24 个交易对
+[PHRYNUS][2025/12/20 17:03:54.971][INFO] watchers.go:60 bybit - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.971][INFO] watchers.go:60 bybit - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.971][INFO] watchers.go:60 bybit - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.971][INFO] watchers.go:60 bybit - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.971][INFO] watchers.go:60 bybit - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:54.971][INFO] watchers.go:60 bybit - Batch 6: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:55.101][INFO] watchers.go:236 backpack - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (24 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.101][INFO] exchange_status.go:48 交易所状态更新: backpack 已连接
+[PHRYNUS][2025/12/20 17:03:55.193][INFO] watchers.go:236 kucoin - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.193][INFO] exchange_status.go:48 交易所状态更新: kucoin 已连接
+[PHRYNUS][2025/12/20 17:03:55.196][INFO] watchers.go:236 kucoin - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.196][INFO] watchers.go:236 kucoin - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.209][INFO] watchers.go:236 okx - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (25 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.209][INFO] exchange_status.go:48 交易所状态更新: okx 已连接
+[PHRYNUS][2025/12/20 17:03:55.219][INFO] watchers.go:44 bitget: 准备启动 6 个批次，共 278 个交易对
+[PHRYNUS][2025/12/20 17:03:55.219][INFO] watchers.go:60 bitget - Batch 6: 启动批次，包含 28 个交易对
+[PHRYNUS][2025/12/20 17:03:55.219][INFO] watchers.go:60 bitget - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:55.219][INFO] watchers.go:60 bitget - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:55.219][INFO] watchers.go:60 bitget - Batch 4: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:55.219][INFO] watchers.go:60 bitget - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:55.219][INFO] watchers.go:60 bitget - Batch 5: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:55.235][INFO] watchers.go:236 okx - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.245][INFO] watchers.go:236 kucoin - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.246][INFO] watchers.go:236 kucoin - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.251][INFO] watchers.go:236 okx - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.272][INFO] watchers.go:236 okx - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.277][INFO] watchers.go:236 okx - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.296][INFO] watchers.go:236 kucoin - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.600][INFO] watchers.go:236 bybit - Batch 7: 成功连接（使用WatchBidsAsks），开始接收数据 (24 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.600][INFO] exchange_status.go:48 交易所状态更新: bybit 已连接
+[PHRYNUS][2025/12/20 17:03:55.604][INFO] watchers.go:236 bybit - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.644][INFO] watchers.go:236 bybit - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.650][INFO] watchers.go:236 bybit - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.659][INFO] watchers.go:236 bybit - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.678][INFO] watchers.go:236 bybit - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.684][INFO] watchers.go:236 bybit - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.720][INFO] watchers.go:236 binance - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.720][INFO] exchange_status.go:48 交易所状态更新: binance 已连接
+[PHRYNUS][2025/12/20 17:03:55.721][INFO] watchers.go:236 binance - Batch 10: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.726][INFO] watchers.go:236 binance - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.760][INFO] watchers.go:236 binance - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.761][INFO] watchers.go:236 binance - Batch 9: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.766][INFO] watchers.go:236 binance - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.788][INFO] watchers.go:236 binance - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.794][INFO] watchers.go:236 binance - Batch 7: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.794][INFO] watchers.go:236 binance - Batch 8: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.818][INFO] watchers.go:236 binance - Batch 11: 成功连接（使用WatchBidsAsks），开始接收数据 (42 个交易对)
+[PHRYNUS][2025/12/20 17:03:55.819][INFO] watchers.go:236 binance - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:56.070][INFO] watchers.go:236 bitget - Batch 6: 成功连接（使用WatchBidsAsks），开始接收数据 (28 个交易对)
+[PHRYNUS][2025/12/20 17:03:56.070][INFO] exchange_status.go:48 交易所状态更新: bitget 已连接
+[PHRYNUS][2025/12/20 17:03:56.071][INFO] watchers.go:236 bitget - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:56.076][INFO] watchers.go:236 bitget - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:56.115][INFO] watchers.go:236 bitget - Batch 5: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:56.125][INFO] watchers.go:236 bitget - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:56.129][INFO] watchers.go:236 bitget - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:56.939][INFO] watchers.go:44 gate: 准备启动 4 个批次，共 191 个交易对
+[PHRYNUS][2025/12/20 17:03:56.939][INFO] watchers.go:60 gate - Batch 4: 启动批次，包含 41 个交易对
+[PHRYNUS][2025/12/20 17:03:56.955][INFO] watchers.go:60 gate - Batch 1: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:56.956][INFO] watchers.go:60 gate - Batch 2: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:56.959][INFO] watchers.go:60 gate - Batch 3: 启动批次，包含 50 个交易对
+[PHRYNUS][2025/12/20 17:03:57.720][INFO] watchers.go:236 gate - Batch 3: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:57.720][INFO] exchange_status.go:48 交易所状态更新: gate 已连接
+[PHRYNUS][2025/12/20 17:03:57.723][INFO] watchers.go:236 gate - Batch 4: 成功连接（使用WatchBidsAsks），开始接收数据 (41 个交易对)
+[PHRYNUS][2025/12/20 17:03:57.725][INFO] watchers.go:236 gate - Batch 1: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:03:57.789][INFO] watchers.go:236 gate - Batch 2: 成功连接（使用WatchBidsAsks），开始接收数据 (50 个交易对)
+[PHRYNUS][2025/12/20 17:04:47.654][INFO] ticker_store.go:541 === 整体状态 ===
+[PHRYNUS][2025/12/20 17:04:47.654][INFO] ticker_store.go:542 币种统计: 总数=595, 有价差=420, 多交易所=437
+[PHRYNUS][2025/12/20 17:04:47.654][INFO] ticker_store.go:546 最大价差: 3.0139% (LIGHT/USDT:USDT - bitget->okx)
+[PHRYNUS][2025/12/20 17:04:47.654][INFO] ticker_store.go:550 交易所状态: 已连接=7/7, 已断开=0
+[PHRYNUS][2025/12/20 17:04:47.654][INFO] ticker_store.go:554 价差计算队列: 当前长度=0/50
+[PHRYNUS][2025/12/20 17:04:47.654][INFO] ticker_store.go:560 各交易所币种数量: map[backpack:24 binance:541 bitget:278 bybit:324 gate:187 kucoin:297 okx:225]
