@@ -3,6 +3,9 @@ package main
 import (
 	"context"
 	"fmt"
+	"math"
+	"strconv"
+	"strings"
 	"time"
 
 	"github.com/gdamore/tcell/v2"
@@ -176,7 +179,7 @@ func (ui *spreadUI) renderHeader(tracked, displayed int) {
 	connected := globalExchanges.GetConnectedCount()
 	total := globalExchanges.GetTotalCount()
 	header := fmt.Sprintf(
-		"[::b]PHRYNUS [-:-:-]  [gray]|[-]  交易所: [%s]%d/%d[-]  [gray]|[-]  过滤: [white]≥ %.2f%%[-]  [gray]|[-]  已追踪: [white]%d[-]  [gray]|[-]  当前显示: [white]%d[-]",
+		"[::b]By: PHRYNUS [-:-:-]  [gray]|[-]  交易所: [%s]%d/%d[-]  [gray]|[-]  过滤: [white]≥ %.2f%%[-]  [gray]|[-]  已追踪: [white]%d[-]  [gray]|[-]  当前显示: [white]%d[-]",
 		getConnectionColor(connected, total),
 		connected,
 		total,
@@ -205,7 +208,7 @@ func (ui *spreadUI) renderTable(rows []SpreadRow) {
 	// - Spread % / Spread: 基于买入 Ask 与卖出 Bid 的价差
 	// - Sell (Bid): 卖出价格（Bid）
 	// - Buy (Ask): 买入价格（Ask）
-	headers := []string{" # ", " 币种 ", " 多空 ", " 价差 % ", "买", "卖", " 延迟 "}
+	headers := []string{" # ", " 币种 ", " 多空 ", "价差 %", " 买 ", " 卖 ", " 延迟 "}
 	for col, title := range headers {
 		ui.table.SetCell(0, col, fixedWidthCell(col, fmt.Sprintf("[white::b]%s", title)).
 			SetAlign(tview.AlignCenter).
@@ -227,8 +230,8 @@ func (ui *spreadUI) renderTable(rows []SpreadRow) {
 		ui.table.SetCell(idx+1, 1, fixedWidthCell(1, formatPairDisplay(row.Symbol)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 2, fixedWidthCell(2, row.Spread.ExchangePair).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 3, fixedWidthCell(3, fmt.Sprintf("%s%.2f%%[-]", color, row.Spread.SpreadPercent)).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 5, fixedWidthCell(4, fmt.Sprintf("%.4f", row.Spread.LowBid)).SetAlign(tview.AlignCenter))
-		ui.table.SetCell(idx+1, 4, fixedWidthCell(5, fmt.Sprintf("%.4f", row.Spread.HighBid)).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 4, fixedWidthCell(4, FormatNumber(row.Spread.LowBid)).SetAlign(tview.AlignCenter))
+		ui.table.SetCell(idx+1, 5, fixedWidthCell(5, FormatNumber(row.Spread.HighBid)).SetAlign(tview.AlignCenter))
 		ui.table.SetCell(idx+1, 6, fixedWidthCell(6, age).SetAlign(tview.AlignCenter))
 	}
 }
@@ -363,4 +366,102 @@ func humanizeDuration(d time.Duration) string {
 	minutes := int(d / time.Minute)
 	seconds := int(d/time.Second) % 60
 	return fmt.Sprintf("%dm%02ds", minutes, seconds)
+}
+
+// FormatNumber 按“最多 5 个有效位”的规则格式化数字。
+// 小于 1 时省掉前导 0，若小数点后在首个非零数字之前有超过 1 个 0，
+// 用上标数字表示这些 0（例如 0.00061234 -> .³61234）。
+func FormatNumber(v float64) string {
+	if math.IsNaN(v) || math.IsInf(v, 0) {
+		return fmt.Sprintf("%v", v)
+	}
+
+	sign := ""
+	if v < 0 {
+		sign = "-"
+		v = -v
+	}
+
+	// 特殊零处理
+	if v == 0 {
+		return "0"
+	}
+
+	const sig = 5 // 目标有效位数
+
+	// 当 >=1 时，根据整数位数决定小数位数（有效位 = 整数位 + 小数位）
+	if v >= 1 {
+		intDigits := int(math.Floor(math.Log10(v))) + 1
+		decPlaces := sig - intDigits
+		if decPlaces <= 0 {
+			// 不显示小数
+			return sign + strconv.FormatFloat(math.Round(v), 'f', 0, 64)
+		}
+		return sign + strconv.FormatFloat(v, 'f', decPlaces, 64)
+	}
+
+	// v in (0,1)：统计小数点后首个非零数字前的 0 的个数
+	tmp := v
+	countZeros := 0
+	for tmp*10 < 1 {
+		tmp *= 10
+		countZeros++
+		// 防止极端循环
+		if countZeros > 18 {
+			break
+		}
+	}
+
+	// 将第一非零位开始取 sig 个有效位并四舍五入
+	scale := math.Pow10(countZeros + sig)
+	rounded := int64(math.Round(v * scale))
+	// 若四舍五入导致进位（比如 99999 -> 100000），则需要把进位向左移动并调整 countZeros
+	powSig := int64(1)
+	for i := 0; i < sig; i++ {
+		powSig *= 10
+	}
+	for rounded >= powSig {
+		rounded /= 10
+		countZeros--
+	}
+
+	// 如果进位把数推到 >=1，则退回到 >=1 的路径（重新格式化）
+	if countZeros <= 0 {
+		// 重新用 >=1 的规则处理（整数位数会变为 1）
+		// 计算应该保留的小数位数
+		intDigits := 1
+		decPlaces := sig - intDigits
+		return sign + strconv.FormatFloat(v, 'f', decPlaces, 64)
+	}
+
+	// 准备输出字符串
+	digitsStr := fmt.Sprintf("%0*d", sig, int(rounded))
+	prefix := "."
+	if countZeros == 1 {
+		// 只有一个 0，按照你要求“如果是1个0就不用转换”，直接显示 ".0..."
+		prefix = ".0"
+	} else if countZeros > 1 {
+		prefix = "." + intToSuperscript(countZeros)
+	}
+
+	return sign + prefix + digitsStr
+}
+
+var superscript = []rune{'⁰', '¹', '²', '³', '⁴', '⁵', '⁶', '⁷', '⁸', '⁹'}
+
+func intToSuperscript(n int) string {
+	if n <= 0 {
+		return ""
+	}
+	s := strconv.Itoa(n)
+	var b strings.Builder
+	for _, ch := range s {
+		d := ch - '0'
+		if d >= 0 && d <= 9 {
+			b.WriteRune(superscript[d])
+		} else {
+			b.WriteRune(ch) // fallback（理论不会发生）
+		}
+	}
+	return b.String()
 }

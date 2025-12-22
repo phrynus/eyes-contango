@@ -30,8 +30,8 @@ enabledExchanges:
   - binance
   - gate
   # - okx
-  - bybit
-  - bitget
+  # - bybit
+  # - bitget
   # - kucoin
   # - backpack
 # 全局黑名单
@@ -47,16 +47,9 @@ commonBlacklist:
 exchangeBlacklists:
   binance:
     - 1000000BOB
-  okx:
-    []
-  bybit:
-    []
-  kucoin:
-    []
-  gate:
-    []
-  bitget:
-    []
-  backpack:
-    []
-
+  okx: []
+  bybit: []
+  kucoin: []
+  gate: []
+  bitget: []
+  backpack: []
