@@ -104,7 +104,11 @@ func watchExchange(exchangeName string, exchange ccxtpro.IExchange, blacklist ma
 		contractSymbols := filterContractSymbols(markets, blacklist)
 		log.Infof("%s: 格式和黑名单筛选后剩余 %d 个交易对", exchangeName, len(contractSymbols))
 
-		// 将本交易所黑名单筛选后的结果发送到协调器，等待所有交易所完成黑名单筛选后，接收去除仅存在于单一交易所的币种列表
+		// 根据成交量进一步筛选（在多交易所存在性过滤之前）
+		contractSymbols = filterSymbolsByVolume(exchangeName, exchange, contractSymbols)
+		log.Infof("%s: 成交量筛选后剩余 %d 个交易对", exchangeName, len(contractSymbols))
+
+		// 将本交易所经过黑名单和成交量筛选后的结果发送到协调器，等待所有交易所完成多交易所存在性统计后，接收去除仅存在于单一交易所的币种列表
 		if sendCh != nil {
 			respCh := make(chan []string, 1)
 			sendCh <- exchangeInit{
@@ -117,10 +121,6 @@ func watchExchange(exchangeName string, exchange ccxtpro.IExchange, blacklist ma
 			contractSymbols = adjusted
 			log.Infof("%s: 去除仅存在于单一交易所后剩余 %d 个交易对", exchangeName, len(contractSymbols))
 		}
-
-		// 根据成交量进一步筛选
-		contractSymbols = filterSymbolsByVolume(exchangeName, exchange, contractSymbols)
-		log.Infof("%s: 成交量筛选后最终剩余 %d 个交易对", exchangeName, len(contractSymbols))
 
 		// 停止旧的订阅
 		batchesMutex.Lock()
